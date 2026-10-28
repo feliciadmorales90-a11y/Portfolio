@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useId, useState, type ReactNode } from "react";
+import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 
 function Plus({ open, className = "" }: { open: boolean; className?: string }) {
   return (
@@ -62,11 +62,13 @@ export function Section({ title, defaultOpen = true, children }: { title: string
 
 /** Campaign deep-dive card with a summary that stays visible when collapsed. */
 export function DeepDive({
+  anchor,
   title,
   period,
   summary,
   children,
 }: {
+  anchor?: string;
   title: string;
   period?: string;
   summary: string;
@@ -74,8 +76,25 @@ export function DeepDive({
 }) {
   const [open, setOpen] = useState(false);
   const id = useId();
+  const ref = useRef<HTMLDivElement>(null);
+
+  // Open (and scroll to) this deep dive when the URL hash points at it.
+  useEffect(() => {
+    if (!anchor) return;
+    const check = () => {
+      if (window.location.hash === `#${anchor}`) {
+        setOpen(true);
+        // An instant jump; a smooth scroll here fights the browser's own hash scroll and stops short.
+        setTimeout(() => ref.current?.scrollIntoView({ behavior: "instant", block: "start" }), 50);
+      }
+    };
+    check();
+    window.addEventListener("hashchange", check);
+    return () => window.removeEventListener("hashchange", check);
+  }, [anchor]);
+
   return (
-    <div className="border border-card-border rounded-2xl overflow-hidden bg-card-bg/30">
+    <div id={anchor} ref={ref} className="border border-card-border rounded-2xl overflow-hidden bg-card-bg/30">
       <button
         type="button"
         aria-expanded={open}

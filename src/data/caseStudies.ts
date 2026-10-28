@@ -14,6 +14,8 @@ export type Media =
   | { type: "link"; label: string; description: string; href: string };
 
 export type Campaign = {
+  /** Anchor id, so a deep dive can be linked to directly (it opens on arrival). */
+  id?: string;
   title: string;
   period?: string;
   overview: string;
@@ -23,6 +25,8 @@ export type Campaign = {
   results?: Stat[];
   resultsNote?: string;
   media?: Media[];
+  sections?: ExtraSection[];
+  links?: ProofLink[];
 };
 
 export type ProofLink = { label: string; href: string; external?: boolean };
@@ -64,9 +68,9 @@ export const caseStudies: CaseStudy[] = [
     role: "Marketing Content Manager",
     period: "Apr 2024 – Present",
     color: "#EEDDD9",
-    tags: ["Brand Voice", "Lifecycle Email", "SEO", "Creator Partnerships", "Paid Social Creative", "HubSpot"],
+    tags: ["Brand Voice", "Lifecycle Email", "Trial Onboarding", "SEO", "Creator Partnerships", "Paid Social Creative", "HubSpot"],
     summary:
-      "The sole marketer for a direct-booking SaaS platform. I created Futurestay's brand voice from scratch, then built the channels behind it: lifecycle email, SEO, creator partnerships, video, and paid social creative.",
+      "The sole marketer for a direct-booking SaaS platform. I created Futurestay's brand voice from scratch, then built the channels behind it: lifecycle email, SEO, creator partnerships, video, paid social creative, and a trial onboarding bootcamp that converts 66.4% of finished trials.",
     headline: {
       value: "445%",
       text: "Company trial starts grew 445% year over year (Jan–Oct).",
@@ -91,6 +95,107 @@ export const caseStudies: CaseStudy[] = [
       "Built an internal social and email reporting platform, and wrote creative briefs and brand guidelines while onboarding a freelance junior marketer",
     ],
     campaigns: [
+      {
+        id: "trialist-bootcamp",
+        title: "Trialist Bootcamp: Turning a 14-Day Trial Into a Launch Plan",
+        period: "Shipped 2026 · Live",
+        overview:
+          "An in-app onboarding guidebook that turns Futurestay's 14-day trial into a visible 9-step checklist with a graduation reward at the end. 66.4% of bootcamp hosts with a finished trial became paying customers. My most cross-functional project: I owned it end to end, from product and copy to video, build, and measurement.",
+        myRole:
+          "Product owner and builder. I wrote the scripts, recorded and edited the videos, wrote the guide and its email series, built the product, and set up the measurement, working with the CEO (on camera), the Analytics team, Product, and Customer Success. It is used by three Customer Success Managers.",
+        process: [
+          "Diagnosed the gap: the trial exposed hosts to real value (Stripe direct bookings, Google Vacation Rentals, the Billboard Effect, Smart Rates, listing optimization), but many landed on the dashboard, didn't know where to start, and churned before any of it mattered",
+          "Designed the trial as a 3-tab, 9-step checklist (Set Your Goals, Accept Direct Bookings, Boost Your Listing Performance) that shows exactly what to do, in what order, and how close you are to done",
+          "Wrote the video scripts, then recorded and edited the founder-led videos that open each stage, with Futurestay's CEO on camera",
+          "Wrote the guide copy and the bootcamp email series, starting with a personalized HubSpot welcome from each host's assigned CSM and a one-click link into their own guidebook",
+          "Built a live market comp set (AirROI, with a ZIP-code fallback for hosts without an Airbnb listing) and goal sliders that turn market percentiles into real dollar targets",
+          "Made it CSM-aware: every host sees their Success Manager's name, photo, and calendar, assigned by a round-robin that respects existing HubSpot ownership",
+          "Gave the trial a finish line: complete all 9 steps and the host's CSM registers a free .com domain that redirects to their Futurestay direct booking site",
+          "Built it as a single-file front end on Vercel with Node serverless functions, integrating HubSpot, AirROI, NameSilo, Vercel KV, and Slack",
+        ],
+        output:
+          "A self-serve onboarding product, live in production: personalized guidebook, founder-led videos, market comps and goal-setting, CSM scheduling, a domain reward, and a live performance dashboard.",
+        results: [
+          { value: 66.4, suffix: "%", decimals: 1, label: "Trial → Customer (Finished Trials)" },
+          { value: 13, prefix: "+", suffix: " pts", label: "Conversion for Hosts Who Engaged" },
+          { value: 2.3, suffix: "×", decimals: 1, label: "Fewer Failed Trials" },
+        ],
+        resultsNote:
+          "Measured in HubSpot on bootcamp hosts whose trials have finished, test accounts excluded. The engagement comparison is hosts who clicked into the guidebook (44% converted, 11% failed) vs those who didn't (31% converted, 25% failed), within the same market, workflows, and CSMs.",
+        media: [
+          {
+            type: "image",
+            label: "Stage 1: Set Your Goals",
+            description: "Each stage opens with a founder video and a short checklist, with the host's CSM in the corner and the graduation reward always in view.",
+            src: "/bootcamp/guide-stage-1.png",
+            href: "https://futurestay-bootcamp-guide.vercel.app/",
+          },
+          {
+            type: "image",
+            label: "Market Comp Set",
+            description: "Hosts paste their Airbnb listing (or enter a ZIP) to see what top properties like theirs earn.",
+            src: "/bootcamp/comps.png",
+          },
+          {
+            type: "image",
+            label: "Earnings & Direct Booking Goals",
+            description: "Sliders tied to real market percentiles turn a target into dollar outcomes.",
+            src: "/bootcamp/goals.png",
+          },
+          {
+            type: "image",
+            label: "Graduation Rewards",
+            description: "A visible finish line: finish all 9 steps to unlock a free .com domain, a Canva kit, and guest email templates.",
+            src: "/bootcamp/rewards.png",
+          },
+          {
+            type: "vimeo",
+            label: "Stage 1 Video",
+            description: "Opens the bootcamp and frames the two goals. Scripted, recorded, and edited by me.",
+            id: "1201428890",
+            hash: "2269697b24",
+          },
+          {
+            type: "vimeo",
+            label: "Stage 2 Video: Connect Stripe & Set Your Booking Mode",
+            description: "Walks hosts through taking direct payments and choosing how guests book.",
+            id: "1201441262",
+            hash: "314159716e",
+          },
+          {
+            type: "vimeo",
+            label: "Stage 3 Video: Consider Smart Rates",
+            description: "Explains daily pricing tuned to the host's market.",
+            id: "1201809275",
+            hash: "a4f5d9e0f2",
+          },
+        ],
+        sections: [
+          {
+            title: "Measurement, Built In From Day One",
+            paragraphs: [
+              "Every step completion, graduation, and domain claim is written back to HubSpot contact properties, so the funnel can be measured instead of guessed. That data drives four reporting surfaces:",
+            ],
+            bullets: [
+              "Real-time Slack notifications on every step completion, graduation, domain registration, and error",
+              "A daily 9am digest of new graduates, hosts who made progress, and currently active trialists",
+              "A weekly funnel digest every Monday, plus a CSM outreach list of trialists who haven't engaged",
+              "A live performance dashboard with per-CSM breakdowns, conversion split by guidebook engagement, and engagement for every bootcamp email",
+            ],
+          },
+          {
+            title: "What I Took From It",
+            bullets: [
+              "Visible progress beats a feature list. The dashboard already had every feature a host needed. Putting them in order, with a count, changed behavior.",
+              "Tangible rewards earn commitment. A free domain costs about ten dollars but reframes the trial from obligation to accomplishment.",
+              "Measurement built on day one pays compounding interest. Because every step was recorded from the start, the guidebook's impact could be compared against a matched population.",
+              "Design for the edge cases. Hosts without an Airbnb listing, hosts on VRBO, cancelled graduates, and Puerto Rico ZIP codes each needed a graceful path, not an error page.",
+              "Choose durable identifiers early. Goals were first linked to Airbnb URLs, so manual entries silently vanished. Switching to a property ID fixed it.",
+            ],
+          },
+        ],
+        links: [{ label: "Open the live guide", href: "https://futurestay-bootcamp-guide.vercel.app/", external: true }],
+      },
       {
         title: "Ready-to-Launch Drip: Turning Built Sites Into Trials",
         overview:
@@ -246,118 +351,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     resultsNote:
       "Search clicks, organic sessions, and traffic are company-wide numbers that my SEO content and distribution contributed to. Newsletter, lifecycle, and Instagram results are from channels I ran.",
-    proof: [{ label: "See the Trialist Bootcamp case study", href: "/work/trialist-bootcamp" }],
-  },
-  {
-    slug: "trialist-bootcamp",
-    company: "Trialist Bootcamp",
-    industry: "Futurestay / Trial-to-Paid Conversion",
-    role: "Marketing Content Manager, Futurestay",
-    period: "Shipped 2026 · Live",
-    color: "#F1E4D3",
-    tags: ["Onboarding", "Product Ownership", "Video Scripts & Production", "HubSpot", "Cross-Functional", "Claude Code"],
-    summary:
-      "An in-app guidebook that turns Futurestay's 14-day trial into a 9-step launch plan with a reward at the end. I owned it end to end: product, copy, video scripts and production, build, and measurement.",
-    headline: {
-      value: "66.4%",
-      text: "66.4% of bootcamp hosts with a finished trial became paying customers.",
-      note: "Hosts who clicked into the guidebook converted at 44% vs 31% for those who didn't, and failed their trial 2.3× less often.",
-    },
-    overview:
-      "The Trialist Bootcamp is an in-app onboarding guidebook for new Futurestay trialists. It turns unstructured setup work into a visible 9-step checklist with a tangible graduation reward. It shipped as a self-serve product, is measured with a live dashboard, and is used by three Customer Success Managers.",
-    collaborators: "The CEO (on camera), the Analytics team, Product, and Customer Success.",
-    problem:
-      "Futurestay's 14-day trial exposes new hosts to the product's real value: direct bookings via Stripe, Google Vacation Rentals, the Billboard Effect, Smart Rates, and listing optimization. But value only lands if hosts actually finish setup. Many didn't. They'd land on the dashboard, not know where to start, and churn before any of it mattered.\n\nThe product had the right features. What it lacked was a guided path from signup to competence, and a reason to finish.",
-    strategy: [
-      "Designed the trial as a 3-tab, 9-step checklist (Set Your Goals, Accept Direct Bookings, Boost Your Listing Performance) that shows exactly what to do, in what order, and how close you are to done",
-      "Wrote the video scripts, then recorded and edited the founder-led videos that open each stage, with Futurestay's CEO on camera",
-      "Wrote the guide copy and the bootcamp email series, starting with a personalized HubSpot welcome from each host's assigned CSM and a one-click link into their own guidebook",
-      "Built a live market comp set (AirROI, with a ZIP-code fallback for hosts without an Airbnb listing) and goal sliders that turn market percentiles into real dollar targets",
-      "Made it CSM-aware: every host sees their Success Manager's name, photo, and calendar, assigned by a round-robin that respects existing HubSpot ownership",
-      "Gave the trial a finish line: complete all 9 steps and the host's CSM registers a free .com domain that redirects to their Futurestay direct booking site",
-      "Built it as a single-file front end on Vercel with Node serverless functions, integrating HubSpot, AirROI, NameSilo, Vercel KV, and Slack",
-      "Worked with the Analytics team on funnel tracking, with Product on task logic, with the CEO on video, and with Customer Success on rollout",
-    ],
-    results: [
-      { value: 66.4, suffix: "%", decimals: 1, label: "Trial → Customer (Finished Trials)" },
-      { value: 13, prefix: "+", suffix: " pts", label: "Conversion for Hosts Who Engaged" },
-      { value: 2.3, suffix: "×", decimals: 1, label: "Fewer Failed Trials" },
-    ],
-    resultsNote:
-      "Measured in HubSpot on bootcamp hosts whose trials have finished, test accounts excluded. The engagement comparison is hosts who clicked into the guidebook (44% converted, 11% failed) vs those who didn't (31% converted, 25% failed), within the same market, workflows, and CSMs.",
-    media: [
-      {
-        type: "image",
-        label: "Stage 1: Set Your Goals",
-        description: "Each stage opens with a founder video and a short checklist, with the host's CSM in the corner and the graduation reward always in view.",
-        src: "/bootcamp/guide-stage-1.png",
-        href: "https://futurestay-bootcamp-guide.vercel.app/",
-      },
-      {
-        type: "image",
-        label: "Market Comp Set",
-        description: "Hosts paste their Airbnb listing (or enter a ZIP) to see what top properties like theirs earn.",
-        src: "/bootcamp/comps.png",
-      },
-      {
-        type: "image",
-        label: "Earnings & Direct Booking Goals",
-        description: "Sliders tied to real market percentiles turn a target into dollar outcomes.",
-        src: "/bootcamp/goals.png",
-      },
-      {
-        type: "image",
-        label: "Graduation Rewards",
-        description: "A visible finish line: finish all 9 steps to unlock a free .com domain, a Canva kit, and guest email templates.",
-        src: "/bootcamp/rewards.png",
-      },
-      {
-        type: "vimeo",
-        label: "Stage 1 Video",
-        description: "Opens the bootcamp and frames the two goals. Scripted, recorded, and edited by me.",
-        id: "1201428890",
-        hash: "2269697b24",
-      },
-      {
-        type: "vimeo",
-        label: "Stage 2 Video: Connect Stripe & Set Your Booking Mode",
-        description: "Walks hosts through taking direct payments and choosing how guests book.",
-        id: "1201441262",
-        hash: "314159716e",
-      },
-      {
-        type: "vimeo",
-        label: "Stage 3 Video: Consider Smart Rates",
-        description: "Explains daily pricing tuned to the host's market.",
-        id: "1201809275",
-        hash: "a4f5d9e0f2",
-      },
-    ],
-    extraSections: [
-      {
-        title: "Measurement, Built In From Day One",
-        paragraphs: [
-          "Every step completion, graduation, and domain claim is written back to HubSpot contact properties, so the funnel can be measured instead of guessed. That data drives four reporting surfaces:",
-        ],
-        bullets: [
-          "Real-time Slack notifications on every step completion, graduation, domain registration, and error",
-          "A daily 9am digest of new graduates, hosts who made progress, and currently active trialists",
-          "A weekly funnel digest every Monday, plus a CSM outreach list of trialists who haven't engaged",
-          "A live performance dashboard with per-CSM breakdowns, conversion split by guidebook engagement, and engagement for every bootcamp email",
-        ],
-      },
-      {
-        title: "What I Took From It",
-        bullets: [
-          "Visible progress beats a feature list. The dashboard already had every feature a host needed. Putting them in order, with a count, changed behavior.",
-          "Tangible rewards earn commitment. A free domain costs about ten dollars but reframes the trial from obligation to accomplishment.",
-          "Measurement built on day one pays compounding interest. Because every step was recorded from the start, the guidebook's impact could be compared against a matched population.",
-          "Design for the edge cases. Hosts without an Airbnb listing, hosts on VRBO, cancelled graduates, and Puerto Rico ZIP codes each needed a graceful path, not an error page.",
-          "Choose durable identifiers early. Goals were first linked to Airbnb URLs, so manual entries silently vanished. Switching to a property ID fixed it.",
-        ],
-      },
-    ],
-    proof: [{ label: "Open the live guide", href: "https://futurestay-bootcamp-guide.vercel.app/", external: true }],
+    proof: [{ label: "Jump to the Trialist Bootcamp", href: "#trialist-bootcamp" }],
   },
   {
     slug: "scholar",

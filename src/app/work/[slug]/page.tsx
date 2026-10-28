@@ -116,6 +116,14 @@ export default async function CaseStudyPage({ params }: Props) {
                   >
                     {p.label} ↗
                   </a>
+                ) : p.href.startsWith("#") ? (
+                  <a
+                    key={p.href}
+                    href={p.href}
+                    className="px-6 py-2.5 border border-foreground/20 hover:border-foreground/50 text-foreground rounded-full text-sm font-medium transition-all"
+                  >
+                    {p.label} ↓
+                  </a>
                 ) : (
                   <Link
                     key={p.href}
@@ -149,7 +157,7 @@ export default async function CaseStudyPage({ params }: Props) {
             <Section title="Campaign Deep Dives">
               <div className="space-y-4">
                 {study.campaigns.map((c) => (
-                  <DeepDive key={c.title} title={c.title} period={c.period} summary={c.overview}>
+                  <DeepDive key={c.title} anchor={c.id} title={c.title} period={c.period} summary={c.overview}>
                     <div>
                       <h4 className={`${label} mb-3`}>My Role</h4>
                       <p className="text-muted leading-relaxed max-w-3xl">{c.myRole}</p>
@@ -171,8 +179,39 @@ export default async function CaseStudyPage({ params }: Props) {
                     )}
                     {c.media && c.media.length > 0 && (
                       <div>
-                        <h4 className={`${label} mb-4`}>{c.media.length > 4 ? "Product Walkthrough" : "The Work"}</h4>
+                        <h4 className={`${label} mb-4`}>
+                          {c.media.length > 4 && c.media.every((m) => m.type === "image") ? "Product Walkthrough" : "The Work"}
+                        </h4>
                         <MediaShowcase items={c.media} />
+                      </div>
+                    )}
+                    {c.sections?.map((x) => (
+                      <div key={x.title}>
+                        <h4 className={`${label} mb-3`}>{x.title}</h4>
+                        <div className="space-y-3 max-w-3xl">
+                          {x.paragraphs?.map((p) => (
+                            <p key={p.slice(0, 24)} className="text-muted leading-relaxed">
+                              {p}
+                            </p>
+                          ))}
+                          {x.bullets && <Bullets items={x.bullets} />}
+                        </div>
+                      </div>
+                    ))}
+                    {c.links && (
+                      <div className="flex flex-wrap gap-3">
+                        {c.links.map((l) => (
+                          <a
+                            key={l.href}
+                            href={l.href}
+                            target={l.external ? "_blank" : undefined}
+                            rel={l.external ? "noopener noreferrer" : undefined}
+                            className="px-6 py-2.5 bg-foreground hover:bg-foreground/80 text-background rounded-full text-sm font-medium transition-all"
+                          >
+                            {l.label}
+                            {l.external ? " ↗" : ""}
+                          </a>
+                        ))}
                       </div>
                     )}
                   </DeepDive>
