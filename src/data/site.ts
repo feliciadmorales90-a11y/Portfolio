@@ -15,13 +15,13 @@ export const heroIntro =
 
 export const aboutParagraphs = [
   "I start with one question: who is the customer, and where do they live? Then I build the right mix of content, email, partnerships, and influencer programs to reach them. Along the way I've built referral systems, launched ambassador programs, produced podcasts, filmed ad creative, and coded interactive tools that convert. Good marketing should feel like generosity, not a transaction.",
-  "Before marketing, I spent 11 years in the U.S. Air Force and 8 years in ophthalmology as a certified ophthalmic technician, working in rare disease and refractive surgery. Both taught me the same thing: stay flexible, pivot without losing momentum, and treat every outcome as a learning point.",
+  "Before marketing, I spent 11 years in the U.S. Air Force and 11 years in ophthalmology as an ophthalmic technician, working in rare disease and refractive surgery. Both taught me the same thing: stay flexible, pivot without losing momentum, and treat every outcome as a learning point.",
   "BA in Political Science with a Minor in Human Rights (UMass Amherst). Certified in Digital Marketing (Meta), Email Marketing (HubSpot), Google Analytics, and Figma.",
 ];
 
 export const background = [
-  { title: "U.S. Air Force", detail: "11 years of service as a medic and Equal Opportunity specialist" },
-  { title: "Ophthalmology", detail: "8 years as a certified ophthalmic technician at Mass Eye and Ear, in rare disease & refractive surgery" },
+  { title: "U.S. Air Force", detail: "11 years of service" },
+  { title: "Ophthalmology", detail: "11 years as an ophthalmic technician in rare disease & refractive surgery" },
 ];
 
 export const education = {

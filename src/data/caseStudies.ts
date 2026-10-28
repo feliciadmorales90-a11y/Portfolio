@@ -80,7 +80,8 @@ export const caseStudies: CaseStudy[] = [
     strategy: [
       "Created Futurestay's brand voice from scratch and owned social strategy and content across every channel",
       "Launched the Futurestay Forward newsletter, owning research, copy, design, and HubSpot execution. Clickthrough rate went from under 1% to 5.7%, the year-over-year unsubscribe rate nearly halved, and recent issues open at 34–40% (bot-filtered). The Sept/Oct 2026 issue reached a 7.5% click-to-open rate",
-      "Developed and A/B-tested HubSpot lifecycle campaigns: 62% higher clickthrough on a host activation sequence and 54% fewer unsubscribes on an onboarding sequence",
+      "Wrote every Futurestay email, drip, and lead magnet: the newsletter, signup onboarding, Ready-to-Launch, failed-trialist, winback, and bootcamp sequences",
+      "Developed and A/B-tested HubSpot lifecycle campaigns: 62% higher clickthrough on a host activation sequence and 54% fewer unsubscribes on an onboarding sequence. The Ready-to-Launch drip is the best-performing drip in the portal, with individual emails reaching 10–12% click rates",
       "Created and launched The Check-In, a short-form video series produced with the CEO, and repurposed long-form partner conversations across social and email",
       "Built the creator program from scratch: sourced and vetted creators, negotiated terms, wrote contracts, and managed each partnership through completion, with a renewal or ambassador path at the end. Creator-referred trialists converted to paying customers at 70%, vs 56.5% across all trials",
       "Supported seven strategic partnerships through co-branded landing pages, social and email promotions, and podcast planning, and launched a host referral program with Sales",
@@ -90,6 +91,43 @@ export const caseStudies: CaseStudy[] = [
       "Built an internal social and email reporting platform, and wrote creative briefs and brand guidelines while onboarding a freelance junior marketer",
     ],
     campaigns: [
+      {
+        title: "Ready-to-Launch Drip: Turning Built Sites Into Trials",
+        overview:
+          "Hosts who had built a direct booking site but hadn't started a trial were Futurestay's highest-intent segment. I wrote a 10-email, 13-day drip that takes them from \"your site is ready\" to taking bookings, then hands anyone who hasn't converted to Sales. It is the best-performing drip in Futurestay's HubSpot portal: individual emails reach 10–12% click rates.",
+        myRole:
+          "Wrote every email in the sequence, set the cadence and A/B tests in HubSpot, and designed the handoff to the sales sequence. (I write all of Futurestay's emails, drips, and lead magnets.)",
+        process: [
+          "Targeted the Ready-to-Launch segment: hosts who have built a site but haven't started a trial",
+          "Opened with \"Start Taking Bookings,\" personalized with the host's number of ready-to-launch properties, then \"Preview your site\" the next day",
+          "Front-loaded the sequence with three emails in the first three days, then spaced the rest out to day 13",
+          "A/B-tested variants and rebuilt underperforming emails",
+          "Handed non-converters to a sales follow-up sequence when the drip ends",
+        ],
+        output:
+          "A 10-email sequence over about 13 days with a sales handoff, and the highest-engagement drip in the portal (bot-filtered HubSpot figures).",
+        results: [
+          { value: 12.5, suffix: "%", decimals: 1, label: "Click Rate, Best Email" },
+          { value: 57.3, suffix: "%", decimals: 1, label: "Click-to-Open, Best Email" },
+          { value: 10.2, suffix: "%", decimals: 1, label: "Click Rate, First Email" },
+          { value: 5.0, suffix: "%", decimals: 1, label: "Click Rate, Whole Drip" },
+        ],
+        resultsNote: "For comparison, the legacy signup onboarding drip averages a 1.5% click rate.",
+        media: [
+          {
+            type: "image",
+            label: "Email 1: Start Taking Bookings",
+            description: "Day 0. The live send swaps in the host's number of ready-to-launch properties where the personalization token shows here. 10.2% click rate.",
+            src: "/futurestay/rtl-1b-start-taking-bookings.jpg",
+          },
+          {
+            type: "image",
+            label: "Email 2: Preview Your Site",
+            description: "Day 1. One line, one button. 12.5% click rate and 57.3% click-to-open, the best email in the drip.",
+            src: "/futurestay/rtl-2a-preview-your-site.jpg",
+          },
+        ],
+      },
       {
         title: "The Clean Connection: Product-Led Lead Generation Engine",
         overview:
@@ -192,6 +230,20 @@ export const caseStudies: CaseStudy[] = [
       { value: 62, suffix: "%", label: "Lifecycle CTR Lift (A/B Test)" },
       { value: 738, suffix: "%", label: "Instagram Reach" },
     ],
+    media: [
+      {
+        type: "image",
+        label: "Futurestay Forward Newsletter",
+        description: "The Sept/Oct 2026 issue, which I researched, wrote, designed, and sent: 34.1% open rate and 7.5% click-to-open, bot-filtered.",
+        src: "/futurestay/newsletter-hero.jpg",
+      },
+      {
+        type: "image",
+        label: "The Check-In, Featured in the Newsletter",
+        description: "The short-form video series I created and produce with the CEO, repurposed into the newsletter.",
+        src: "/futurestay/newsletter-check-in.jpg",
+      },
+    ],
     resultsNote:
       "Search clicks, organic sessions, and traffic are company-wide numbers that my SEO content and distribution contributed to. Newsletter, lifecycle, and Instagram results are from channels I ran.",
     proof: [{ label: "See the Trialist Bootcamp case study", href: "/work/trialist-bootcamp" }],
@@ -200,7 +252,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "trialist-bootcamp",
     company: "Trialist Bootcamp",
     industry: "Futurestay / Trial-to-Paid Conversion",
-    role: "Marketing Lead & Product Owner, Futurestay",
+    role: "Marketing Content Manager, Futurestay",
     period: "Shipped 2026 · Live",
     color: "#F1E4D3",
     tags: ["Onboarding", "Product Ownership", "Video Scripts & Production", "HubSpot", "Cross-Functional", "Claude Code"],
