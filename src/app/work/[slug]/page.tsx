@@ -186,6 +186,19 @@ export default async function CaseStudyPage({ params }: Props) {
               <MediaShowcase items={study.media} layout={study.mediaLayout} />
             </Section>
           )}
+
+          {study.extraSections?.map((x) => (
+            <Section key={x.title} title={x.title}>
+              <div className="space-y-4 max-w-3xl">
+                {x.paragraphs?.map((p) => (
+                  <p key={p.slice(0, 24)} className="text-muted text-lg leading-relaxed">
+                    {p}
+                  </p>
+                ))}
+                {x.bullets && <Bullets items={x.bullets} />}
+              </div>
+            </Section>
+          ))}
         </div>
 
         <nav className="pt-8 mt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4" aria-label="More work">

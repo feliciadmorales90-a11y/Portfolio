@@ -27,6 +27,8 @@ export type Campaign = {
 
 export type ProofLink = { label: string; href: string; external?: boolean };
 
+export type ExtraSection = { title: string; paragraphs?: string[]; bullets?: string[] };
+
 export type CaseStudy = {
   slug: string;
   company: string;
@@ -49,6 +51,8 @@ export type CaseStudy = {
   mediaLayout?: "grid" | "mockups";
   results?: Stat[];
   resultsNote?: string;
+  /** Extra collapsible sections after The Work (instrumentation, lessons, what's being measured). */
+  extraSections?: ExtraSection[];
   proof?: ProofLink[];
 };
 
@@ -75,12 +79,12 @@ export const caseStudies: CaseStudy[] = [
       "Futurestay had a strong product but limited marketing infrastructure. Independent short-term rental hosts needed to discover the platform, build trust, and convert. The company needed someone who could wear every hat and build each channel from scratch.",
     strategy: [
       "Created Futurestay's brand voice from scratch and owned social strategy and content across every channel",
-      "Launched the Futurestay Forward newsletter, owning research, copy, design, and HubSpot execution. Clickthrough rate went from under 1% to 5.7%, the year-over-year unsubscribe rate nearly halved, and open rates hold at 35–40%",
+      "Launched the Futurestay Forward newsletter, owning research, copy, design, and HubSpot execution. Clickthrough rate went from under 1% to 5.7%, the year-over-year unsubscribe rate nearly halved, and recent issues open at 34–40% (bot-filtered). The Sept/Oct 2026 issue reached a 7.5% click-to-open rate",
       "Developed and A/B-tested HubSpot lifecycle campaigns: 62% higher clickthrough on a host activation sequence and 54% fewer unsubscribes on an onboarding sequence",
       "Created and launched The Check-In, a short-form video series produced with the CEO, and repurposed long-form partner conversations across social and email",
-      "Built the creator program from scratch: sourced and vetted creators, negotiated terms, wrote contracts, and managed each partnership through completion, with a renewal or ambassador path at the end",
+      "Built the creator program from scratch: sourced and vetted creators, negotiated terms, wrote contracts, and managed each partnership through completion, with a renewal or ambassador path at the end. Creator-referred trialists converted to paying customers at 70%, vs 56.5% across all trials",
       "Supported seven strategic partnerships through co-branded landing pages, social and email promotions, and podcast planning, and launched a host referral program with Sales",
-      "Managed SEO content strategy and agency deliverables, and optimized landing pages using keyword research and Microsoft Clarity heatmaps",
+      "Managed SEO content strategy and agency deliverables, and optimized landing pages using keyword research and Microsoft Clarity heatmaps. Organic search turns signups into trials at 31.4%, the highest of any volume channel and more than double the 13.8% average",
       "Led paid social creative with an agency, from hooks and scripts to on-camera video and final reviews",
       "Built a 14-day trial onboarding program and three interactive lead magnets with Claude Code, wired into HubSpot lead capture, UTM tracking, and a live funnel dashboard",
       "Built an internal social and email reporting platform, and wrote creative briefs and brand guidelines while onboarding a freelance junior marketer",
@@ -195,32 +199,65 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "trialist-bootcamp",
     company: "Trialist Bootcamp",
-    industry: "Futurestay / SaaS Trial Onboarding",
-    role: "Marketing Content Manager, Futurestay",
+    industry: "Futurestay / Trial-to-Paid Conversion",
+    role: "Marketing Lead & Product Owner, Futurestay",
+    period: "Shipped 2026 · Live",
     color: "#F1E4D3",
-    tags: ["Onboarding", "Video Scripts & Production", "Lifecycle", "HubSpot", "Cross-Functional", "Claude Code"],
+    tags: ["Onboarding", "Product Ownership", "Video Scripts & Production", "HubSpot", "Cross-Functional", "Claude Code"],
     summary:
-      "A guided 14-day trial that walks new hosts from sign-up to their first direct booking. I wrote the scripts, recorded and edited the videos, and built the guide with Analytics, Product, and the CEO.",
+      "An in-app guidebook that turns Futurestay's 14-day trial into a 9-step launch plan with a reward at the end. I owned it end to end: product, copy, video scripts and production, build, and measurement.",
+    headline: {
+      value: "66.4%",
+      text: "66.4% of bootcamp hosts with a finished trial became paying customers.",
+      note: "Hosts who clicked into the guidebook converted at 44% vs 31% for those who didn't, and failed their trial 2.3× less often.",
+    },
     overview:
-      "The Trialist Bootcamp turns Futurestay's 14-day free trial into a guided program: three stages, nine tasks, founder-led videos, a dedicated Customer Success Manager, and graduation rewards for finishing. It is my most cross-functional project, and it is live.",
+      "The Trialist Bootcamp is an in-app onboarding guidebook for new Futurestay trialists. It turns unstructured setup work into a visible 9-step checklist with a tangible graduation reward. It shipped as a self-serve product, is measured with a live dashboard, and is used by three Customer Success Managers.",
     collaborators: "The CEO (on camera), the Analytics team, Product, and Customer Success.",
     problem:
-      "A free trial only converts when a host reaches the moment the product proves itself: a direct booking. Getting there takes real setup, from connecting payments and choosing a booking mode to getting listed on Google and pricing for their market.\n\nLeft to piece that together alone, trialists had no clear path from sign-up to value. The trial needed a structure, a reason to finish, and a person to call.",
+      "Futurestay's 14-day trial exposes new hosts to the product's real value: direct bookings via Stripe, Google Vacation Rentals, the Billboard Effect, Smart Rates, and listing optimization. But value only lands if hosts actually finish setup. Many didn't. They'd land on the dashboard, not know where to start, and churn before any of it mattered.\n\nThe product had the right features. What it lacked was a guided path from signup to competence, and a reason to finish.",
     strategy: [
+      "Designed the trial as a 3-tab, 9-step checklist (Set Your Goals, Accept Direct Bookings, Boost Your Listing Performance) that shows exactly what to do, in what order, and how close you are to done",
       "Wrote the video scripts, then recorded and edited the founder-led videos that open each stage, with Futurestay's CEO on camera",
-      "Structured the trial into three stages and nine tasks (Set Your Goals, Accept Direct Bookings, and Boost Your Listing Performance), with each stage unlocking in order",
-      "Wrote the guide copy for every task, from market earnings comparisons and goal-setting to Stripe setup, Google Vacation Rentals, and Smart Rates",
-      "Built the guide with Claude Code and connected it to HubSpot lead capture, UTM tracking, and a live funnel dashboard",
-      "Worked with the Analytics team on funnel tracking, with Product on task logic and in-app links, and with Customer Success on the dedicated CSM meeting and listing audit",
-      "Designed graduation rewards (a free .com domain, a social media Canva kit, and five guest email templates) to give hosts a reason to finish",
+      "Wrote the guide copy and the bootcamp email series, starting with a personalized HubSpot welcome from each host's assigned CSM and a one-click link into their own guidebook",
+      "Built a live market comp set (AirROI, with a ZIP-code fallback for hosts without an Airbnb listing) and goal sliders that turn market percentiles into real dollar targets",
+      "Made it CSM-aware: every host sees their Success Manager's name, photo, and calendar, assigned by a round-robin that respects existing HubSpot ownership",
+      "Gave the trial a finish line: complete all 9 steps and the host's CSM registers a free .com domain that redirects to their Futurestay direct booking site",
+      "Built it as a single-file front end on Vercel with Node serverless functions, integrating HubSpot, AirROI, NameSilo, Vercel KV, and Slack",
+      "Worked with the Analytics team on funnel tracking, with Product on task logic, with the CEO on video, and with Customer Success on rollout",
     ],
+    results: [
+      { value: 66.4, suffix: "%", decimals: 1, label: "Trial → Customer (Finished Trials)" },
+      { value: 13, prefix: "+", suffix: " pts", label: "Conversion for Hosts Who Engaged" },
+      { value: 2.3, suffix: "×", decimals: 1, label: "Fewer Failed Trials" },
+    ],
+    resultsNote:
+      "Measured in HubSpot on bootcamp hosts whose trials have finished, test accounts excluded. The engagement comparison is hosts who clicked into the guidebook (44% converted, 11% failed) vs those who didn't (31% converted, 25% failed), within the same market, workflows, and CSMs.",
     media: [
       {
         type: "image",
         label: "Stage 1: Set Your Goals",
-        description: "Each stage opens with a founder video and a short checklist. Hosts set an earnings goal and a direct booking goal, then book time with their Customer Success Manager.",
+        description: "Each stage opens with a founder video and a short checklist, with the host's CSM in the corner and the graduation reward always in view.",
         src: "/bootcamp/guide-stage-1.png",
         href: "https://futurestay-bootcamp-guide.vercel.app/",
+      },
+      {
+        type: "image",
+        label: "Market Comp Set",
+        description: "Hosts paste their Airbnb listing (or enter a ZIP) to see what top properties like theirs earn.",
+        src: "/bootcamp/comps.png",
+      },
+      {
+        type: "image",
+        label: "Earnings & Direct Booking Goals",
+        description: "Sliders tied to real market percentiles turn a target into dollar outcomes.",
+        src: "/bootcamp/goals.png",
+      },
+      {
+        type: "image",
+        label: "Graduation Rewards",
+        description: "A visible finish line: finish all 9 steps to unlock a free .com domain, a Canva kit, and guest email templates.",
+        src: "/bootcamp/rewards.png",
       },
       {
         type: "vimeo",
@@ -244,7 +281,30 @@ export const caseStudies: CaseStudy[] = [
         hash: "a4f5d9e0f2",
       },
     ],
-    // Results stay off the page until each number is verified in HubSpot.
+    extraSections: [
+      {
+        title: "Measurement, Built In From Day One",
+        paragraphs: [
+          "Every step completion, graduation, and domain claim is written back to HubSpot contact properties, so the funnel can be measured instead of guessed. That data drives four reporting surfaces:",
+        ],
+        bullets: [
+          "Real-time Slack notifications on every step completion, graduation, domain registration, and error",
+          "A daily 9am digest of new graduates, hosts who made progress, and currently active trialists",
+          "A weekly funnel digest every Monday, plus a CSM outreach list of trialists who haven't engaged",
+          "A live performance dashboard with per-CSM breakdowns, conversion split by guidebook engagement, and engagement for every bootcamp email",
+        ],
+      },
+      {
+        title: "What I Took From It",
+        bullets: [
+          "Visible progress beats a feature list. The dashboard already had every feature a host needed. Putting them in order, with a count, changed behavior.",
+          "Tangible rewards earn commitment. A free domain costs about ten dollars but reframes the trial from obligation to accomplishment.",
+          "Measurement built on day one pays compounding interest. Because every step was recorded from the start, the guidebook's impact could be compared against a matched population.",
+          "Design for the edge cases. Hosts without an Airbnb listing, hosts on VRBO, cancelled graduates, and Puerto Rico ZIP codes each needed a graceful path, not an error page.",
+          "Choose durable identifiers early. Goals were first linked to Airbnb URLs, so manual entries silently vanished. Switching to a property ID fixed it.",
+        ],
+      },
+    ],
     proof: [{ label: "Open the live guide", href: "https://futurestay-bootcamp-guide.vercel.app/", external: true }],
   },
   {
@@ -481,18 +541,18 @@ export const caseStudies: CaseStudy[] = [
     slug: "verve",
     company: "Verve, LLC",
     industry: "Federal Contracting / SDVOSB & WOSB",
-    role: "Marketing Consultant (Contract)",
-    period: "Sep 2026 – Present",
+    role: "Marketing Consultant (Contract): strategy, content, copy, IA, design direction & launch",
+    period: "Sep 2026 – Present · Live October 2026",
     color: "#E8E4D8",
     tags: ["Website Strategy", "Information Architecture", "Copywriting", "Federal Contracting", "Content Systems"],
     summary:
-      "A Service-Disabled Veteran-Owned and Woman-Owned Small Business supporting the VA, CMS, the Defense Health Agency, and the CDC. Its GoDaddy site couldn't answer what a contracting officer needs, so I led the strategy, content, and copy for a 40-page rebuild.",
+      "A Service-Disabled Veteran-Owned and Woman-Owned Small Business supporting the VA, CMS, the Defense Health Agency, and the CDC. Its GoDaddy site couldn't answer what a contracting officer needs, so I led the strategy, content, copy, and design direction for a 31-page rebuild.",
     headline: {
-      value: "40 pages",
-      text: "Took a 4–5 page GoDaddy site to a 40-page site built for federal evaluators.",
+      value: "31 pages",
+      text: "Rebuilt a GoDaddy site into a 31-page site for federal evaluators, live at vervellc.com.",
     },
     overview:
-      "Verve is a Service-Disabled Veteran-Owned and Woman-Owned Small Business in Baltimore supporting the VA, CMS, the Defense Health Agency, and the CDC. The credentials and the work were both real. The website was a GoDaddy site builder that couldn't answer what a contracting officer needs before a phone call becomes necessary. I led the strategy, content, and copy for the rebuild: 40 pages, a shared layout system, and procurement content treated as a first-class deliverable.",
+      "Verve is a Service-Disabled Veteran-Owned and Woman-Owned Small Business in Baltimore supporting the VA, CMS, the Defense Health Agency, and the CDC. The credentials and the work were both real. The website was a GoDaddy site builder that couldn't answer what a contracting officer needs before a phone call becomes necessary. I led the strategy, content, copy, and design direction for the rebuild: 31 pages in Squarespace 7.1, a shared layout system, and procurement content treated as a first-class deliverable.",
     collaborators: "Subject-matter experts, an in-house designer, and Verve's technology partners.",
     problem:
       "Federal procurement runs on evaluation. Before a contract, someone has to answer three questions: what does this company do, who has it done it for, and how do I buy from it.\n\nThat person is under time pressure. They are looking at several vendors. They are starting with the website.\n\nThe old site was built on GoDaddy Website Builder. It didn't answer any of those questions.\n\nWhen a website can't answer the basics, evaluation stalls. It turns into a phone call. Or it doesn't happen at all.\n\nA contracting officer with five vendors and an afternoon doesn't chase the one whose website is opaque.",
@@ -500,14 +560,17 @@ export const caseStudies: CaseStudy[] = [
       "Identified three specific reader types in order of commercial value: contracting officers and program offices at federal health agencies, prime contractors evaluating Verve as a teaming or subcontracting partner, and technology partners considering a joint solution. All three are specialist readers who do not want marketing copy",
       "Restructured ten capabilities and seven named solutions into a single repeating page pattern: same spine across every page, so a reader who learns to read one page can read all of them. Complexity presented as a wall of prose reads as vagueness. Consistency is what makes depth legible",
       "Elevated procurement content to first-class real estate: contract vehicles got a dedicated page, and NASA SEWP VI got its own page with full contract detail including contract number, period of performance, surcharge, UEI and CAGE, the fair-opportunity clause with attribution, program office contacts, and a downloadable ordering guide",
-      "Enforced a nothing-invented rule across every page: every claim traces to something verifiable. Where content didn't exist yet, the page said so rather than inventing something to fill the space. In federal work, overstatement is a disqualifier rather than a growth tactic",
+      "Enforced a nothing-invented rule across all 31 pages: every claim traces to something verifiable. Where content didn't exist yet, the page said so rather than inventing something to fill the space. In federal work, overstatement is a disqualifier rather than a growth tactic",
       "Governed partner-approved language over house style: two solutions are delivered with technology partners whose approved blurbs had to be used word for word. Built page layouts around their text rather than around editorial preferences",
       "Rebuilt the layout as a shared compact system: on Program Integrity, the hero went from occupying 46% of available width to 93%, the closing CTA from 28% to 92%, and the page dropped from 6,225px to 4,805px. Same content, 23% less scrolling, applied across all eleven capability pages",
       "Drew ten custom SVG icons for the capabilities overview, redrawn at 0.75 stroke weight after the first set read as too heavy at card size. Placed twelve client-supplied graphics in-band within copy with full descriptive alt text",
-      "Ran a full mobile optimization pass across every page, measured at 375x812. Resolved a Squarespace Fluid Engine footer issue where desktop row placements were carrying into mobile, running 1,229px tall for roughly 700px of content. Set a 12.5px floor on micro-labels that were rendering below 12px on phones",
+      "Built the page system in Squarespace 7.1: a homepage, ten capability pages plus an overview, seven solution pages plus an overview, contract vehicles, a dedicated NASA SEWP VI page, team bios, policies, contact, and perspectives. Shared page patterns are driven from Custom CSS, so a layout change propagates everywhere at once",
+      "Ran a full mobile pass across all 31 pages, measured at 375x812. Squarespace's Fluid Engine kept desktop row placements on mobile, so the footer ran 1,229px tall for about 700px of content; collapsing the empty rows brought it to 872px. Micro-labels rendering at 9.6–11px got a 12.5px floor",
+      "Set a restrained design system for readers who read documents, not marketing: a crimson palette with a single gold accent used only for rules, icons, and primary actions, Juturu and Public Sans, and line-by-line copy rules",
+      "Verified every CSS change against the served stylesheet, after finding that Squarespace's LESS 1.3.3 compiler silently drops valid CSS such as grid-column: 1 / -1 and mixed-unit calc()",
       "Migrated two domains record by record to preserve the company's Microsoft 365 email, which lived in the same DNS zone. Switching to new nameservers would have taken email down. Both domains carry valid certificates with .co redirecting to .com as primary",
       "Installed Microsoft Clarity and Google Analytics at launch to establish a performance baseline from day one. The site launched with zero analytics on it previously",
-      "Developed the LinkedIn launch strategy for the new site",
+      "Wrote the executive LinkedIn launch announcement for the CEO, built on his two decades inside CMS",
     ],
     mediaLayout: "mockups",
     media: [
@@ -541,11 +604,28 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     results: [
-      { value: 40, label: "Pages" },
+      { value: 31, label: "Pages, Live" },
       { value: 23, suffix: "%", label: "Less Scrolling" },
       { value: 10, label: "Custom SVG Icons" },
       { value: 17, label: "Capability + Solution Pages" },
     ],
+    extraSections: [
+      {
+        title: "What I'm Measuring",
+        paragraphs: [
+          "The site went live in late October 2026 with analytics installed at launch, so there is no performance data yet. Publishing numbers now would mean making them up. What's being watched:",
+        ],
+        bullets: [
+          "Capability statement downloads, the clearest intent signal on the site",
+          "NASA SEWP ordering guide downloads, a near-pure procurement signal",
+          "Contract vehicles page traffic and depth: are buyers reaching the procurement information at all?",
+          "Which capability and solution pages actually get read, so navigation can follow what pulls",
+          "Contact form submissions by inquiry type, segmented by capability",
+          "Clarity session recordings and rage clicks: where evaluators stall, the question the whole rebuild set out to answer",
+        ],
+      },
+    ],
+    proof: [{ label: "Visit vervellc.com", href: "https://vervellc.com/", external: true }],
   },
 ];
 
