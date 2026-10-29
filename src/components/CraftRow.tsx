@@ -45,7 +45,7 @@ export default function CraftRow({ craft, index }: { craft: Craft; index: number
             <h3 id={`${craft.slug}-title`} className="font-serif text-3xl text-foreground leading-tight">
               {craft.name}
             </h3>
-            <p className="mt-3 text-muted leading-relaxed">{craft.description}</p>
+            {craft.description && <p className="mt-3 text-muted leading-relaxed">{craft.description}</p>}
           </div>
           {(canPrev || canNext) && (
             <div className="hidden md:flex gap-2 mt-6">

@@ -169,6 +169,13 @@ const socialPosts: Post[] = [
     embed: { type: "instagram", url: "https://www.instagram.com/reel/DRxIHPPDv8s/" },
   },
   {
+    id: "feybeans-reel-1",
+    brand: "feybeans",
+    platform: "Instagram",
+    format: "reel",
+    embed: { type: "instagram", url: "https://www.instagram.com/reel/DNBHThFtF7Q/" },
+  },
+  {
     id: "futurestay-carousel-1",
     brand: "futurestay",
     platform: "Instagram",
@@ -278,7 +285,7 @@ export function socialPostsFor(format: SocialFormat) {
 export type Craft = {
   slug: string;
   name: string;
-  description: string;
+  description?: string;
   items: CraftItem[];
   /** Show a set of format strips instead of project tiles. */
   strips?: "social" | "ads";
@@ -1294,7 +1301,6 @@ export const crafts: Craft[] = [
   {
     slug: "social-media",
     name: "Social Media",
-    description: "Top-performing posts by format, plus the DM automations behind them.",
     items: [{ format: "reel" }, { format: "static" }, { format: "carousel" }, { project: "manychat" }],
   },
   {
