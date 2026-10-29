@@ -35,7 +35,7 @@ export default function CraftRow({ craft, index }: { craft: Craft; index: number
     "w-9 h-9 rounded-full border border-card-border bg-background flex items-center justify-center text-foreground transition-opacity hover:border-accent disabled:opacity-30 disabled:cursor-default";
 
   return (
-    <section id={craft.slug} aria-labelledby={`${craft.slug}-title`} className="py-10 md:py-12 border-t border-card-border">
+    <section id={craft.slug} aria-labelledby={`${craft.slug}-title`} className="py-8 md:py-10 border-t border-card-border">
       <div className="grid md:grid-cols-[15rem_minmax(0,1fr)] gap-6 md:gap-8">
         <div className="flex md:flex-col justify-between md:justify-start gap-4">
           <div>

@@ -139,7 +139,11 @@ export type Post = {
 };
 
 /** A set of format strips: the formats in order, and the posts to sort into them. */
-export type StripSet = { formats: { format: string; name: string }[]; posts: Post[] };
+export type StripSet = {
+  /** `width` overrides the card width for formats that need more room, like search ads. */
+  formats: { format: string; name: string; width?: number }[];
+  posts: Post[];
+};
 
 /** Top-performing posts, grouped on the page by format rather than by account. */
 const socialPosts: Post[] = [
@@ -173,7 +177,7 @@ export const strips: Record<"social" | "ads", StripSet> = {
       { format: "video", name: "Video" },
       { format: "static", name: "Static" },
       { format: "carousel", name: "Carousel" },
-      { format: "search", name: "Google Search" },
+      { format: "search", name: "Google Search", width: 520 },
     ],
     posts: [
       {
@@ -207,6 +211,13 @@ export const strips: Record<"social" | "ads", StripSet> = {
         platform: "Meta",
         format: "video",
         embed: { type: "video", src: "/futurestay/meta-ads/meta-ad-2.mp4", poster: "/futurestay/meta-ads/meta-ad-2.jpg" },
+      },
+      {
+        id: "scholar-search-career-skills",
+        brand: "scholar",
+        platform: "Google Search",
+        format: "search",
+        embed: { type: "image", srcs: ["/scholar/google-search-ad.png"], width: 732, height: 298 },
       },
     ],
   },
@@ -702,6 +713,7 @@ export const projects: Project[] = [
     summary: "A $10K/month Google Ads Grant run for volunteer and donor outreach.",
     overview: "I manage Scholar and a Dream's $10K/month Google Ads Grant, using it to reach volunteers, mentors, and donors on a nonprofit budget.",
     process: [
+      "Did the keyword research behind every campaign",
       "Manage the organization's $10K/month Google Ads Grant for volunteer and donor outreach",
       "Build campaigns around volunteer recruitment, mentoring, and giving",
       "Write ad copy and point each campaign at a page built for that action",
@@ -709,6 +721,14 @@ export const projects: Project[] = [
     results: [
       { value: 47.6, suffix: "%", decimals: 1, label: "Google Ads Conversion Rate" },
       { value: 10, prefix: "$", suffix: "K/mo", label: "Google Ads Grant Managed" },
+    ],
+    media: [
+      {
+        type: "image",
+        label: "Search Ad: Career Skills",
+        description: "A Google Search ad promoting career-skills content, with sitelinks to learn more, read more, about us, and donate.",
+        src: "/scholar/google-search-ad.png",
+      },
     ],
   },
   {
@@ -1109,6 +1129,12 @@ export const crafts: Craft[] = [
     ],
   },
   {
+    slug: "lead-magnets",
+    name: "Lead Magnets",
+    description: "Interactive tools that turn visitors into leads, built with Claude Code and wired into HubSpot.",
+    items: [{ project: "clean-connection" }],
+  },
+  {
     slug: "newsletters",
     name: "Newsletters",
     description: "Newsletters I named, write, and send.",
@@ -1144,12 +1170,6 @@ export const crafts: Craft[] = [
       { project: "creator-program" },
       { project: "cybersecurity-girl" },
     ],
-  },
-  {
-    slug: "lead-magnets",
-    name: "Lead Magnets & Growth Tools",
-    description: "Interactive tools I built with Claude Code and wired into HubSpot.",
-    items: [{ project: "clean-connection" }],
   },
   {
     slug: "websites-seo",

@@ -79,9 +79,9 @@ export default function Home() {
       </section>
 
       {/* Daily tools */}
-      <section className="py-16 px-6" aria-labelledby="daily-tools">
+      <section className="py-10 px-6" aria-labelledby="daily-tools">
         <div className="max-w-6xl mx-auto text-center">
-          <p id="daily-tools" className="text-muted text-sm mb-10">
+          <p id="daily-tools" className="text-muted text-sm mb-6">
             Tools I use on a daily basis.
           </p>
           <ul className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
@@ -98,13 +98,10 @@ export default function Home() {
       </section>
 
       {/* About */}
-      <section id="about" className="pt-24 md:pt-32 pb-12 md:pb-16 px-6">
+      <section id="about" className="pt-8 md:pt-10 pb-8 md:pb-10 px-6">
         <div className="max-w-6xl mx-auto">
           <Reveal>
-            <p className={`${eyebrow} mb-4`}>About</p>
-            <h2 className="font-serif text-3xl md:text-5xl text-foreground mb-12">
-              <span className="text-accent">Good Energy,</span> Better Metrics
-            </h2>
+            <h2 className={`${eyebrow} mb-5`}>About</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-5">
             <Reveal className={`${card} md:col-span-3 flex flex-col justify-center`}>
@@ -150,7 +147,7 @@ export default function Home() {
                 ))}
               </div>
             </Reveal>
-            <Reveal delay={0.05} className={`${card} md:col-span-2 flex flex-col justify-between`}>
+            <Reveal delay={0.05} className={`${card} md:col-span-2`}>
               <h3 className={`${eyebrow} mb-4`}>Background, Before The Marketing Pivot</h3>
               <div className="space-y-4">
                 {background.map((b) => (
@@ -171,7 +168,7 @@ export default function Home() {
       </section>
 
       {/* Work, by craft */}
-      <section id="work" className="pt-4 md:pt-8 pb-24 md:pb-32 px-6">
+      <section id="work" className="pt-8 pb-12 md:pb-16 px-6">
         <div className="max-w-6xl mx-auto">
           <Reveal className="mb-10">
             <h2 className="text-accent font-mono text-sm tracking-widest uppercase">Work</h2>
@@ -193,7 +190,7 @@ export default function Home() {
             ))}
           </div>
 
-          <Reveal className="mt-12 pt-12 border-t border-card-border text-center">
+          <Reveal className="mt-8 pt-10 border-t border-card-border text-center">
             <p className="text-foreground font-mono text-sm tracking-widest uppercase mb-8">Other Brands I&apos;ve Worked With</p>
             <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
               {otherClients.map((b) => (
@@ -210,7 +207,7 @@ export default function Home() {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="py-24 md:py-32 px-6">
+      <section id="contact" className="pt-12 md:pt-16 pb-16 md:pb-20 px-6">
         <div className="max-w-4xl mx-auto">
           <Reveal className="text-center mb-12">
             <p className="text-accent font-mono text-sm tracking-widest uppercase mb-4">Get In Touch</p>
@@ -238,7 +235,7 @@ export default function Home() {
               LinkedIn
             </a>
           </Reveal>
-          <p className="text-muted/70 text-sm mt-16 font-mono text-center">Remote | Open to Relocation</p>
+          <p className="text-muted/70 text-sm mt-10 font-mono text-center">Remote | Open to Relocation</p>
         </div>
       </section>
     </>

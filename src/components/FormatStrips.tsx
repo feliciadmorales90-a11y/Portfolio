@@ -4,7 +4,7 @@ import { brands, type Post, type StripSet } from "@/data/work";
 
 const CARD_WIDTH = 328;
 
-function Embed({ post }: { post: Post }) {
+function Embed({ post, width }: { post: Post; width: number }) {
   const e = post.embed;
   const title = `${brands[post.brand].name} on ${post.platform}`;
   switch (e.type) {
@@ -62,7 +62,7 @@ function Embed({ post }: { post: Post }) {
               alt={e.srcs.length > 1 ? `${title}, slide ${i + 1} of ${e.srcs.length}` : title}
               width={e.width}
               height={e.height}
-              sizes={`${CARD_WIDTH}px`}
+              sizes={`${width}px`}
               className="snap-start shrink-0 w-full h-auto"
             />
           ))}
@@ -85,7 +85,7 @@ function Embed({ post }: { post: Post }) {
 export default function FormatStrips({ set, links }: { set: StripSet; links?: { label: string; href: string }[] }) {
   return (
     <div className="space-y-8">
-      {set.formats.map(({ format, name }) => {
+      {set.formats.map(({ format, name, width }) => {
         const posts = set.posts.filter((p) => p.format === format);
         if (posts.length === 0) return null;
         return (
@@ -97,12 +97,12 @@ export default function FormatStrips({ set, links }: { set: StripSet; links?: { 
                   <figure
                     key={p.id}
                     className="snap-start shrink-0 rounded-2xl overflow-hidden bg-white border border-card-border shadow-sm"
-                    style={{ width: CARD_WIDTH }}
+                    style={{ width: width ?? CARD_WIDTH, maxWidth: "85vw" }}
                   >
                     <figcaption className="px-4 py-2.5 text-[11px] font-mono uppercase tracking-widest text-muted border-b border-card-border">
                       {brands[p.brand].name} · {p.platform}
                     </figcaption>
-                    <Embed post={p} />
+                    <Embed post={p} width={width ?? CARD_WIDTH} />
                   </figure>
                 ))}
               </div>
