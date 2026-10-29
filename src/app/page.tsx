@@ -98,7 +98,7 @@ export default function Home() {
       </section>
 
       {/* About */}
-      <section id="about" className="py-24 md:py-32 px-6">
+      <section id="about" className="pt-24 md:pt-32 pb-12 md:pb-16 px-6">
         <div className="max-w-6xl mx-auto">
           <Reveal>
             <p className={`${eyebrow} mb-4`}>About</p>
@@ -171,12 +171,11 @@ export default function Home() {
       </section>
 
       {/* Work, by craft */}
-      <section id="work" className="py-24 md:py-32 px-6">
+      <section id="work" className="pt-4 md:pt-8 pb-24 md:pb-32 px-6">
         <div className="max-w-6xl mx-auto">
           <Reveal className="mb-10">
-            <p className="text-accent font-mono text-sm tracking-widest uppercase mb-4">Work</p>
-            <h2 className="font-serif text-3xl md:text-5xl text-foreground">What I make.</h2>
-            <nav aria-label="Crafts" className="flex flex-wrap gap-2 mt-8">
+            <h2 className="text-accent font-mono text-sm tracking-widest uppercase">Work</h2>
+            <nav aria-label="Crafts" className="flex flex-wrap gap-2 mt-5">
               {crafts.map((c) => (
                 <a
                   key={c.slug}
