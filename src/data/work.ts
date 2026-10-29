@@ -434,28 +434,26 @@ export const projects: Project[] = [
   },
   {
     slug: "giving-tuesday",
-    title: "Giving Tuesday Campaign",
+    title: "Giving Tuesday Reels",
     brand: "scholar",
     period: "November 2025",
-    summary: "A 7-email drip, daily social, and a founder Reel that reached 87% of a $5K goal in two weeks.",
+    summary: "A founder Reel and talking-head video for a campaign that reached 87% of a $5K goal in two weeks.",
     thumb: "/scholar/giving-tuesday.jpg",
     video: true,
-    overview: "Built and executed a full Giving Tuesday campaign across email and social media to raise $5K for Scholar and a Dream's next student cohort. Reached 87% of the fundraising goal in 2 weeks through a coordinated 7-email drip sequence and daily social content.",
-    myRole: "Designed and executed the full campaign strategy across email and social. Built a 7-email drip sequence featuring program context, mentor stories, and scholar stories with clear CTAs. Produced an on-brand Reel from existing founder footage. Coordinated daily social posts to support email sends.",
+    overview: "The social side of Scholar and a Dream's Giving Tuesday campaign to raise $5K for its next student cohort. I turned existing founder footage into an on-brand Reel and a talking-head video, and posted daily to support the email drip. The campaign reached 87% of its goal in two weeks.",
+    myRole: "Produced the campaign Reel and founder video from existing footage, wrote the captions, and coordinated daily social posts to support the email sends.",
     process: [
-      "Designed a 7-email drip sequence to contacts, each with a distinct angle: program overview, mentor stories, scholar stories, impact data, tiered giving breakdown, and urgency-driven closing asks",
-      "Wrote all email copy with clear CTAs connecting donations to tangible student outcomes",
       "Produced a campaign Reel by stitching together existing founder videos into a high-energy, on-brand piece",
-      "Created daily social media content to amplify the email drip and build momentum across Instagram",
+      "Produced a talking-head founder video on why the mission matters to them, styled for the brand and audience",
       "Wrote the Reel caption with a tiered donation structure ($5 to $500) showing exactly what each dollar funds",
-      "Tracked performance across email and social throughout the 2-week campaign window",
+      "Created daily social media content to amplify the email drip and build momentum across Instagram",
     ],
-    output: "A coordinated email and social campaign that raised 87% of the $5K goal in 2 weeks. The 7-email drip drove the majority of donations, supported by daily social content and a campaign Reel that turned passive scrolling into active giving.",
+    output: "A campaign Reel and founder video that turned passive scrolling into active giving, alongside daily posts through the two-week campaign.",
     results: [
       { value: 87, suffix: "%", label: "Of $5K Goal Reached" },
-      { value: 7, label: "Email Drip Sequence" },
       { value: 2, suffix: " Weeks", label: "Campaign Window" },
     ],
+    resultsNote: "Campaign-wide result, across email and social.",
     media: [
       {
         type: "instagram",
@@ -470,6 +468,29 @@ export const projects: Project[] = [
         srcs: ["/scholar-giving-tuesday-video.mov"],
       },
     ],
+    links: [{ label: "See the Giving Tuesday email drip", href: "/work/giving-tuesday-emails" }],
+  },
+  {
+    slug: "giving-tuesday-emails",
+    title: "Giving Tuesday Email Drip",
+    brand: "scholar",
+    period: "November 2025",
+    summary: "Seven emails, each with its own angle, for a campaign that reached 87% of a $5K goal in two weeks.",
+    overview: "The email side of Scholar and a Dream's Giving Tuesday campaign to raise $5K for its next student cohort. I built a 7-email drip, each email with a distinct angle, and wrote all of the copy. The campaign reached 87% of its goal in two weeks.",
+    myRole: "Designed the drip and wrote all of the email copy, with daily social posts coordinated to support each send.",
+    process: [
+      "Designed a 7-email drip sequence to contacts, each with a distinct angle: program overview, mentor stories, scholar stories, impact data, tiered giving breakdown, and urgency-driven closing asks",
+      "Wrote all email copy with clear CTAs connecting donations to tangible student outcomes",
+      "Tracked performance across email and social throughout the 2-week campaign window",
+    ],
+    output: "A 7-email drip that drove the majority of donations, supported by daily social content.",
+    results: [
+      { value: 87, suffix: "%", label: "Of $5K Goal Reached" },
+      { value: 7, label: "Emails in the Drip" },
+      { value: 2, suffix: " Weeks", label: "Campaign Window" },
+    ],
+    resultsNote: "Campaign-wide result, across email and social.",
+    links: [{ label: "See the Giving Tuesday Reels", href: "/work/giving-tuesday" }],
   },
   {
     slug: "quecredit",
@@ -941,11 +962,7 @@ export const crafts: Craft[] = [
     items: [
       { project: "ready-to-launch-drip" },
       { project: "lifecycle-email-program" },
-      {
-        project: "giving-tuesday",
-        title: "Giving Tuesday Drip",
-        summary: "Seven emails, each with its own angle, backed by daily social.",
-      },
+      { project: "giving-tuesday-emails" },
     ],
   },
   {
@@ -985,11 +1002,7 @@ export const crafts: Craft[] = [
       {
         project: "meta-ads",
       },
-      {
-        project: "giving-tuesday",
-        title: "Giving Tuesday Reel",
-        summary: "Founder footage cut into a high-energy fundraising Reel.",
-      },
+      { project: "giving-tuesday" },
       {
         project: "quecredit",
       },
