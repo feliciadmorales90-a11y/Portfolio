@@ -4,8 +4,18 @@ import Image from "next/image";
 import { useId, useRef, useState } from "react";
 import type { EmailItem } from "@/data/work";
 
-/** An inbox list beside a scrollable preview of the selected email, so visitors read the sequence as the audience did. */
-export default function EmailInbox({ emails, sender }: { emails: EmailItem[]; sender: string }) {
+/** An inbox list beside a scrollable preview of the selected email, so visitors read the sequence as the audience did. Also used for articles. */
+export default function EmailInbox({
+  emails,
+  sender,
+  noun = "email",
+  heading = "Inbox",
+}: {
+  emails: EmailItem[];
+  sender: string;
+  noun?: string;
+  heading?: string;
+}) {
   const [current, setCurrent] = useState(0);
   const pane = useRef<HTMLDivElement>(null);
   const panel = useRef<HTMLDivElement>(null);
@@ -28,9 +38,9 @@ export default function EmailInbox({ emails, sender }: { emails: EmailItem[]; se
     <div className="grid lg:grid-cols-[22rem_minmax(0,1fr)] rounded-2xl border border-card-border overflow-hidden bg-card-bg">
       <div className="lg:border-r border-card-border">
         <p className="text-[11px] font-mono uppercase tracking-widest text-muted px-4 py-3 border-b border-card-border">
-          Inbox · {emails.length} emails
+          {heading} · {emails.length} {emails.length === 1 ? noun : `${noun}s`}
         </p>
-        <div role="tablist" aria-label="Emails in the sequence" aria-orientation="vertical">
+        <div role="tablist" aria-label={`${noun[0].toUpperCase()}${noun.slice(1)}s`} aria-orientation="vertical">
           {emails.map((e, i) => {
             const active = i === current;
             return (
@@ -51,7 +61,7 @@ export default function EmailInbox({ emails, sender }: { emails: EmailItem[]; se
                 </span>
                 <span>
                   <span className="block text-xs text-muted">
-                    {sender} · <span className="font-mono text-[11px]">{e.label.replace(/^Email \d+ · /, "")}</span>
+                    {sender} · <span className="font-mono text-[11px]">{e.label.replace(/^(Email \d+|Blog) · /, "")}</span>
                   </span>
                   <span className={`block mt-1 text-[15px] leading-snug text-foreground ${active ? "font-semibold" : "font-medium"}`}>
                     {e.subject}
@@ -72,10 +82,10 @@ export default function EmailInbox({ emails, sender }: { emails: EmailItem[]; se
                 View live ↗
               </a>
             )}
-            <button type="button" className={nav} onClick={() => select(current - 1)} disabled={current === 0} aria-label="Previous email">
+            <button type="button" className={nav} onClick={() => select(current - 1)} disabled={current === 0} aria-label={`Previous ${noun}`}>
               ←
             </button>
-            <button type="button" className={nav} onClick={() => select(current + 1)} disabled={current === emails.length - 1} aria-label="Next email">
+            <button type="button" className={nav} onClick={() => select(current + 1)} disabled={current === emails.length - 1} aria-label={`Next ${noun}`}>
               →
             </button>
           </div>

@@ -164,6 +164,12 @@ export default async function ProjectPage({ params }: Props) {
             </Section>
           )}
 
+          {project.articles && project.articles.length > 0 && (
+            <Section title="The Articles">
+              <EmailInbox emails={project.articles} sender={brand.name} noun="article" heading="Articles" />
+            </Section>
+          )}
+
           {project.dmFlows && project.dmFlows.length > 0 && (
             <Section title={project.dmFlows.length > 1 ? "The Flows" : "The Flow"}>
               <div className="space-y-16">

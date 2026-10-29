@@ -100,6 +100,8 @@ export type Project = {
   workflowWeb?: WorkflowWeb;
   /** An email sequence, shown as an inbox list beside a preview of the selected email. */
   emails?: EmailItem[];
+  /** Full-length articles, shown in the same list-and-preview viewer as emails. */
+  articles?: EmailItem[];
   /** Leave the brand off the page and tile: for work organized by format rather than by account. */
   hideBrand?: boolean;
   /** DM automations, each shown as the conversation a follower sees on their phone. */
@@ -1224,7 +1226,7 @@ export const projects: Project[] = [
   },
   {
     slug: "scholar-seo-blogs",
-    title: "Scholarship SEO Blogs",
+    title: "Blogs",
     brand: "scholar",
     summary: "Blog posts that rank for the scholarship searches students actually make.",
     overview: "I wrote SEO-optimized blog content to drive organic discoverability for Scholar and a Dream's scholarship and program pages, and developed an SEO-aligned blog strategy for student success stories.",
@@ -1232,18 +1234,13 @@ export const projects: Project[] = [
       "Wrote SEO-optimized blog content for scholarship and program pages",
       "Developed an SEO-aligned blog strategy for student success stories",
     ],
-    media: [
+    articles: [
       {
-        type: "link",
-        label: "SEO Blog: How to Find College Scholarships",
-        description: "SEO-optimized blog written to drive organic discoverability for scholarship resources",
-        href: "https://www.scholarandadream.org/post/how-to-find-college-scholarships-you-actually-qualify-for",
-      },
-      {
-        type: "link",
-        label: "SEO Blog: Why Equity in Education Matters",
-        description: "Thought leadership blog driving organic traffic to the nonprofit's mission and programs",
-        href: "https://www.scholarandadream.org/post/why-equity-in-education-matters",
+        label: "Blog · Thought leadership",
+        subject: "Why Equity in Education Matters",
+        src: "/scholar/blogs/why-equity-in-education-matters.webp",
+        width: 940,
+        height: 2690,
       },
     ],
   },
