@@ -848,22 +848,23 @@ export const crafts: Craft[] = [
     name: "Email & Lifecycle",
     description: "Drips, onboarding, and winback sequences, written and A/B-tested in HubSpot and Mailchimp.",
     items: [
-      {
-        project: "ready-to-launch-drip",
-      },
-      {
-        project: "trialist-bootcamp",
-        title: "Trialist Bootcamp Emails",
-        summary: "A CSM-personalized welcome and a series that walks every trialist to graduation.",
-        thumb: "/bootcamp/rewards.png",
-      },
-      {
-        project: "lifecycle-email-program",
-      },
+      { project: "ready-to-launch-drip" },
+      { project: "lifecycle-email-program" },
       {
         project: "giving-tuesday",
         title: "Giving Tuesday Drip",
         summary: "Seven emails, each with its own angle, backed by daily social.",
+      },
+    ],
+  },
+  {
+    slug: "onboarding-nurture",
+    name: "Onboarding & Nurture",
+    description: "Guided programs that take new users from sign-up to their first win, and keep them moving.",
+    items: [
+      {
+        project: "trialist-bootcamp",
+        summary: "A 9-step in-app guide, founder videos, and an email series that walk every trialist from sign-up to graduation.",
       },
     ],
   },
@@ -937,10 +938,7 @@ export const crafts: Craft[] = [
     slug: "lead-magnets",
     name: "Lead Magnets & Growth Tools",
     description: "Interactive tools I built with Claude Code and wired into HubSpot.",
-    items: [
-      { project: "trialist-bootcamp" },
-      { project: "clean-connection" },
-    ],
+    items: [{ project: "clean-connection" }],
   },
   {
     slug: "websites-seo",
