@@ -16,7 +16,7 @@ export const heroIntro =
 export const aboutParagraphs = [
   "I start with one question: who is the audience, and where do they live? Then I build the right mix of content, email, partnerships, and influencer programs to reach them. Along the way I've built referral systems, launched ambassador programs, produced podcasts, filmed ad creative, and coded interactive tools that convert. Good marketing should feel like generosity, not a transaction.",
   "Before marketing, I spent 11 years in the U.S. Air Force and 11 years in ophthalmology as an ophthalmic technician, working in rare disease and refractive surgery. Both taught me the same thing: stay flexible, pivot without losing momentum, and treat every outcome as a learning point.",
-  "BA in Political Science with a Minor in Human Rights (UMass Amherst). Certified in Digital Marketing (Meta), Email Marketing (HubSpot), Google Analytics, and Figma.",
+  "BA in Political Science with a Minor in Human Rights (UMass Boston). Certified in Digital Marketing (Meta), Email Marketing (HubSpot), Google Analytics, and Figma.",
 ];
 
 export const background = [
@@ -25,7 +25,7 @@ export const background = [
 ];
 
 export const education = {
-  degree: "BA in Political Science, Minor in Human Rights (UMass Amherst)",
+  degree: "BA in Political Science, Minor in Human Rights (UMass Boston)",
   certs: "Certified: Digital Marketing (Meta), Email Marketing (HubSpot), Google Analytics, Figma",
 };
 
@@ -79,10 +79,10 @@ export const toolGroups = [
   { name: "Video and podcast", items: ["Riverside.FM", "CapCut", "YouTube Studio"] },
   {
     name: "Design and web",
-    items: ["Figma", "Canva", "Adobe Creative Suite", "Shopify", "Squarespace", "Vercel"],
+    items: ["Figma", "Canva", "Adobe Creative Suite", "Shopify", "Squarespace"],
   },
-  { name: "Build and AI", items: ["Claude Code", "Apify"] },
-  { name: "Workspace", items: ["Notion", "Slack", "Dropbox", "Google Workspace"] },
+  { name: "Build and AI", items: ["Claude Code", "Apify", "ManyChat", "Vercel", "GitHub"] },
+  { name: "Workspace", items: ["Notion", "Slack", "Microsoft Teams", "Dropbox", "Google Workspace"] },
 ];
 
 export const otherClients = [
