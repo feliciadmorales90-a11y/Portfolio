@@ -165,26 +165,76 @@ export type StripSet = {
 
 /** Top-performing posts, grouped on the page by format rather than by account. */
 const socialPosts: Post[] = [
+  // Reels, mixed across accounts so no two from the same account sit side by side.
   {
-    id: "scholar-giving-tuesday-reel",
+    id: "futurestay-reel-C_eIh_KoxSK",
+    brand: "futurestay",
+    platform: "Instagram",
+    format: "reel",
+    embed: { type: "instagram", url: "https://www.instagram.com/reel/C_eIh_KoxSK/" },
+  },
+  {
+    id: "scholar-reel-DRxIHPPDv8s",
     brand: "scholar",
     platform: "Instagram",
     format: "reel",
     embed: { type: "instagram", url: "https://www.instagram.com/reel/DRxIHPPDv8s/" },
   },
   {
-    id: "feybeans-reel-1",
+    id: "futurestay-reel-DOKSXOgkWW8",
+    brand: "futurestay",
+    platform: "Instagram",
+    format: "reel",
+    embed: { type: "instagram", url: "https://www.instagram.com/reel/DOKSXOgkWW8/" },
+  },
+  {
+    id: "feybeans-reel-DNBHThFtF7Q",
     brand: "feybeans",
     platform: "Instagram",
     format: "reel",
     embed: { type: "instagram", url: "https://www.instagram.com/reel/DNBHThFtF7Q/" },
   },
   {
-    id: "feybeans-reel-2",
+    id: "futurestay-reel-DJHF-7sOH2q",
+    brand: "futurestay",
+    platform: "Instagram",
+    format: "reel",
+    embed: { type: "instagram", url: "https://www.instagram.com/reel/DJHF-7sOH2q/" },
+  },
+  {
+    id: "scholar-reel-DeKhVIVtisX",
+    brand: "scholar",
+    platform: "Instagram",
+    format: "reel",
+    embed: { type: "instagram", url: "https://www.instagram.com/reel/DeKhVIVtisX/" },
+  },
+  {
+    id: "futurestay-reel-C_BOSB0O2lU",
+    brand: "futurestay",
+    platform: "Instagram",
+    format: "reel",
+    embed: { type: "instagram", url: "https://www.instagram.com/reel/C_BOSB0O2lU/" },
+  },
+  {
+    id: "feybeans-reel-DSaKm3KDeMd",
     brand: "feybeans",
     platform: "Instagram",
     format: "reel",
     embed: { type: "instagram", url: "https://www.instagram.com/reel/DSaKm3KDeMd/" },
+  },
+  {
+    id: "futurestay-reel-Dd4v0e5vGZN",
+    brand: "futurestay",
+    platform: "Instagram",
+    format: "reel",
+    embed: { type: "instagram", url: "https://www.instagram.com/reel/Dd4v0e5vGZN/" },
+  },
+  {
+    id: "scholar-reel-DCO7ZNtOs6l",
+    brand: "scholar",
+    platform: "Instagram",
+    format: "reel",
+    embed: { type: "instagram", url: "https://www.instagram.com/reel/DCO7ZNtOs6l/" },
   },
   // Carousels, mixed across accounts so no two from the same account sit side by side.
   {
