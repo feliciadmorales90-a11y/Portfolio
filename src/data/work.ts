@@ -353,15 +353,14 @@ export const projects: Project[] = [
     ],
     results: [
       { value: 5.7, suffix: "%", decimals: 1, label: "CTR, Up From Under 1%" },
-      { value: 7.5, suffix: "%", decimals: 1, label: "Click-to-Open, Sept/Oct 2026" },
-      { value: 34.1, suffix: "%", decimals: 1, label: "Open Rate, Bot-Filtered" },
+      { value: 34.1, suffix: "%", decimals: 1, label: "Open Rate" },
     ],
-    resultsNote: "The year-over-year unsubscribe rate also nearly halved. Recent issues open at 34–40% with bot opens filtered out.",
+    resultsNote: "The year-over-year unsubscribe rate also nearly halved. Recent issues open at 34–40%.",
     media: [
       {
         type: "image",
         label: "Futurestay Forward Newsletter",
-        description: "The Sept/Oct 2026 issue, which I researched, wrote, designed, and sent: 34.1% open rate and 7.5% click-to-open, bot-filtered.",
+        description: "The Sept/Oct 2026 issue, which I researched, wrote, designed, and sent.",
         src: "/futurestay/newsletter-hero.jpg",
       },
       {
