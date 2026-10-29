@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { getProject, strips, type Craft } from "@/data/work";
-import ProjectTile from "./ProjectTile";
+import { getProject, socialPostsFor, strips, type Craft, type SocialFormat } from "@/data/work";
+
+const hasPosts = (format: SocialFormat) => socialPostsFor(format).length > 0;
+import ProjectTile, { FormatTile } from "./ProjectTile";
 import FormatStrips from "./FormatStrips";
 
 export default function CraftRow({ craft, index }: { craft: Craft; index: number }) {
@@ -67,10 +69,15 @@ export default function CraftRow({ craft, index }: { craft: Craft; index: number
             className="flex gap-4 md:gap-5 overflow-x-auto snap-x snap-mandatory scroll-px-6 md:scroll-px-0 px-6 md:px-0 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
             {craft.items.map((item) => {
-              const project = getProject(item.project)!;
+              const tile = item.format ? (
+                <FormatTile format={item.format} />
+              ) : (
+                <ProjectTile project={getProject(item.project!)!} title={item.title} summary={item.summary} thumb={item.thumb} video={item.video} />
+              );
+              if (!tile.props.project && !hasPosts(item.format!)) return null;
               return (
-                <div key={item.project} className="snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-[calc((100%-2.5rem)/3)]">
-                  <ProjectTile project={project} title={item.title} summary={item.summary} thumb={item.thumb} video={item.video} />
+                <div key={item.project ?? item.format} className="snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-[calc((100%-2.5rem)/3)]">
+                  {tile}
                 </div>
               );
             })}

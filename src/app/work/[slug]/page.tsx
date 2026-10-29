@@ -67,7 +67,7 @@ export default async function ProjectPage({ params }: Props) {
   const brand = brands[project.brand];
   const projectCrafts = craftsFor(project.slug);
   const related = projectCrafts
-    .flatMap((c) => c.items.map((i) => i.project))
+    .flatMap((c) => c.items.flatMap((i) => (i.project ? [i.project] : [])))
     .filter((s, i, all) => s !== project.slug && all.indexOf(s) === i)
     .slice(0, 3)
     .map((s) => getProject(s)!);

@@ -259,7 +259,21 @@ export const strips: Record<"social" | "ads", StripSet> = {
 };
 
 /** A tile in a craft row. Title, summary, and thumbnail can be tailored per craft. */
-export type CraftItem = { project: string; title?: string; summary?: string; thumb?: string; video?: boolean };
+/** A tile in a craft row: a project page, or a social format page (format) listing every post of that format. */
+export type CraftItem = { project?: string; format?: SocialFormat; title?: string; summary?: string; thumb?: string; video?: boolean };
+
+export type SocialFormat = "reel" | "static" | "carousel";
+
+/** Social format pages at /social/{slug}, each showing every social post of that format. */
+export const socialFormats: { format: SocialFormat; slug: string; name: string; summary: string }[] = [
+  { format: "reel", slug: "reels", name: "Reels", summary: "Top-performing reels from the accounts I've run." },
+  { format: "static", slug: "statics", name: "Statics", summary: "Top-performing static posts from the accounts I've run." },
+  { format: "carousel", slug: "carousels", name: "Carousels", summary: "Top-performing carousels from the accounts I've run." },
+];
+
+export function socialPostsFor(format: SocialFormat) {
+  return strips.social.posts.filter((p) => p.format === format);
+}
 
 export type Craft = {
   slug: string;
@@ -1145,7 +1159,7 @@ export const projects: Project[] = [
       ],
     },
     {
-      name: "Comment Keyword: Vrbo Commission Guide",
+      name: "Comment Keyword",
       account: "futurestay",
       platform: "Instagram",
       trigger: "Sent after their comment",
@@ -1280,15 +1294,8 @@ export const crafts: Craft[] = [
   {
     slug: "social-media",
     name: "Social Media",
-    description: "Top-performing posts across the accounts I've run, by format.",
-    items: [],
-    strips: "social",
-  },
-  {
-    slug: "automations",
-    name: "Automations",
-    description: "Social DM automations built in ManyChat.",
-    items: [{ project: "manychat" }],
+    description: "Top-performing posts by format, plus the DM automations behind them.",
+    items: [{ format: "reel" }, { format: "static" }, { format: "carousel" }, { project: "manychat" }],
   },
   {
     slug: "partnerships",

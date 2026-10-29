@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { brands, type Post, type StripSet } from "@/data/work";
 
-const CARD_WIDTH = 328;
+export const CARD_WIDTH = 328;
 
-function Embed({ post, width }: { post: Post; width: number }) {
+export function Embed({ post, width }: { post: Post; width: number }) {
   const e = post.embed;
   const title = `${brands[post.brand].name} on ${post.platform}`;
   switch (e.type) {
