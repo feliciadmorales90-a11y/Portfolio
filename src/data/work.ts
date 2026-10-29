@@ -703,23 +703,6 @@ export const projects: Project[] = [
     thumb: "/writing/ei6/cover.webp",
   },
   {
-    slug: "the-check-in",
-    title: "The Check-In",
-    brand: "futurestay",
-    summary: "A short-form video series I created and produce with the CEO.",
-    thumb: "/futurestay/newsletter-check-in.jpg",
-    video: true,
-    overview: "I created and launched The Check-In, a short-form video series produced with Futurestay's CEO. Each episode tackles real host questions and what is happening in the short-term rental market, and long-form partner conversations get repurposed into clips for social and email.",
-    process: [
-      "Created the series concept and format with the CEO",
-      "Plan episodes around real host questions and market news",
-      "Repurpose long-form partner conversations into short clips for social and email",
-      "Feature each episode in the Futurestay Forward newsletter",
-    ],
-    media: [
-    ],
-  },
-  {
     slug: "meta-ads",
     title: "Meta Ad Creative",
     brand: "futurestay",
@@ -883,29 +866,6 @@ export const projects: Project[] = [
       },
     ],
     links: [{ label: "See the Giving Tuesday Reels", href: "/work/giving-tuesday" }],
-  },
-  {
-    slug: "quecredit",
-    title: "QueCredit Launch Video",
-    brand: "sqe",
-    period: "2023",
-    summary: "An introduction video for QueCredit, SQE's semi-stable cryptocurrency, that I scripted, produced, and edited.",
-    video: true,
-    overview: "SQE needed to introduce QueCredit, its semi-stable cryptocurrency built on quantum-secure blockchain. I wrote the script, produced the video with a text-to-speech voiceover and custom visuals, and edited it for social.",
-    myRole: "Wrote the script, selected the text-to-speech voiceover, and created and edited the full video.",
-    process: [
-      "Wrote the full script introducing QueCredit and its role in SQE's quantum-secure ecosystem",
-      "Produced the video using text-to-speech voiceover and custom visuals",
-      "Edited and finalized the video for social",
-    ],
-    media: [
-      {
-        type: "instagram",
-        label: "QueCredit Introduction Video",
-        description: "Scripted, produced, and edited video introducing SQE's semi-stable cryptocurrency",
-        url: "https://www.instagram.com/reel/CvXCCw2Nd35/",
-      },
-    ],
   },
   {
     slug: "google-ads-grant",
