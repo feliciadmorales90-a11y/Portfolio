@@ -160,9 +160,13 @@ export default async function ProjectPage({ params }: Props) {
             </Section>
           )}
 
-          {project.dmFlow && (
-            <Section title="The Flow">
-              <DmFlow flow={project.dmFlow} />
+          {project.dmFlows && project.dmFlows.length > 0 && (
+            <Section title={project.dmFlows.length > 1 ? "The Flows" : "The Flow"}>
+              <div className="space-y-16">
+                {project.dmFlows.map((f) => (
+                  <DmFlow key={f.name} flow={f} />
+                ))}
+              </div>
             </Section>
           )}
 

@@ -100,15 +100,18 @@ export type Project = {
   workflowWeb?: WorkflowWeb;
   /** An email sequence, shown as an inbox list beside a preview of the selected email. */
   emails?: EmailItem[];
-  /** A DM automation, shown as the conversation a follower sees on their phone. */
-  dmFlow?: DmFlow;
+  /** DM automations, each shown as the conversation a follower sees on their phone. */
+  dmFlows?: DmFlow[];
 };
 
 /** A chat automation: the trigger, each automated message with its button, and a step-by-step key. */
 export type DmFlow = {
+  name: string;
   account: string;
   platform: string;
   trigger: string;
+  /** For comment triggers: a sample keyword comment and the public replies the automation posts under it. */
+  comment?: { text: string; replies: string[] };
   messages: { text: string; button: string; external?: boolean }[];
   steps: { title: string; detail: string }[];
 };
@@ -1115,9 +1118,11 @@ export const projects: Project[] = [
     slug: "manychat",
     title: "ManyChat",
     brand: "futurestay",
-    summary: "An Instagram DM automation that welcomes new followers and offers the free direct-booking savings calculator.",
-    overview: "An Instagram DM automation I built in ManyChat for Futurestay. When someone new follows the account, they get a DM offering the free direct-booking savings calculator.",
-    dmFlow: {
+    summary: "Instagram DM automations that turn new follows and post comments into conversations, guides, and calculators.",
+    overview: "Instagram DM automations I built in ManyChat for Futurestay.",
+    dmFlows: [
+    {
+      name: "New Follower Welcome",
       account: "futurestay",
       platform: "Instagram",
       trigger: "You followed futurestay · just now",
@@ -1139,6 +1144,35 @@ export const projects: Project[] = [
         { title: "Destination", detail: "The free direct-booking savings calculator." },
       ],
     },
+    {
+      name: "Comment Keyword: Vrbo Commission Guide",
+      account: "futurestay",
+      platform: "Instagram",
+      trigger: "Sent after their comment",
+      comment: {
+        text: "booking",
+        replies: ["📩 We've got you! Check your DMs", "🏡 Check your messages!", "Details landed in your inbox!"],
+      },
+      messages: [
+        {
+          text: "Here you go!\n\nYour guide covers:\n\n🏡 Single-fee structures\n💸 Vrbo's new 12% commission\n📋 What the updated Vrbo terms mean for hosts\n📈 How to review your pricing and protect your margins",
+          button: "Grab the full guide",
+        },
+        {
+          text: "Here's to smarter pricing and more profitable bookings!",
+          button: "Commission Guide",
+          external: true,
+        },
+      ],
+      steps: [
+        { title: "Trigger", detail: "Someone comments \u201cbook,\u201d \u201cbooking,\u201d or \u201cbookings\u201d on a specific post or reel." },
+        { title: "Public reply", detail: "The account replies under their comment with one of three short lines pointing to their DMs." },
+        { title: "Opening DM", detail: "What the guide covers, with one tap to get it." },
+        { title: "Follow-up DM", detail: "Sent the moment they tap, with the guide link." },
+        { title: "Destination", detail: "The Vrbo commission guide." },
+      ],
+    },
+    ],
   },
   {
     slug: "ripple",
