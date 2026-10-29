@@ -174,6 +174,13 @@ const socialPosts: Post[] = [
     embed: { type: "instagram", url: "https://www.instagram.com/reel/C_eIh_KoxSK/" },
   },
   {
+    id: "feybeans-reel-DNBHThFtF7Q",
+    brand: "feybeans",
+    platform: "Instagram",
+    format: "reel",
+    embed: { type: "instagram", url: "https://www.instagram.com/reel/DNBHThFtF7Q/" },
+  },
+  {
     id: "scholar-reel-DRxIHPPDv8s",
     brand: "scholar",
     platform: "Instagram",
@@ -188,11 +195,11 @@ const socialPosts: Post[] = [
     embed: { type: "instagram", url: "https://www.instagram.com/reel/DOKSXOgkWW8/" },
   },
   {
-    id: "feybeans-reel-DNBHThFtF7Q",
+    id: "feybeans-reel-DdtycuDtyD1",
     brand: "feybeans",
     platform: "Instagram",
     format: "reel",
-    embed: { type: "instagram", url: "https://www.instagram.com/reel/DNBHThFtF7Q/" },
+    embed: { type: "instagram", url: "https://www.instagram.com/reel/DdtycuDtyD1/" },
   },
   {
     id: "futurestay-reel-DJHF-7sOH2q",
@@ -209,6 +216,13 @@ const socialPosts: Post[] = [
     embed: { type: "instagram", url: "https://www.instagram.com/reel/DeKhVIVtisX/" },
   },
   {
+    id: "feybeans-reel-DSaKm3KDeMd",
+    brand: "feybeans",
+    platform: "Instagram",
+    format: "reel",
+    embed: { type: "instagram", url: "https://www.instagram.com/reel/DSaKm3KDeMd/" },
+  },
+  {
     id: "futurestay-reel-C_BOSB0O2lU",
     brand: "futurestay",
     platform: "Instagram",
@@ -216,11 +230,18 @@ const socialPosts: Post[] = [
     embed: { type: "instagram", url: "https://www.instagram.com/reel/C_BOSB0O2lU/" },
   },
   {
-    id: "feybeans-reel-DSaKm3KDeMd",
+    id: "feybeans-reel-DdetKqiJl0u",
     brand: "feybeans",
     platform: "Instagram",
     format: "reel",
-    embed: { type: "instagram", url: "https://www.instagram.com/reel/DSaKm3KDeMd/" },
+    embed: { type: "instagram", url: "https://www.instagram.com/reel/DdetKqiJl0u/" },
+  },
+  {
+    id: "scholar-reel-DCO7ZNtOs6l",
+    brand: "scholar",
+    platform: "Instagram",
+    format: "reel",
+    embed: { type: "instagram", url: "https://www.instagram.com/reel/DCO7ZNtOs6l/" },
   },
   {
     id: "futurestay-reel-Dd4v0e5vGZN",
@@ -230,11 +251,11 @@ const socialPosts: Post[] = [
     embed: { type: "instagram", url: "https://www.instagram.com/reel/Dd4v0e5vGZN/" },
   },
   {
-    id: "scholar-reel-DCO7ZNtOs6l",
-    brand: "scholar",
+    id: "feybeans-reel-Dc6ItGpxfM1",
+    brand: "feybeans",
     platform: "Instagram",
     format: "reel",
-    embed: { type: "instagram", url: "https://www.instagram.com/reel/DCO7ZNtOs6l/" },
+    embed: { type: "instagram", url: "https://www.instagram.com/reel/Dc6ItGpxfM1/" },
   },
   // Carousels, mixed across accounts so no two from the same account sit side by side.
   {
