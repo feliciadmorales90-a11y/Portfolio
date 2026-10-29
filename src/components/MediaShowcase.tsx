@@ -15,13 +15,12 @@ function Caption({ label, description }: { label: string; description: string })
   );
 }
 
-function Video({ srcs, label }: { srcs: string[]; label: string }) {
+function Video({ srcs, label, poster }: { srcs: string[]; label: string; poster?: string }) {
   return (
     <>
       {srcs.map((src) => (
-        <video key={src} className="w-full bg-foreground" controls playsInline preload="metadata" aria-label={label}>
+        <video key={src} className="w-full bg-foreground" controls playsInline preload="metadata" poster={poster} aria-label={label}>
           <source src={src} type="video/mp4" />
-          <source src={src} type="video/quicktime" />
         </video>
       ))}
     </>
@@ -157,7 +156,7 @@ export default function MediaShowcase({ items, layout = "grid" }: { items: Media
               return (
                 <div key={m.label} className="rounded-xl overflow-hidden border border-card-border">
                   <div className="space-y-px">
-                    <Video srcs={m.srcs} label={m.label} />
+                    <Video srcs={m.srcs} label={m.label} poster={m.poster} />
                   </div>
                   <Caption label={m.label} description={m.description} />
                 </div>

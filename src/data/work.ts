@@ -8,7 +8,7 @@ export type Stat = {
 
 export type Media =
   | { type: "image"; label: string; description: string; src: string; gallery?: string[]; href?: string }
-  | { type: "video"; label: string; description: string; srcs: string[] }
+  | { type: "video"; label: string; description: string; srcs: string[]; poster?: string }
   | { type: "vimeo"; label: string; description: string; id: string; hash: string }
   | { type: "instagram"; label: string; description: string; url: string }
   | { type: "link"; label: string; description: string; href: string };
@@ -345,12 +345,11 @@ export const projects: Project[] = [
     brand: "futurestay",
     summary: "The company's first newsletter, which I branded, write, design, and send.",
     thumb: "/futurestay/newsletter-hero.jpg",
-    overview: "I branded and launched Futurestay Forward, the company's first newsletter, and built its subscriber base from zero across email and LinkedIn. I own every issue: research, copy, design, and HubSpot execution. Each one pulls together industry news, product updates, blog posts, events, host tips, and host spotlights.",
+    overview: "I branded and launched Futurestay Forward, the company's first newsletter. I own every issue: research, copy, design, and HubSpot execution. Each one pulls together industry news, product updates, blog posts, events, host tips, and host spotlights.",
     process: [
-      "Named and branded the newsletter and built the subscriber base from zero",
+      "Named and branded the newsletter",
       "Do all the research for every issue: industry news, Futurestay product updates, blog posts, events, host tips, and host spotlights",
       "Write, design, and send each issue in HubSpot",
-      "Feature The Check-In, the video series I produce with the CEO",
     ],
     results: [
       { value: 5.7, suffix: "%", decimals: 1, label: "CTR, Up From Under 1%" },
@@ -428,9 +427,31 @@ export const projects: Project[] = [
     media: [
       {
         type: "video",
-        label: "Meta Video Ads",
-        description: "Talking-head ads I recorded, edited by the agency after I approved the scripts and hooks.",
-        srcs: ["/fs-meta-ad-1.mov", "/fs-meta-ad-2.mov"],
+        label: "Your Own Booking Site (Hook 1)",
+        description: "Talking-head ad I recorded, edited by the agency after I approved the script and hooks.",
+        srcs: ["/futurestay/meta-ads/your-own-booking-site.mp4"],
+        poster: "/futurestay/meta-ads/your-own-booking-site.jpg",
+      },
+      {
+        type: "video",
+        label: "A Website That's Actually Yours (Hook 1)",
+        description: "Talking-head ad I recorded, edited by the agency after I approved the script and hooks.",
+        srcs: ["/futurestay/meta-ads/a-website-thats-actually-yours.mp4"],
+        poster: "/futurestay/meta-ads/a-website-thats-actually-yours.jpg",
+      },
+      {
+        type: "video",
+        label: "Meta Video Ad",
+        description: "From the same campaign, scripted with the agency and approved through each round of revisions.",
+        srcs: ["/futurestay/meta-ads/meta-ad-1.mp4"],
+        poster: "/futurestay/meta-ads/meta-ad-1.jpg",
+      },
+      {
+        type: "video",
+        label: "Meta Video Ad",
+        description: "From the same campaign, scripted with the agency and approved through each round of revisions.",
+        srcs: ["/futurestay/meta-ads/meta-ad-2.mp4"],
+        poster: "/futurestay/meta-ads/meta-ad-2.jpg",
       },
     ],
   },
@@ -466,7 +487,8 @@ export const projects: Project[] = [
         type: "video",
         label: "Giving Tuesday Founder Video",
         description: "Talking head video featuring the Scholar and a Dream founders discussing why the mission matters to them, stylized for their brand and audience.",
-        srcs: ["/scholar-giving-tuesday-video.mov"],
+        srcs: ["/scholar/giving-tuesday-founder-video.mp4"],
+        poster: "/scholar/giving-tuesday-founder-video.jpg",
       },
     ],
     links: [{ label: "See the Giving Tuesday email drip", href: "/work/giving-tuesday-emails" }],
@@ -557,21 +579,14 @@ export const projects: Project[] = [
     title: "QueCredit Launch Video",
     brand: "sqe",
     period: "2023",
-    summary: "A video I wrote, produced, and ran as a $20 Facebook ad: 14,177 ThruPlays in 7 days.",
+    summary: "An introduction video for QueCredit, SQE's semi-stable cryptocurrency, that I scripted, produced, and edited.",
     video: true,
-    overview: "SQE needed to introduce QueCredit, their semi-stable cryptocurrency built on quantum-secure blockchain, to a targeted audience. With a $20 budget and 7 days, I wrote, produced, and ran an ultra-targeted Facebook ad campaign that maximized every dollar.",
-    myRole: "Wrote the script, selected text-to-speech for voiceover, created and edited the full video. Designed and executed the ad campaign strategy on Facebook with ultra-targeted parameters to stretch a minimal budget.",
+    overview: "SQE needed to introduce QueCredit, its semi-stable cryptocurrency built on quantum-secure blockchain. I wrote the script, produced the video with a text-to-speech voiceover and custom visuals, and edited it for social.",
+    myRole: "Wrote the script, selected the text-to-speech voiceover, and created and edited the full video.",
     process: [
       "Wrote the full script introducing QueCredit and its role in SQE's quantum-secure ecosystem",
       "Produced the video using text-to-speech voiceover and custom visuals",
-      "Edited and finalized the video for both organic and paid distribution",
-      "Designed an ultra-targeted Facebook ad campaign optimized for ThruPlays on a $20 budget over 7 days",
-      "Selected strategic audience targeting to maximize engagement and reach at minimal cost",
-    ],
-    results: [
-      { value: 14177, label: "ThruPlays" },
-      { value: 0.002, prefix: "$", decimals: 3, label: "Cost Per ThruPlay" },
-      { value: 7, suffix: " Days", label: "Campaign Length" },
+      "Edited and finalized the video for social",
     ],
     media: [
       {
@@ -595,7 +610,6 @@ export const projects: Project[] = [
     ],
     results: [
       { value: 47.6, suffix: "%", decimals: 1, label: "Google Ads Conversion Rate" },
-      { value: 7.35, suffix: "x", decimals: 2, label: "ROAS" },
       { value: 10, prefix: "$", suffix: "K/mo", label: "Google Ads Grant Managed" },
     ],
   },
@@ -1069,7 +1083,7 @@ export const crafts: Craft[] = [
   {
     slug: "newsletters",
     name: "Newsletters",
-    description: "Newsletters I named, write, and grew from zero.",
+    description: "Newsletters I named, write, and send.",
     items: [
       { project: "futurestay-forward" },
       { project: "entangled-insights" },
@@ -1105,7 +1119,6 @@ export const crafts: Craft[] = [
     items: [
       { project: "meta-ads", thumb: "/futurestay/fs-meta-ad-2.jpg" },
       { project: "google-ads-grant" },
-      { project: "quecredit", title: "QueCredit $20 Facebook Ad" },
     ],
   },
   {
