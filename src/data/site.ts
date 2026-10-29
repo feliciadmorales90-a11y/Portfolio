@@ -14,7 +14,7 @@ export const heroIntro =
   "I start with the audience: who they are, where they live, and what they actually need. Then I build the content, email, and partner programs that serve them and grow your pipeline. Good marketing should feel like generosity, not a transaction.";
 
 export const aboutParagraphs = [
-  "I start with one question: who is the audience, and where do they live? Then I build the right mix of content, email, partnerships, and influencer programs to reach them. Along the way I've built referral systems, launched ambassador programs, produced podcasts, filmed ad creative, and coded interactive tools that convert. Good marketing should feel like generosity, not a transaction.",
+  "Across SaaS, nonprofit, and e-commerce brands, I've built referral systems, launched ambassador programs, produced podcasts, filmed ad creative, and coded interactive tools that convert.",
   "Before marketing, I spent 11 years in the U.S. Air Force and 11 years in ophthalmology as an ophthalmic technician, working in rare disease and refractive surgery. Both taught me the same thing: stay flexible, pivot without losing momentum, and treat every outcome as a learning point.",
   "BA in Political Science with a Minor in Human Rights (UMass Boston). Certified in Digital Marketing (Meta), Email Marketing (HubSpot), Google Analytics, and Figma.",
 ];
