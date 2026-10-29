@@ -61,7 +61,7 @@ export default function EmailInbox({
                 </span>
                 <span>
                   <span className="block text-xs text-muted">
-                    {sender} · <span className="font-mono text-[11px]">{e.label.replace(/^(Email \d+|Blog) · /, "")}</span>
+                    {e.from ?? sender} · <span className="font-mono text-[11px]">{e.label.replace(/^(Email \d+|Blog) · /, "")}</span>
                   </span>
                   <span className={`block mt-1 text-[15px] leading-snug text-foreground ${active ? "font-semibold" : "font-medium"}`}>
                     {e.subject}
@@ -99,6 +99,8 @@ export default function EmailInbox({
               width={email.width}
               height={email.height}
               sizes="600px"
+              // Very long captures (full articles) exceed the image optimizer's output limits, so serve them as-is.
+              unoptimized={email.height > 12000}
               className="w-full h-auto block"
             />
           </div>

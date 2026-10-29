@@ -140,7 +140,16 @@ export type WorkflowWeb = {
 };
 
 /** One email in a sequence, shown in the inbox-style viewer. */
-export type EmailItem = { label: string; subject: string; src: string; width: number; height: number; href?: string };
+export type EmailItem = {
+  label: string;
+  subject: string;
+  src: string;
+  width: number;
+  height: number;
+  href?: string;
+  /** Who it's from, when it differs from the project's brand. */
+  from?: string;
+};
 
 /** One piece of creative (a social post or an ad), shown in its format strip and labeled by brand and platform. */
 export type Post = {
@@ -1228,19 +1237,54 @@ export const projects: Project[] = [
     slug: "scholar-seo-blogs",
     title: "Blogs",
     brand: "scholar",
-    summary: "Blog posts that rank for the scholarship searches students actually make.",
-    overview: "I wrote SEO-optimized blog content to drive organic discoverability for Scholar and a Dream's scholarship and program pages, and developed an SEO-aligned blog strategy for student success stories.",
+    hideBrand: true,
+    summary: "SEO blog posts, shown in full.",
+    overview: "SEO blog posts I wrote, from short-term rental guides for hosts to education and scholarship content for students.",
     process: [
       "Wrote SEO-optimized blog content for scholarship and program pages",
       "Developed an SEO-aligned blog strategy for student success stories",
+      "Wrote SEO blog posts for short-term rental hosts on house rules, pet policies, and financing",
     ],
     articles: [
       {
-        label: "Blog · Thought leadership",
+        label: "Blog · Short-term rentals",
+        subject: "Airbnb's New House Rules Policy 2026",
+        src: "/futurestay/blogs/airbnb-house-rules-changes-2026.jpg",
+        width: 696,
+        height: 9445,
+        from: "Futurestay",
+      },
+      {
+        label: "Blog · Education",
         subject: "Why Equity in Education Matters",
         src: "/scholar/blogs/why-equity-in-education-matters.webp",
         width: 940,
         height: 2690,
+        from: "Scholar and a Dream",
+      },
+      {
+        label: "Blog · Guest management",
+        subject: "What to Do When an Airbnb Guest Breaks Your House Rules",
+        src: "/futurestay/blogs/airbnb-guest-broke-your-house-rules-what-to-do.jpg",
+        width: 696,
+        height: 22008,
+        from: "Futurestay",
+      },
+      {
+        label: "Blog · Short-term rentals",
+        subject: "Should Your Rental Be Pet-Friendly?",
+        src: "/futurestay/blogs/the-benefits-of-owning-a-pet-friendly-vacation-rental-property.jpg",
+        width: 696,
+        height: 4799,
+        from: "Futurestay",
+      },
+      {
+        label: "Blog · Finance",
+        subject: "How to Finance Your Short-Term Rental Property",
+        src: "/futurestay/blogs/the-ultimate-guide-to-financing-your-short-term-rental.jpg",
+        width: 696,
+        height: 7152,
+        from: "Futurestay",
       },
     ],
   },
