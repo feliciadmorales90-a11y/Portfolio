@@ -180,9 +180,6 @@ export default function Home() {
           <Reveal className="mb-10">
             <p className="text-accent font-mono text-sm tracking-widest uppercase mb-4">Work</p>
             <h2 className="font-serif text-3xl md:text-5xl text-foreground">What I make.</h2>
-            <p className="text-muted text-lg mt-4 max-w-2xl">
-              Organized by craft, so you can go straight to the kind of work you&apos;re hiring for. Every project names the brand it was for.
-            </p>
             <nav aria-label="Crafts" className="flex flex-wrap gap-2 mt-8">
               {crafts.map((c) => (
                 <a
