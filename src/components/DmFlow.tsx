@@ -2,11 +2,12 @@ import type { DmFlow as Flow } from "@/data/work";
 
 const bubble = "max-w-[80%] whitespace-pre-line bg-[#efefef] rounded-[20px_20px_20px_6px] px-3.5 py-3 text-sm leading-snug text-[#111]";
 
-function Avatar({ letter, small }: { letter: string; small?: boolean }) {
+function Avatar({ letter, color, small }: { letter: string; color?: string; small?: boolean }) {
   return (
     <span
       aria-hidden
-      className={`shrink-0 rounded-full bg-[#1414d8] text-white font-bold flex items-center justify-center ${small ? "w-7 h-7 text-xs" : "w-9 h-9"}`}
+      className={`shrink-0 rounded-full text-white font-bold flex items-center justify-center ${small ? "w-7 h-7 text-xs" : "w-9 h-9"}`}
+      style={{ backgroundColor: color ?? "#1414d8" }}
     >
       {letter}
     </span>
@@ -28,11 +29,11 @@ export default function DmFlow({ flow }: { flow: Flow }) {
                 <div className="flex gap-2.5">
                   <span aria-hidden className="shrink-0 w-7 h-7 rounded-full bg-[#d9d3cf]" />
                   <p className="text-[13px] text-[#111]">
-                    <span className="font-semibold">host</span> {flow.comment.text}
+                    <span className="font-semibold">{flow.comment.commenter ?? "follower"}</span> {flow.comment.text}
                   </p>
                 </div>
                 <div className="flex gap-2.5 mt-3 ml-9">
-                  <Avatar letter={letter} small />
+                  <Avatar letter={letter} color={flow.avatarColor} small />
                   <p className="text-[13px] text-[#111]">
                     <span className="font-semibold">{flow.account}</span> {flow.comment.replies[0]}
                   </p>
@@ -43,7 +44,7 @@ export default function DmFlow({ flow }: { flow: Flow }) {
               </div>
             )}
             <div className="flex items-center gap-2.5 px-4 pt-5 pb-3 border-b border-[#eee]">
-              <Avatar letter={letter} />
+              <Avatar letter={letter} color={flow.avatarColor} />
               <span>
                 <span className="block font-semibold text-[15px] text-[#111]">{flow.account}</span>
                 <span className="block text-xs text-[#888]">{flow.platform}</span>
@@ -52,13 +53,15 @@ export default function DmFlow({ flow }: { flow: Flow }) {
             <ol aria-label="The automated conversation" className="flex flex-col gap-1.5 p-4 pb-6">
               <li className="text-center text-[11px] text-[#999] mb-2">{flow.trigger}</li>
               {flow.messages.map((m, i) => (
-                <li key={m.button} className="flex flex-col gap-1.5">
+                <li key={m.text} className="flex flex-col gap-1.5">
                   <p className={bubble}>{m.text}</p>
-                  <span className="max-w-[80%] border border-[#dbdbdb] rounded-xl py-2.5 text-center text-sm font-semibold text-[#0064e0]">
-                    {m.button}
-                    {m.external && <span aria-hidden> ↗</span>}
-                  </span>
-                  {i < flow.messages.length - 1 && (
+                  {m.button && (
+                    <span className="max-w-[80%] border border-[#dbdbdb] rounded-xl py-2.5 text-center text-sm font-semibold text-[#0064e0]">
+                      {m.button}
+                      {m.external && <span aria-hidden> ↗</span>}
+                    </span>
+                  )}
+                  {m.button && i < flow.messages.length - 1 && (
                     <span className="self-end my-2.5 bg-[#3797f0] text-white rounded-[20px_20px_6px_20px] px-3.5 py-2.5 text-sm">{m.button}</span>
                   )}
                 </li>

@@ -110,11 +110,13 @@ export type Project = {
 export type DmFlow = {
   name: string;
   account: string;
+  /** Avatar color for the account; defaults to blue. */
+  avatarColor?: string;
   platform: string;
   trigger: string;
-  /** For comment triggers: a sample keyword comment and the public replies the automation posts under it. */
-  comment?: { text: string; replies: string[] };
-  messages: { text: string; button: string; external?: boolean }[];
+  /** For comment triggers: a sample keyword comment (and who left it) and the public replies the automation posts under it. */
+  comment?: { text: string; commenter?: string; replies: string[] };
+  messages: { text: string; button?: string; external?: boolean }[];
   steps: { title: string; detail: string }[];
 };
 
@@ -1247,6 +1249,7 @@ export const projects: Project[] = [
       trigger: "Sent after their comment",
       comment: {
         text: "booking",
+        commenter: "host",
         replies: ["📩 We've got you! Check your DMs", "🏡 Check your messages!", "Details landed in your inbox!"],
       },
       messages: [
@@ -1266,6 +1269,31 @@ export const projects: Project[] = [
         { title: "Opening DM", detail: "What the guide covers, with one tap to get it." },
         { title: "Follow-up DM", detail: "Sent the moment they tap, with the guide link." },
         { title: "Destination", detail: "The Vrbo commission guide." },
+      ],
+    },
+    {
+      name: "Discount Code Drop",
+      account: "beans.como.habichuela",
+      avatarColor: "#b9786c",
+      platform: "Instagram",
+      trigger: "Sent after their comment",
+      comment: {
+        text: "COOL",
+        replies: [
+          "Beans just dropped a surprise in your inbox. Go check your DMs!",
+          "Beans is wagging his tail 🐕✨ Your discount code is waiting in your DMs. Go peek!",
+          "Your code\u2019s in the DMs now. Beans can\u2019t wait for your pup to try his fave toy! 🐾",
+        ],
+      },
+      messages: [
+        { text: "🐾 Beans\u2019 gift unlocked!", button: "Show Me The Code!" },
+        { text: "✨ Your code:\n\nCOOLBEANS\n\nApply it at checkout for 20% off Pupsicle products. Valid now through September 1." },
+      ],
+      steps: [
+        { title: "Trigger", detail: "Someone comments \u201cCOOL\u201d on a specific post or reel." },
+        { title: "Public reply", detail: "The account replies under their comment with one of three short lines pointing to their DMs." },
+        { title: "Opening DM", detail: "A short teaser, with one tap to reveal the code." },
+        { title: "Follow-up DM", detail: "Sent the moment they tap: the discount code for 20% off Pupsicle products, with a link." },
       ],
     },
     ],
