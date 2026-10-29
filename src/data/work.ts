@@ -1167,22 +1167,6 @@ export const projects: Project[] = [
       },
     ],
     mediaLayout: "mockups",
-    sections: [
-      {
-        title: "What I'm Measuring",
-        paragraphs: [
-          "The site went live in late October 2026 with analytics installed at launch, so there is no performance data yet. Publishing numbers now would mean making them up. What's being watched:",
-        ],
-        bullets: [
-          "Capability statement downloads, the clearest intent signal on the site",
-          "NASA SEWP ordering guide downloads, a near-pure procurement signal",
-          "Contract vehicles page traffic and depth: are buyers reaching the procurement information at all?",
-          "Which capability and solution pages actually get read, so navigation can follow what pulls",
-          "Contact form submissions by inquiry type, segmented by capability",
-          "Clarity session recordings and rage clicks: where evaluators stall, the question the whole rebuild set out to answer",
-        ],
-      },
-    ],
     links: [
       { label: "Visit vervellc.com", href: "https://vervellc.com/", external: true },
     ],
