@@ -745,7 +745,7 @@ export const projects: Project[] = [
       { value: 47.6, suffix: "%", decimals: 1, label: "Google Ads Conversion Rate" },
       { value: 10, prefix: "$", suffix: "K/mo", label: "Google Ads Grant Managed" },
     ],
-    resultsNote: "For context, the standard benchmark CPC for Education & Instruction search ads is roughly $6.23, and targeting a hyper-competitive market like New York City can add up to a 50% premium to baseline auction bids.",
+    resultsNote: "The $5.59 average CPC is about 10% below the Education & Instruction benchmark, despite targeting NYC. For context, the standard benchmark CPC for Education & Instruction search ads is roughly $6.23, and targeting a hyper-competitive market like New York City can add up to a 50% premium to baseline auction bids.",
     media: [
       {
         type: "image",
