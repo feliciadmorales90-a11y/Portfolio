@@ -250,7 +250,7 @@ export const projects: Project[] = [
     process: [
       "Wrote the signup onboarding sequence, which branches on whether a host is ready to launch",
       "Wrote host activation, failed-trialist, and winback sequences, connected to sales sequences and HubSpot workflows",
-      "A/B-tested subject lines, angles, and structure, then rewrote the losers",
+      "A/B-tested subject lines, angles, and structure, and refined each sequence based on the results",
       "Ran cold outreach campaigns in Lemlist to open new pipeline",
     ],
     results: [
@@ -265,12 +265,12 @@ export const projects: Project[] = [
     brand: "futurestay",
     summary: "The company's first newsletter, which I branded, write, design, and send.",
     thumb: "/futurestay/newsletter-hero.jpg",
-    overview: "I branded and launched Futurestay Forward, the company's first newsletter, and built its subscriber base from zero across email and LinkedIn. I own every issue: research, copy, design, and HubSpot execution.",
+    overview: "I branded and launched Futurestay Forward, the company's first newsletter, and built its subscriber base from zero across email and LinkedIn. I own every issue: research, copy, design, and HubSpot execution. Each one pulls together industry news, product updates, blog posts, events, host tips, and host spotlights.",
     process: [
       "Named and branded the newsletter and built the subscriber base from zero",
-      "Research, write, and design every issue, mixing product updates, market news, and video",
-      "Feature The Check-In, the video series I produce with the CEO, in each issue",
-      "Test subject lines and layout, judging issues on clicks rather than inflated open rates",
+      "Do all the research for every issue: industry news, Futurestay product updates, blog posts, events, host tips, and host spotlights",
+      "Write, design, and send each issue in HubSpot",
+      "Feature The Check-In, the video series I produce with the CEO",
     ],
     results: [
       { value: 5.7, suffix: "%", decimals: 1, label: "CTR, Up From Under 1%" },
