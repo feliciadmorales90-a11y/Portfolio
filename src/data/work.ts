@@ -100,6 +100,17 @@ export type Project = {
   workflowWeb?: WorkflowWeb;
   /** An email sequence, shown as an inbox list beside a preview of the selected email. */
   emails?: EmailItem[];
+  /** A DM automation, shown as the conversation a follower sees on their phone. */
+  dmFlow?: DmFlow;
+};
+
+/** A chat automation: the trigger, each automated message with its button, and a step-by-step key. */
+export type DmFlow = {
+  account: string;
+  platform: string;
+  trigger: string;
+  messages: { text: string; button: string; external?: boolean }[];
+  steps: { title: string; detail: string }[];
 };
 
 /** How a set of automated workflows connect: what triggers each, its logic, and where contacts go next. */
@@ -1101,6 +1112,35 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "manychat",
+    title: "ManyChat",
+    brand: "futurestay",
+    summary: "An Instagram DM automation that welcomes new followers and offers the free direct-booking savings calculator.",
+    overview: "An Instagram DM automation I built in ManyChat for Futurestay. When someone new follows the account, they get a DM offering the free direct-booking savings calculator.",
+    dmFlow: {
+      account: "futurestay",
+      platform: "Instagram",
+      trigger: "You followed futurestay · just now",
+      messages: [
+        {
+          text: "Hey 👋 Thanks for following us!\n\nQuick question: Have you ever wondered how much you could save if more guests booked directly with you instead of through Airbnb or Vrbo?\n\nWe made a free calculator so you can play around with the numbers.\n\nWant to try it? 👀",
+          button: "Yes, show me!",
+        },
+        {
+          text: "Here you go!\n\nJust adjust your nightly rate, occupancy, and a few other details to see how much you could potentially save in commissions by moving some bookings direct.",
+          button: "Calculate My Savings",
+          external: true,
+        },
+      ],
+      steps: [
+        { title: "Trigger", detail: "Someone new follows the account." },
+        { title: "Opening DM", detail: "A friendly question about direct-booking savings, with one tap to answer." },
+        { title: "Follow-up DM", detail: "Sent the moment they tap, with the calculator link." },
+        { title: "Destination", detail: "The free direct-booking savings calculator." },
+      ],
+    },
+  },
+  {
     slug: "ripple",
     title: "Ripple",
     brand: "ripple",
@@ -1207,8 +1247,9 @@ export const crafts: Craft[] = [
     slug: "social-media",
     name: "Social Media",
     description: "Top-performing posts across the accounts I've run, by format.",
-    items: [],
+    items: [{ project: "manychat" }],
     strips: "social",
+    links: [{ label: "ManyChat automations", href: "/work/manychat" }],
   },
   {
     slug: "partnerships",

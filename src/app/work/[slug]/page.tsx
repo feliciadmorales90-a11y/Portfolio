@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Section } from "@/components/Accordion";
+import DmFlow from "@/components/DmFlow";
 import EmailInbox from "@/components/EmailInbox";
 import MediaShowcase from "@/components/MediaShowcase";
 import ProjectTile from "@/components/ProjectTile";
@@ -156,6 +157,12 @@ export default async function ProjectPage({ params }: Props) {
           {project.emails && project.emails.length > 0 && (
             <Section title="The Emails">
               <EmailInbox emails={project.emails} sender={brand.name} />
+            </Section>
+          )}
+
+          {project.dmFlow && (
+            <Section title="The Flow">
+              <DmFlow flow={project.dmFlow} />
             </Section>
           )}
 
