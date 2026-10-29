@@ -178,6 +178,13 @@ const socialPosts: Post[] = [
     embed: { type: "instagram", url: "https://www.instagram.com/reel/DNBHThFtF7Q/" },
   },
   {
+    id: "feybeans-reel-2",
+    brand: "feybeans",
+    platform: "Instagram",
+    format: "reel",
+    embed: { type: "instagram", url: "https://www.instagram.com/reel/DSaKm3KDeMd/" },
+  },
+  {
     id: "futurestay-carousel-1",
     brand: "futurestay",
     platform: "Instagram",
