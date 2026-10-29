@@ -681,12 +681,6 @@ export const projects: Project[] = [
         description: "The Sept/Oct 2026 issue, which I researched, wrote, designed, and sent.",
         src: "/futurestay/newsletter-hero.jpg",
       },
-      {
-        type: "image",
-        label: "The Check-In, Featured in the Newsletter",
-        description: "The short-form video series I created and produce with the CEO, repurposed into the newsletter.",
-        src: "/futurestay/newsletter-check-in.jpg",
-      },
     ],
   },
   {
@@ -712,12 +706,6 @@ export const projects: Project[] = [
       "Feature each episode in the Futurestay Forward newsletter",
     ],
     media: [
-      {
-        type: "image",
-        label: "The Check-In, Featured in the Newsletter",
-        description: "The short-form video series I created and produce with the CEO, repurposed into the newsletter.",
-        src: "/futurestay/newsletter-check-in.jpg",
-      },
     ],
   },
   {
