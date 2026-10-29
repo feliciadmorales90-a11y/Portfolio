@@ -22,17 +22,33 @@ export default function InstagramEmbed({ url }: { url: string }) {
     document.body.appendChild(s);
   }, []);
 
+  // Instagram's script swaps in an iframe with its own minimum width; clip it so it can't widen the page on small phones.
   return (
-    <blockquote
-      className="instagram-media"
-      data-instgrm-captioned
-      data-instgrm-permalink={`${url}?utm_source=ig_embed`}
-      data-instgrm-version="14"
-      style={{ background: "#fff", border: 0, borderRadius: 12, margin: 0, maxWidth: 540, minWidth: 280, width: "100%" }}
-    >
-      <a href={url} target="_blank" rel="noopener noreferrer" className="block p-6 text-sm text-accent">
-        Watch on Instagram →
-      </a>
-    </blockquote>
+    <div className="w-full min-w-0 max-w-full overflow-hidden">
+      <blockquote
+        className="instagram-media"
+        data-instgrm-captioned
+        data-instgrm-permalink={`${url}?utm_source=ig_embed`}
+        data-instgrm-version="14"
+        style={{
+          background: "#fff",
+          border: 0,
+          borderRadius: 12,
+          margin: 0,
+          maxWidth: 540,
+          minWidth: 280,
+          width: "100%",
+        }}
+      >
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block p-6 text-sm text-accent"
+        >
+          Watch on Instagram →
+        </a>
+      </blockquote>
+    </div>
   );
 }

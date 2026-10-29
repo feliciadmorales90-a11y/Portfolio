@@ -111,3 +111,9 @@ body {
     animation: none;
   }
 }
+
+/* Never let a stray element (such as a third-party embed iframe) widen the page sideways on phones. */
+html,
+body {
+  overflow-x: clip;
+}
