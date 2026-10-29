@@ -424,10 +424,8 @@ export const projects: Project[] = [
       "Reviewed every cut, asked for revisions, and gave final approval",
       "Handed the final creative off to the paid ads contractor",
     ],
-    output: "A full set of Meta ad creative across talking-head, animated, carousel, and static formats.",
     results: [
       { value: 445, suffix: "%", label: "Company Trial Starts, YoY (Jan–Oct)" },
-      { value: 22, label: "Ad Creatives Produced" },
     ],
     resultsNote: "Trial-start growth is company-wide. This creative was one contributor.",
     media: [
