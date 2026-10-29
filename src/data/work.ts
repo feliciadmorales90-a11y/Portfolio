@@ -17,7 +17,7 @@ export type ProofLink = { label: string; href: string; external?: boolean };
 
 export type ExtraSection = { title: string; paragraphs?: string[]; bullets?: string[] };
 
-export type BrandId = "futurestay" | "scholar" | "sqe" | "verve" | "ripple";
+export type BrandId = "futurestay" | "scholar" | "sqe" | "verve" | "ripple" | "feybeans";
 
 export type Brand = {
   name: string;
@@ -62,6 +62,12 @@ export const brands: Record<BrandId, Brand> = {
     color: "#D9E5EE",
     about: "My own side project: a two-sided marketplace for short-notice volunteering.",
     role: "Founder & Brand Strategist",
+  },
+  feybeans: {
+    name: "Fey + Beans",
+    color: "#F1E4D3",
+    about: "My own account: my dog's Instagram.",
+    role: "My own account",
   },
 };
 
@@ -116,10 +122,56 @@ export type WorkflowWeb = {
 /** One email in a sequence, shown in the inbox-style viewer. */
 export type EmailItem = { label: string; subject: string; src: string; width: number; height: number; href?: string };
 
+export type SocialFormat = "reel" | "carousel" | "static";
+
+/** One social post, shown as a live embed (or an uploaded video) in its format strip. */
+export type SocialPost = {
+  id: string;
+  brand: BrandId;
+  platform: "Instagram" | "Facebook" | "LinkedIn";
+  format: SocialFormat;
+  embed:
+    | { type: "instagram"; url: string; height?: number }
+    | { type: "facebook"; url: string; height?: number }
+    | { type: "linkedin"; url: string; height?: number }
+    | { type: "video"; src: string; poster?: string };
+};
+
+export const socialFormats: { format: SocialFormat; name: string }[] = [
+  { format: "reel", name: "Reels" },
+  { format: "carousel", name: "Carousels" },
+  { format: "static", name: "Statics" },
+];
+
+/** Top-performing posts, grouped on the page by format rather than by account. */
+export const socialPosts: SocialPost[] = [
+  {
+    id: "scholar-giving-tuesday-reel",
+    brand: "scholar",
+    platform: "Instagram",
+    format: "reel",
+    embed: { type: "instagram", url: "https://www.instagram.com/reel/DRxIHPPDv8s/" },
+  },
+  {
+    id: "futurestay-carousel-1",
+    brand: "futurestay",
+    platform: "Instagram",
+    format: "carousel",
+    embed: { type: "instagram", url: "https://www.instagram.com/p/DaOgTksnTZP/" },
+  },
+];
+
 /** A tile in a craft row. Title, summary, and thumbnail can be tailored per craft. */
 export type CraftItem = { project: string; title?: string; summary?: string; thumb?: string; video?: boolean };
 
-export type Craft = { slug: string; name: string; description: string; items: CraftItem[] };
+export type Craft = {
+  slug: string;
+  name: string;
+  description: string;
+  items: CraftItem[];
+  /** Show social posts by format instead of project tiles. */
+  social?: boolean;
+};
 
 export const projects: Project[] = [
   {
@@ -1123,12 +1175,9 @@ export const crafts: Craft[] = [
   {
     slug: "social-media",
     name: "Social Media",
-    description: "Brand voice and content systems for LinkedIn, Instagram, TikTok, and Facebook.",
-    items: [
-      { project: "scholar-social" },
-      { project: "sqe-linkedin" },
-      { project: "futurestay-social" },
-    ],
+    description: "Top-performing posts across the accounts I've run, by format.",
+    items: [],
+    social: true,
   },
   {
     slug: "partnerships",

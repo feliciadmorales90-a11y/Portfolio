@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { getProject, type Craft } from "@/data/work";
 import ProjectTile from "./ProjectTile";
+import SocialStrips from "./SocialStrips";
 
 export default function CraftRow({ craft, index }: { craft: Craft; index: number }) {
   const scroller = useRef<HTMLDivElement>(null);
@@ -55,6 +56,11 @@ export default function CraftRow({ craft, index }: { craft: Craft; index: number
             </div>
           )}
         </div>
+        {craft.social ? (
+          <div className="min-w-0">
+            <SocialStrips />
+          </div>
+        ) : (
         <div className="relative min-w-0 -mx-6 md:mx-0">
           <div
             ref={scroller}
@@ -73,6 +79,7 @@ export default function CraftRow({ craft, index }: { craft: Craft; index: number
             <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-background to-transparent" />
           )}
         </div>
+        )}
       </div>
     </section>
   );
