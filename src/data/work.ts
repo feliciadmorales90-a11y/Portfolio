@@ -219,6 +219,27 @@ export const strips: Record<"social" | "ads", StripSet> = {
         format: "search",
         embed: { type: "image", srcs: ["/scholar/google-search-ad.png"], width: 732, height: 298 },
       },
+      {
+        id: "scholar-search-scholarships",
+        brand: "scholar",
+        platform: "Google Search",
+        format: "search",
+        embed: { type: "image", srcs: ["/scholar/google-search-ad-scholarships.png"], width: 720, height: 226 },
+      },
+      {
+        id: "scholar-search-equity",
+        brand: "scholar",
+        platform: "Google Search",
+        format: "search",
+        embed: { type: "image", srcs: ["/scholar/google-search-ad-equity.png"], width: 724, height: 226 },
+      },
+      {
+        id: "scholar-search-career-guide",
+        brand: "scholar",
+        platform: "Google Search",
+        format: "search",
+        embed: { type: "image", srcs: ["/scholar/google-search-ad-career-guide.png"], width: 724, height: 226 },
+      },
     ],
   },
 };
@@ -719,9 +740,12 @@ export const projects: Project[] = [
       "Write ad copy and point each campaign at a page built for that action",
     ],
     results: [
+      { value: 5.15, suffix: "%", decimals: 2, label: "Click-Through Rate" },
+      { value: 5.59, prefix: "$", decimals: 2, label: "Average CPC" },
       { value: 47.6, suffix: "%", decimals: 1, label: "Google Ads Conversion Rate" },
       { value: 10, prefix: "$", suffix: "K/mo", label: "Google Ads Grant Managed" },
     ],
+    resultsNote: "For context, the standard benchmark CPC for Education & Instruction search ads is roughly $6.23, and targeting a hyper-competitive market like New York City can add up to a 50% premium to baseline auction bids.",
     media: [
       {
         type: "image",
@@ -729,7 +753,32 @@ export const projects: Project[] = [
         description: "A Google Search ad promoting career-skills content, with sitelinks to learn more, read more, about us, and donate.",
         src: "/scholar/google-search-ad.png",
       },
+      {
+        type: "image",
+        label: "Search Ad: HS Scholarships 2026",
+        description: "Scholarships for high school seniors, with an updated 2026 list and deadlines.",
+        src: "/scholar/google-search-ad-scholarships.png",
+      },
+      {
+        type: "image",
+        label: "Search Ad: Equity in Education",
+        description: "Equity vs. equality, pointing to the tools students need beyond academics.",
+        src: "/scholar/google-search-ad-equity.png",
+      },
+      {
+        type: "image",
+        label: "Search Ad: Student Career Guide",
+        description: "Free career guidance and counseling for NYC students.",
+        src: "/scholar/google-search-ad-career-guide.png",
+      },
+      {
+        type: "image",
+        label: "Campaign Performance",
+        description: "Clicks, CTR, impressions, and average CPC across the grant's search campaigns.",
+        src: "/scholar/google-ads-performance.webp",
+      },
     ],
+    mediaLayout: "grid",
   },
   {
     slug: "thanks-for-visiting",

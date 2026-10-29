@@ -31,7 +31,7 @@ function Video({ srcs, label, poster }: { srcs: string[]; label: string; poster?
  * Renders a list of media items. More than four screenshots become a numbered walkthrough;
  * "mockups" stacks framed images with their story underneath.
  */
-export default function MediaShowcase({ items, layout = "grid" }: { items: Media[]; layout?: "grid" | "mockups" }) {
+export default function MediaShowcase({ items, layout }: { items: Media[]; layout?: "grid" | "mockups" }) {
   const images: LightboxImage[] = [];
   const indexOf = new Map<string, number>();
   for (const m of items) {
@@ -48,7 +48,7 @@ export default function MediaShowcase({ items, layout = "grid" }: { items: Media
   const onlyImages = items.every((m) => m.type === "image");
   const lightbox = <Lightbox images={images} index={open} onClose={() => setOpen(null)} onIndex={setOpen} />;
 
-  if (onlyImages && items.length > 4) {
+  if (onlyImages && items.length > 4 && !layout) {
     return (
       <>
         <ol className="relative space-y-8">
