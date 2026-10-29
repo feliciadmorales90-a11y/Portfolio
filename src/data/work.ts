@@ -362,6 +362,8 @@ export type Craft = {
   items: CraftItem[];
   /** Show a set of format strips instead of project tiles. */
   strips?: "social" | "ads";
+  /** Shorter tiles, for rows whose tiles are titles rather than images. */
+  compact?: boolean;
   /** Project pages with the story behind the strips. */
   links?: { label: string; href: string }[];
 };
@@ -1374,7 +1376,8 @@ export const crafts: Craft[] = [
   {
     slug: "social-media",
     name: "Social Media",
-    items: [{ format: "reel" }, { format: "static" }, { format: "carousel" }, { project: "manychat" }],
+    items: [{ format: "reel" }, { format: "static" }, { format: "carousel" }, { project: "manychat", summary: "" }],
+    compact: true,
   },
   {
     slug: "partnerships",

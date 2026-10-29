@@ -70,9 +70,9 @@ export default function CraftRow({ craft, index }: { craft: Craft; index: number
           >
             {craft.items.map((item) => {
               const tile = item.format ? (
-                <FormatTile format={item.format} />
+                <FormatTile format={item.format} compact={craft.compact} />
               ) : (
-                <ProjectTile project={getProject(item.project!)!} title={item.title} summary={item.summary} thumb={item.thumb} video={item.video} />
+                <ProjectTile project={getProject(item.project!)!} title={item.title} summary={item.summary} thumb={item.thumb} video={item.video} compact={craft.compact} />
               );
               if (!tile.props.project && !hasPosts(item.format!)) return null;
               return (
