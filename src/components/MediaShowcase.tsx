@@ -6,11 +6,11 @@ import type { Media } from "@/data/work";
 import InstagramEmbed from "./InstagramEmbed";
 import Lightbox, { type LightboxImage } from "./Lightbox";
 
-function Caption({ label, description }: { label: string; description: string }) {
+function Caption({ label, description }: { label: string; description?: string }) {
   return (
     <div className="p-4 bg-card-bg">
       <p className="text-sm font-semibold text-foreground">{label}</p>
-      <p className="text-xs text-muted mt-1 leading-relaxed">{description}</p>
+      {description && <p className="text-xs text-muted mt-1 leading-relaxed">{description}</p>}
     </div>
   );
 }

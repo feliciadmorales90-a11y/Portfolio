@@ -8,7 +8,7 @@ export type Stat = {
 
 export type Media =
   | { type: "image"; label: string; description: string; src: string; gallery?: string[]; href?: string }
-  | { type: "video"; label: string; description: string; srcs: string[]; poster?: string }
+  | { type: "video"; label: string; description?: string; srcs: string[]; poster?: string }
   | { type: "vimeo"; label: string; description: string; id: string; hash: string }
   | { type: "instagram"; label: string; description: string; url: string }
   | { type: "link"; label: string; description: string; href: string };
@@ -524,10 +524,6 @@ export const projects: Project[] = [
       "Reviewed every cut, asked for revisions, and gave final approval",
       "Handed the final creative off to the paid ads contractor",
     ],
-    results: [
-      { value: 445, suffix: "%", label: "Company Trial Starts, YoY (Jan–Oct)" },
-    ],
-    resultsNote: "Trial-start growth is company-wide. This creative was one contributor.",
     media: [
       {
         type: "video",
@@ -546,14 +542,12 @@ export const projects: Project[] = [
       {
         type: "video",
         label: "Meta Video Ad",
-        description: "From the same campaign, scripted with the agency and approved through each round of revisions.",
         srcs: ["/futurestay/meta-ads/meta-ad-1.mp4"],
         poster: "/futurestay/meta-ads/meta-ad-1.jpg",
       },
       {
         type: "video",
         label: "Meta Video Ad",
-        description: "From the same campaign, scripted with the agency and approved through each round of revisions.",
         srcs: ["/futurestay/meta-ads/meta-ad-2.mp4"],
         poster: "/futurestay/meta-ads/meta-ad-2.jpg",
       },
@@ -715,71 +709,6 @@ export const projects: Project[] = [
     results: [
       { value: 47.6, suffix: "%", decimals: 1, label: "Google Ads Conversion Rate" },
       { value: 10, prefix: "$", suffix: "K/mo", label: "Google Ads Grant Managed" },
-    ],
-  },
-  {
-    slug: "scholar-social",
-    title: "Scholar-Led Social",
-    brand: "scholar",
-    summary: "A 162-post calendar across TikTok, Instagram, Facebook, LinkedIn, email, and blog, led by the scholars themselves.",
-    thumb: "/scholar-brandon-post.jpg",
-    overview: "Scholar and a Dream supports BIPOC students in NYC through mentorship and scholarships. This is the kind of organization that genuinely wants to do good. I built their digital presence to match the impact they were already making on the ground, turning community work into measurable online reach.",
-    problem: "A mission-driven nonprofit doing transformative work for BIPOC students had no digital marketing strategy. They needed fundraising, volunteer recruitment, and program visibility, all on a nonprofit budget with limited resources.",
-    process: [
-      "Designed a social media strategy for fundraising, volunteer recruitment, and program goals",
-      "Created a 162-post editorial calendar through June 2027 across TikTok, Instagram, Facebook, LinkedIn, email, and blog, with hooks, scripts, formats, and asset briefs",
-      "Developed a scholar-led TikTok strategy, plus Mailchimp newsletters and nurture campaigns",
-      "Produced short-form impact videos for Reels and LinkedIn from interviews and existing footage",
-      "Executed targeted campaigns for board and mentor recruitment",
-    ],
-    media: [
-      {
-        type: "image",
-        label: "Social Content: Brandon Glasgow x The Black Man Can",
-        description: "On-brand social graphic for mentor spotlight and community partnership content",
-        src: "/scholar-brandon-post.jpg",
-      },
-    ],
-  },
-  {
-    slug: "sqe-linkedin",
-    title: "LinkedIn From Scratch",
-    brand: "sqe",
-    summary: "Executive thought leadership for CISOs, CTOs, and enterprise buyers, built from zero.",
-    overview: "I joined SQE when it was an idea on a napkin. Quantum-secure technology had almost no comparables, so before anyone could be persuaded, it needed language that made it make sense. I identified the audience (CISOs, CTOs, and enterprise buyers), built SQE's LinkedIn presence from scratch, and created the content and partnership strategy that made SQE a credible voice in quantum-secure cybersecurity.",
-    problem: "A quantum-secure blockchain startup needed to build credibility, earn trust from enterprise decision-makers, and create a partner pipeline across fintech, quantum, and cybersecurity verticals. All through content and relationships, with no existing brand awareness and no category language to borrow.",
-    process: [
-      "Developed a B2B content strategy focused on LinkedIn with executive-level thought leadership",
-      "Named, wrote, and produced Entangled Insights, SQE's flagship LinkedIn newsletter",
-      "Coordinated content, cold outreach, and paid media across teams, contributing to a 77.8% increase in website sessions and an 87.9% lift in tracked events over 90 days",
-      "Led branded video content production and distribution",
-    ],
-    results: [
-      { value: 8800, suffix: "%", label: "LinkedIn Impressions" },
-      { value: 10.9, suffix: "%", decimals: 1, label: "Engagement Rate" },
-      { value: 525, suffix: "%", label: "Follower Growth" },
-      { value: 77.8, suffix: "%", decimals: 1, label: "Session Increase (90 Days)" },
-    ],
-    links: [
-      { label: "Read Entangled Insights #6", href: "/writing/entangled-insights-6" },
-    ],
-  },
-  {
-    slug: "futurestay-social",
-    title: "Futurestay Social",
-    brand: "futurestay",
-    summary: "The brand voice I created from scratch, carried across every social channel.",
-    overview: "I was hired at Futurestay to run social media, and created the brand voice from scratch before the role grew into email, partnerships, SEO, and video. I still own social strategy and content across every channel.",
-    process: [
-      "Created Futurestay's brand voice from scratch",
-      "Own social strategy and content across Instagram, Facebook, LinkedIn, and YouTube",
-      "Repurpose The Check-In and partner conversations into platform-specific content",
-      "Built an internal social and email reporting platform, and wrote creative briefs and brand guidelines while onboarding a freelance junior marketer",
-    ],
-    results: [
-      { value: 738, suffix: "%", label: "Instagram Reach" },
-      { value: 838, suffix: "%", label: "Engagement Increase" },
-      { value: 225, suffix: "%", label: "Facebook Growth" },
     ],
   },
   {
