@@ -100,6 +100,8 @@ export type Project = {
   workflowWeb?: WorkflowWeb;
   /** An email sequence, shown as an inbox list beside a preview of the selected email. */
   emails?: EmailItem[];
+  /** Leave the brand off the page and tile: for work organized by format rather than by account. */
+  hideBrand?: boolean;
   /** DM automations, each shown as the conversation a follower sees on their phone. */
   dmFlows?: DmFlow[];
 };
@@ -1140,7 +1142,7 @@ export const projects: Project[] = [
     title: "ManyChat",
     brand: "futurestay",
     summary: "Instagram DM automations that turn new follows and post comments into conversations, guides, and calculators.",
-    overview: "Instagram DM automations I built in ManyChat for Futurestay.",
+    hideBrand: true,
     dmFlows: [
     {
       name: "New Follower Welcome",

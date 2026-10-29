@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = getProject((await params).slug);
   if (!project || project.href) return {};
   const brand = brands[project.brand];
-  const title = `${project.title} for ${brand.name}`;
+  const title = project.hideBrand ? project.title : `${project.title} for ${brand.name}`;
   return {
     title,
     description: project.summary,
@@ -85,23 +85,27 @@ export default async function ProjectPage({ params }: Props) {
               {projectCrafts.map((c) => c.name).join(" · ")}
             </p>
             <h1 className="font-serif text-4xl md:text-6xl text-foreground mb-4">{project.title}</h1>
-            <p className="text-sm text-foreground/70">
-              <span className="font-semibold text-foreground">{brand.name}</span>
-              {" · "}
-              {project.role ?? brand.role}
-              {(project.period ?? brand.period) && <> · {project.period ?? brand.period}</>}
-            </p>
+            {!project.hideBrand && (
+              <p className="text-sm text-foreground/70">
+                <span className="font-semibold text-foreground">{brand.name}</span>
+                {" · "}
+                {project.role ?? brand.role}
+                {(project.period ?? brand.period) && <> · {project.period ?? brand.period}</>}
+              </p>
+            )}
           </Reveal>
         </div>
       </header>
 
       <div className="max-w-5xl mx-auto px-6 py-14 md:py-20">
-        <div className="mb-10 space-y-5">
+        <div className={`space-y-5 ${project.hideBrand && !project.overview && !project.collaborators && !project.links ? "" : "mb-10"}`}>
           {project.overview && <p className="text-lg md:text-xl text-foreground/80 leading-relaxed max-w-3xl">{project.overview}</p>}
-          <p className="text-muted max-w-3xl">
-            <span className="font-semibold text-foreground">About {brand.name}: </span>
-            {brand.about}
-          </p>
+          {!project.hideBrand && (
+            <p className="text-muted max-w-3xl">
+              <span className="font-semibold text-foreground">About {brand.name}: </span>
+              {brand.about}
+            </p>
+          )}
           {project.collaborators && (
             <p className="text-muted max-w-3xl">
               <span className="font-semibold text-foreground">Worked with: </span>

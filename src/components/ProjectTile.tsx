@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { brands, projectHref, socialFormats, socialPostsFor, type Project, type SocialFormat } from "@/data/work";
+import { brands, projectHref, socialFormats, type Project, type SocialFormat } from "@/data/work";
 
 /** Thumbnail, or a brand-colored panel with the title when there is no image yet. */
 export function Thumb({ project, src, video, title }: { project: Project; src?: string; video?: boolean; title: string }) {
@@ -50,8 +50,8 @@ export default function ProjectTile({
     >
       <Thumb project={project} src={thumb ?? project.thumb} video={video ?? project.video} title={name} />
       <div className="p-4 md:p-5">
-        <p className="text-[11px] font-mono uppercase tracking-widest text-muted">{brands[project.brand].name}</p>
-        <h4 className="mt-1.5 text-base md:text-[17px] font-semibold text-foreground leading-snug group-hover:text-accent transition-colors">
+        {!project.hideBrand && <p className="text-[11px] font-mono uppercase tracking-widest text-muted">{brands[project.brand].name}</p>}
+        <h4 className={`${project.hideBrand ? "" : "mt-1.5 "}text-base md:text-[17px] font-semibold text-foreground leading-snug group-hover:text-accent transition-colors`}>
           {name}
         </h4>
         <p className="mt-1.5 text-sm text-muted leading-relaxed">{summary ?? project.summary}</p>
@@ -65,8 +65,6 @@ const formatTones: Record<SocialFormat, string> = { reel: "#EEDDD9", static: "#F
 /** A tile for a social format page, labeled with the brands whose posts it holds. */
 export function FormatTile({ format }: { format: SocialFormat }) {
   const f = socialFormats.find((x) => x.format === format)!;
-  const posts = socialPostsFor(format);
-  const brandNames = [...new Set(posts.map((p) => brands[p.brand].name))].join(" · ");
   return (
     <Link
       href={`/social/${f.slug}`}
@@ -76,8 +74,7 @@ export function FormatTile({ format }: { format: SocialFormat }) {
         <span className="font-serif text-3xl text-foreground/70 transition-transform duration-500 group-hover:scale-[1.05]">{f.name}</span>
       </div>
       <div className="p-4 md:p-5">
-        <p className="text-[11px] font-mono uppercase tracking-widest text-muted">{brandNames}</p>
-        <h4 className="mt-1.5 text-base md:text-[17px] font-semibold text-foreground leading-snug group-hover:text-accent transition-colors">
+        <h4 className=" text-base md:text-[17px] font-semibold text-foreground leading-snug group-hover:text-accent transition-colors">
           {f.name}
         </h4>
         {f.summary && <p className="mt-1.5 text-sm text-muted leading-relaxed">{f.summary}</p>}
