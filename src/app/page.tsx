@@ -15,14 +15,10 @@ import {
   skillGroups,
   toolGroups,
 } from "@/data/site";
-import { brands, crafts } from "@/data/work";
+import { crafts } from "@/data/work";
 
 const card = "rounded-2xl border border-card-border/60 bg-card-bg/40 backdrop-blur-sm p-6 md:p-8";
 const eyebrow = "text-xs font-mono text-accent tracking-[0.2em] uppercase";
-const workBrands = [
-  ...(["futurestay", "scholar", "sqe", "verve"] as const).map((id) => brands[id].name),
-  ...otherClients,
-];
 
 export default function Home() {
   return (
@@ -199,9 +195,9 @@ export default function Home() {
           </div>
 
           <Reveal className="mt-12 pt-12 border-t border-card-border text-center">
-            <p className="text-foreground font-mono text-sm tracking-widest uppercase mb-8">Brands I&apos;ve Worked With</p>
+            <p className="text-foreground font-mono text-sm tracking-widest uppercase mb-8">Other Brands I&apos;ve Worked With</p>
             <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
-              {workBrands.map((b) => (
+              {otherClients.map((b) => (
                 <li key={b} className="text-lg md:text-xl font-semibold text-foreground/40 hover:text-foreground transition-colors">
                   {b}
                 </li>
