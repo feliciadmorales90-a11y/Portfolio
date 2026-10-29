@@ -80,7 +80,7 @@ export function FormatTile({ format }: { format: SocialFormat }) {
         <h4 className="mt-1.5 text-base md:text-[17px] font-semibold text-foreground leading-snug group-hover:text-accent transition-colors">
           {f.name}
         </h4>
-        <p className="mt-1.5 text-sm text-muted leading-relaxed">{f.summary}</p>
+        {f.summary && <p className="mt-1.5 text-sm text-muted leading-relaxed">{f.summary}</p>}
       </div>
     </Link>
   );

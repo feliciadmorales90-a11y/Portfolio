@@ -20,9 +20,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = `Social Media ${f.name}`;
   return {
     title,
-    description: f.summary,
+    description: f.summary ?? `${f.name} by Felicia Morales`,
     alternates: { canonical: `/social/${f.slug}` },
-    openGraph: { title: `${title} | Felicia Morales`, description: f.summary, url: `/social/${f.slug}`, images: ["/opengraph-image.png"] },
+    openGraph: { title: `${title} | Felicia Morales`, description: f.summary ?? `${f.name} by Felicia Morales`, url: `/social/${f.slug}`, images: ["/opengraph-image.png"] },
   };
 }
 
@@ -43,7 +43,7 @@ export default async function SocialFormatPage({ params }: Props) {
           <Reveal>
             <p className="text-xs font-mono uppercase tracking-widest text-foreground/55 mb-3">Social Media</p>
             <h1 className="font-serif text-4xl md:text-6xl text-foreground mb-4">{f.name}</h1>
-            <p className="text-foreground/70 max-w-2xl">{f.summary}</p>
+            {f.summary && <p className="text-foreground/70 max-w-2xl">{f.summary}</p>}
           </Reveal>
         </div>
       </header>

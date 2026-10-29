@@ -265,10 +265,10 @@ export type CraftItem = { project?: string; format?: SocialFormat; title?: strin
 export type SocialFormat = "reel" | "static" | "carousel";
 
 /** Social format pages at /social/{slug}, each showing every social post of that format. */
-export const socialFormats: { format: SocialFormat; slug: string; name: string; summary: string }[] = [
-  { format: "reel", slug: "reels", name: "Reels", summary: "Top-performing reels from the accounts I've run." },
-  { format: "static", slug: "statics", name: "Statics", summary: "Top-performing static posts from the accounts I've run." },
-  { format: "carousel", slug: "carousels", name: "Carousels", summary: "Top-performing carousels from the accounts I've run." },
+export const socialFormats: { format: SocialFormat; slug: string; name: string; summary?: string }[] = [
+  { format: "reel", slug: "reels", name: "Reels" },
+  { format: "static", slug: "statics", name: "Statics" },
+  { format: "carousel", slug: "carousels", name: "Carousels" },
 ];
 
 export function socialPostsFor(format: SocialFormat) {
