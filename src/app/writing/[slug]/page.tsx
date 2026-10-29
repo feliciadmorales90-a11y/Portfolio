@@ -29,12 +29,12 @@ export default async function WritingPage({ params }: Props) {
   return (
     <article className="px-4 md:px-6 pt-28 md:pt-32 pb-20">
       <header className="max-w-3xl mx-auto mb-10">
-        <Link href="/#writing" className="inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors mb-8">
+        <Link href="/#newsletters" className="inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors mb-8">
           <span aria-hidden>←</span>
-          <span>Back to writing</span>
+          <span>Back to newsletters</span>
         </Link>
         <p className="text-xs font-mono uppercase tracking-widest text-accent mb-3">
-          Writing sample · {w.publication}
+          Newsletter · {w.publication}
         </p>
         <h1 className="font-serif text-3xl md:text-5xl text-foreground leading-tight">{w.title}</h1>
         <p className="text-muted text-lg mt-5 leading-relaxed">{w.summary}</p>

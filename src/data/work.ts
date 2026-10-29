@@ -1213,18 +1213,6 @@ export const crafts: Craft[] = [
       { project: "ripple" },
     ],
   },
-  {
-    slug: "writing",
-    name: "Writing",
-    description: "Technical subjects, written for the people who make decisions about them.",
-    items: [
-      {
-        project: "entangled-insights",
-        title: "Entangled Insights #6",
-        summary: "IBM's quantum roadmap, a partner spotlight, and Zero Trust built in from the ground up.",
-      },
-    ],
-  },
 ];
 
 export function getProject(slug: string) {
