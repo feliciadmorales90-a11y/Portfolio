@@ -14,7 +14,7 @@ export const heroIntro =
   "I start with the audience: who they are, where they live, and what they actually need. Then I build the content, email, and partner programs that serve them and grow your pipeline. Good marketing should feel like generosity, not a transaction.";
 
 export const aboutParagraphs = [
-  "Across SaaS, nonprofit, and e-commerce brands, I've built referral systems, launched ambassador programs, produced podcasts, filmed ad creative, and coded interactive tools that convert.",
+  "I write and produce content for SaaS, nonprofit, and e-commerce brands: newsletters, email drips, lead magnets, landing pages, SEO blogs, reels and carousels, podcasts, and the ad creative I film myself.",
   "Before marketing, I spent 11 years in the U.S. Air Force and 11 years in ophthalmology as an ophthalmic technician, working in rare disease and refractive surgery. Both taught me the same thing: stay flexible, pivot without losing momentum, and treat every outcome as a learning point.",
   "BA in Political Science with a Minor in Human Rights (UMass Boston). Certified in Digital Marketing (Meta), Email Marketing (HubSpot), Google Analytics, and Figma.",
 ];
