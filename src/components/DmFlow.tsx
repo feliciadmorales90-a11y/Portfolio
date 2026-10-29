@@ -29,7 +29,7 @@ export default function DmFlow({ flow }: { flow: Flow }) {
                 <div className="flex gap-2.5">
                   <span aria-hidden className="shrink-0 w-7 h-7 rounded-full bg-[#d9d3cf]" />
                   <p className="text-[13px] text-[#111]">
-                    <span className="font-semibold">{flow.comment.commenter ?? "follower"}</span> {flow.comment.text}
+                    {flow.comment.text}
                   </p>
                 </div>
                 <div className="flex gap-2.5 mt-3 ml-9">

@@ -114,8 +114,8 @@ export type DmFlow = {
   avatarColor?: string;
   platform: string;
   trigger: string;
-  /** For comment triggers: a sample keyword comment (and who left it) and the public replies the automation posts under it. */
-  comment?: { text: string; commenter?: string; replies: string[] };
+  /** For comment triggers: a sample keyword comment and the public replies the automation posts under it. */
+  comment?: { text: string; replies: string[] };
   messages: { text: string; button?: string; external?: boolean }[];
   steps: { title: string; detail: string }[];
 };
@@ -1249,7 +1249,6 @@ export const projects: Project[] = [
       trigger: "Sent after their comment",
       comment: {
         text: "booking",
-        commenter: "host",
         replies: ["📩 We've got you! Check your DMs", "🏡 Check your messages!", "Details landed in your inbox!"],
       },
       messages: [
