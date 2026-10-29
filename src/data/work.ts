@@ -92,6 +92,24 @@ export type Project = {
   mediaLayout?: "grid" | "mockups";
   sections?: ExtraSection[];
   links?: ProofLink[];
+  workflowWeb?: WorkflowWeb;
+};
+
+/** How a set of automated workflows connect: what triggers each, its logic, and where contacts go next. */
+export type WorkflowWeb = {
+  /** The journey stages, in order, that workflows attach to. */
+  stages: string[];
+  /** Stages that run alongside the journey rather than after it. */
+  parallel?: string[];
+  workflows: {
+    id: string;
+    name: string;
+    stage: string;
+    trigger: string;
+    logic: string[];
+    next: { label: string; to?: string }[];
+    href?: string;
+  }[];
 };
 
 /** A tile in a craft row. Title, summary, and thumbnail can be tailored per craft. */
@@ -238,10 +256,83 @@ export const projects: Project[] = [
       "Ran cold outreach campaigns in Lemlist to open new pipeline",
     ],
     results: [
-      { value: 62, suffix: "%", label: "Higher CTR, Host Activation Test" },
-      { value: 54, suffix: "%", label: "Fewer Unsubscribes, Onboarding Test" },
+      { value: 62, prefix: "+", suffix: "%", label: "Clickthrough, Host Activation A/B Test" },
+      { value: 54, prefix: "−", suffix: "%", label: "Unsubscribes, Onboarding A/B Test" },
     ],
-    resultsNote: "Bot-filtered HubSpot figures from A/B tests on live sequences.",
+    workflowWeb: {
+      stages: ["Signup", "Site ready to launch", "Trial", "Trial didn't convert", "Lapsed"],
+      parallel: ["Subscriber"],
+      workflows: [
+        {
+          id: "signup-onboarding",
+          name: "Signup Onboarding",
+          stage: "Signup",
+          trigger: "A new account is created.",
+          logic: [
+            "Branches on whether the host's site is ready to launch",
+            "Ready hosts get a ready-to-launch welcome; everyone else gets a getting-started welcome and a demo-site email",
+            "Stamps the contact's lifecycle stage at signup",
+          ],
+          next: [
+            { label: "Site is ready, no trial yet", to: "rtl-drip" },
+            { label: "Trial starts", to: "bootcamp" },
+          ],
+        },
+        {
+          id: "rtl-drip",
+          name: "Ready-to-Launch Drip",
+          stage: "Site ready to launch",
+          trigger: "A host's site becomes ready to launch, but they haven't started a trial.",
+          logic: ["Targets the highest-intent segment: hosts who have done the hard part", "Paced to keep momentum while intent is high"],
+          next: [
+            { label: "Trial starts", to: "bootcamp" },
+            { label: "No trial: handed to Sales through automated tasks" },
+          ],
+          href: "/work/ready-to-launch-drip",
+        },
+        {
+          id: "bootcamp",
+          name: "Trialist Bootcamp",
+          stage: "Trial",
+          trigger: "A trial starts.",
+          logic: [
+            "Assigns a Customer Success Manager by round-robin, respecting existing HubSpot ownership",
+            "Sends a personalized welcome from that CSM with a link to the host's own guidebook",
+            "Separate reward and graduation flows fire as the host completes steps",
+          ],
+          next: [
+            { label: "Converts to a paying customer" },
+            { label: "Trial doesn't convert", to: "failed-trialist" },
+          ],
+          href: "/work/trialist-bootcamp",
+        },
+        {
+          id: "failed-trialist",
+          name: "Failed Trialist",
+          stage: "Trial didn't convert",
+          trigger: "A trial ends without converting, or payment fails.",
+          logic: ["A short sequence that gives the host a reason to come back before they go cold"],
+          next: [{ label: "Still no conversion", to: "winback" }],
+        },
+        {
+          id: "winback",
+          name: "Winback",
+          stage: "Lapsed",
+          trigger: "Contacts finish a drip without converting, or lapse.",
+          logic: ["Long-running re-engagement on a steady cadence", "Where active A/B testing happens"],
+          next: [{ label: "Re-engages and starts a trial", to: "bootcamp" }],
+        },
+        {
+          id: "newsletter",
+          name: "Futurestay Forward",
+          stage: "Subscriber",
+          trigger: "Someone subscribes to the newsletter.",
+          logic: ["A welcome email on signup", "Then the monthly newsletter broadcast"],
+          next: [{ label: "Stays in the monthly newsletter" }],
+          href: "/work/futurestay-forward",
+        },
+      ],
+    },
   },
   {
     slug: "futurestay-forward",

@@ -6,6 +6,7 @@ import MediaShowcase from "@/components/MediaShowcase";
 import ProjectTile from "@/components/ProjectTile";
 import Reveal from "@/components/Reveal";
 import StatGrid from "@/components/StatGrid";
+import WorkflowWeb from "@/components/WorkflowWeb";
 import { brands, craftsFor, getProject, projects } from "@/data/work";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -155,6 +156,12 @@ export default async function ProjectPage({ params }: Props) {
           {project.media && project.media.length > 0 && (
             <Section title="The Work">
               <MediaShowcase items={project.media} layout={project.mediaLayout} />
+            </Section>
+          )}
+
+          {project.workflowWeb && (
+            <Section title="The Workflow Web">
+              <WorkflowWeb web={project.workflowWeb} />
             </Section>
           )}
 
