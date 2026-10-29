@@ -70,9 +70,10 @@ export default function CraftRow({ craft, index }: { craft: Craft; index: number
           >
             {craft.items.map((item) => {
               const tile = item.format ? (
-                <FormatTile format={item.format} compact={craft.compact} />
+                <FormatTile format={item.format} compact />
               ) : (
-                <ProjectTile project={getProject(item.project!)!} title={item.title} summary={item.summary} thumb={item.thumb} video={item.video} compact={craft.compact} />
+                // Homepage tiles show the title on a color panel, never a screenshot.
+                <ProjectTile project={getProject(item.project!)!} title={item.title} summary={item.summary} thumb="" video={false} compact />
               );
               if (!tile.props.project && !hasPosts(item.format!)) return null;
               return (
