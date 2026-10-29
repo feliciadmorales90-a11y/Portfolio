@@ -414,7 +414,7 @@ export const projects: Project[] = [
     summary: "22 ad creatives (static, animated, and talking-head video) for a full-funnel Meta campaign.",
     thumb: "/futurestay/fs-meta-ad-1.jpg",
     video: true,
-    overview: "Collaborated with Futurestay's growth lead on a full-funnel paid acquisition campaign across Meta. From keyword research and HubSpot landing page optimization through ad creative production, heatmap-driven iteration, and retargeting, this campaign produced 22 ad creatives.",
+    overview: "A full-funnel paid acquisition campaign across Meta. From keyword research and HubSpot landing page optimization through ad creative production, heatmap-driven iteration, and retargeting, this campaign produced 22 ad creatives.",
     myRole: "All creative: landing page graphics, ad creative direction, filming talking head videos, collaborating with the production company on scripts and final edits, and landing page optimization based on heatmap data. The growth lead managed budget, targeting, and retargeting strategy.",
     process: [
       "Worked with growth lead on keyword research and HubSpot theme development for 2 optimized landing pages: Direct Booking Website and Airbnb Optimization",
