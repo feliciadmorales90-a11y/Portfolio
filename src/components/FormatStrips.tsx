@@ -1,9 +1,12 @@
-import { brands, socialFormats, socialPosts, type SocialPost } from "@/data/work";
+import Image from "next/image";
+import Link from "next/link";
+import { brands, type Post, type StripSet } from "@/data/work";
 
 const CARD_WIDTH = 328;
 
-function Embed({ post }: { post: SocialPost }) {
+function Embed({ post }: { post: Post }) {
   const e = post.embed;
+  const title = `${brands[post.brand].name} on ${post.platform}`;
   switch (e.type) {
     case "instagram":
       return (
@@ -13,7 +16,7 @@ function Embed({ post }: { post: SocialPost }) {
           height={e.height ?? 540}
           loading="lazy"
           scrolling="no"
-          title={`${brands[post.brand].name} on Instagram`}
+          title={title}
           className="block w-full border-0 bg-white"
           allowFullScreen
         />
@@ -25,7 +28,7 @@ function Embed({ post }: { post: SocialPost }) {
           width={CARD_WIDTH}
           height={e.height ?? 560}
           loading="lazy"
-          title={`${brands[post.brand].name} on Facebook`}
+          title={title}
           className="block w-full border-0 bg-white"
           allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
           allowFullScreen
@@ -38,26 +41,52 @@ function Embed({ post }: { post: SocialPost }) {
           width={CARD_WIDTH}
           height={e.height ?? 600}
           loading="lazy"
-          title={`${brands[post.brand].name} on LinkedIn`}
+          title={title}
           className="block w-full border-0 bg-white"
           allowFullScreen
         />
       );
     case "video":
       return (
-        <video className="block w-full bg-foreground" controls playsInline preload="metadata" poster={e.poster}>
+        <video className="block w-full bg-foreground" controls playsInline preload="metadata" poster={e.poster} aria-label={title}>
           <source src={e.src} type="video/mp4" />
         </video>
+      );
+    case "image":
+      return (
+        <div className="flex overflow-x-auto snap-x snap-mandatory">
+          {e.srcs.map((src, i) => (
+            <Image
+              key={src}
+              src={src}
+              alt={e.srcs.length > 1 ? `${title}, slide ${i + 1} of ${e.srcs.length}` : title}
+              width={e.width}
+              height={e.height}
+              sizes={`${CARD_WIDTH}px`}
+              className="snap-start shrink-0 w-full h-auto"
+            />
+          ))}
+        </div>
+      );
+    case "search":
+      return (
+        <div className="p-5 bg-white">
+          <p className="text-xs text-foreground/80">
+            <span className="font-semibold">Sponsored</span> · {e.displayUrl}
+          </p>
+          <p className="mt-1.5 text-lg leading-snug text-[#1a0dab]">{e.headline}</p>
+          <p className="mt-1.5 text-sm text-foreground/75 leading-relaxed">{e.description}</p>
+        </div>
       );
   }
 }
 
-/** Social posts grouped by format, each format a horizontal strip of live posts labeled by account. */
-export default function SocialStrips() {
+/** Creative grouped by format, each format a horizontal strip of posts labeled by brand and platform. */
+export default function FormatStrips({ set, links }: { set: StripSet; links?: { label: string; href: string }[] }) {
   return (
     <div className="space-y-8">
-      {socialFormats.map(({ format, name }) => {
-        const posts = socialPosts.filter((p) => p.format === format);
+      {set.formats.map(({ format, name }) => {
+        const posts = set.posts.filter((p) => p.format === format);
         if (posts.length === 0) return null;
         return (
           <div key={format}>
@@ -81,6 +110,15 @@ export default function SocialStrips() {
           </div>
         );
       })}
+      {links && links.length > 0 && (
+        <p className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+          {links.map((l) => (
+            <Link key={l.href} href={l.href} className="font-semibold text-foreground hover:text-accent transition-colors">
+              {l.label} →
+            </Link>
+          ))}
+        </p>
+      )}
     </div>
   );
 }

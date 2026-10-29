@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { getProject, type Craft } from "@/data/work";
+import { getProject, strips, type Craft } from "@/data/work";
 import ProjectTile from "./ProjectTile";
-import SocialStrips from "./SocialStrips";
+import FormatStrips from "./FormatStrips";
 
 export default function CraftRow({ craft, index }: { craft: Craft; index: number }) {
   const scroller = useRef<HTMLDivElement>(null);
@@ -56,9 +56,9 @@ export default function CraftRow({ craft, index }: { craft: Craft; index: number
             </div>
           )}
         </div>
-        {craft.social ? (
+        {craft.strips ? (
           <div className="min-w-0">
-            <SocialStrips />
+            <FormatStrips set={strips[craft.strips]} links={craft.links} />
           </div>
         ) : (
         <div className="relative min-w-0 -mx-6 md:mx-0">

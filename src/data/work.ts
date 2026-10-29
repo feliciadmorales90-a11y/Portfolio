@@ -122,29 +122,27 @@ export type WorkflowWeb = {
 /** One email in a sequence, shown in the inbox-style viewer. */
 export type EmailItem = { label: string; subject: string; src: string; width: number; height: number; href?: string };
 
-export type SocialFormat = "reel" | "carousel" | "static";
-
-/** One social post, shown as a live embed (or an uploaded video) in its format strip. */
-export type SocialPost = {
+/** One piece of creative (a social post or an ad), shown in its format strip and labeled by brand and platform. */
+export type Post = {
   id: string;
   brand: BrandId;
-  platform: "Instagram" | "Facebook" | "LinkedIn";
-  format: SocialFormat;
+  platform: string;
+  format: string;
   embed:
     | { type: "instagram"; url: string; height?: number }
     | { type: "facebook"; url: string; height?: number }
     | { type: "linkedin"; url: string; height?: number }
-    | { type: "video"; src: string; poster?: string };
+    | { type: "video"; src: string; poster?: string }
+    /** One image for a static, several for a carousel. */
+    | { type: "image"; srcs: string[]; width: number; height: number }
+    | { type: "search"; headline: string; displayUrl: string; description: string };
 };
 
-export const socialFormats: { format: SocialFormat; name: string }[] = [
-  { format: "reel", name: "Reels" },
-  { format: "carousel", name: "Carousels" },
-  { format: "static", name: "Statics" },
-];
+/** A set of format strips: the formats in order, and the posts to sort into them. */
+export type StripSet = { formats: { format: string; name: string }[]; posts: Post[] };
 
 /** Top-performing posts, grouped on the page by format rather than by account. */
-export const socialPosts: SocialPost[] = [
+const socialPosts: Post[] = [
   {
     id: "scholar-giving-tuesday-reel",
     brand: "scholar",
@@ -161,6 +159,59 @@ export const socialPosts: SocialPost[] = [
   },
 ];
 
+export const strips: Record<"social" | "ads", StripSet> = {
+  social: {
+    formats: [
+      { format: "reel", name: "Reels" },
+      { format: "carousel", name: "Carousels" },
+      { format: "static", name: "Statics" },
+    ],
+    posts: socialPosts,
+  },
+  ads: {
+    formats: [
+      { format: "video", name: "Video" },
+      { format: "static", name: "Static" },
+      { format: "carousel", name: "Carousel" },
+      { format: "search", name: "Google Search" },
+    ],
+    posts: [
+      {
+        id: "futurestay-ad-your-own-booking-site",
+        brand: "futurestay",
+        platform: "Meta",
+        format: "video",
+        embed: { type: "video", src: "/futurestay/meta-ads/your-own-booking-site.mp4", poster: "/futurestay/meta-ads/your-own-booking-site.jpg" },
+      },
+      {
+        id: "futurestay-ad-a-website-thats-actually-yours",
+        brand: "futurestay",
+        platform: "Meta",
+        format: "video",
+        embed: {
+          type: "video",
+          src: "/futurestay/meta-ads/a-website-thats-actually-yours.mp4",
+          poster: "/futurestay/meta-ads/a-website-thats-actually-yours.jpg",
+        },
+      },
+      {
+        id: "futurestay-ad-1",
+        brand: "futurestay",
+        platform: "Meta",
+        format: "video",
+        embed: { type: "video", src: "/futurestay/meta-ads/meta-ad-1.mp4", poster: "/futurestay/meta-ads/meta-ad-1.jpg" },
+      },
+      {
+        id: "futurestay-ad-2",
+        brand: "futurestay",
+        platform: "Meta",
+        format: "video",
+        embed: { type: "video", src: "/futurestay/meta-ads/meta-ad-2.mp4", poster: "/futurestay/meta-ads/meta-ad-2.jpg" },
+      },
+    ],
+  },
+};
+
 /** A tile in a craft row. Title, summary, and thumbnail can be tailored per craft. */
 export type CraftItem = { project: string; title?: string; summary?: string; thumb?: string; video?: boolean };
 
@@ -169,8 +220,10 @@ export type Craft = {
   name: string;
   description: string;
   items: CraftItem[];
-  /** Show social posts by format instead of project tiles. */
-  social?: boolean;
+  /** Show a set of format strips instead of project tiles. */
+  strips?: "social" | "ads";
+  /** Project pages with the story behind the strips. */
+  links?: { label: string; href: string }[];
 };
 
 export const projects: Project[] = [
@@ -1136,35 +1189,14 @@ export const crafts: Craft[] = [
     ],
   },
   {
-    slug: "video-reels",
-    name: "Video & Reels",
-    description: "Scripted, filmed, and edited: founder-led series, ads, and short-form social.",
-    items: [
-      {
-        project: "the-check-in",
-      },
-      {
-        project: "trialist-bootcamp",
-        title: "Bootcamp Founder Videos",
-        summary: "Three stage videos with the CEO on camera, scripted, recorded, and edited by me.",
-        video: true,
-      },
-      {
-        project: "meta-ads",
-      },
-      { project: "giving-tuesday" },
-      {
-        project: "quecredit",
-      },
-    ],
-  },
-  {
-    slug: "paid-ads",
-    name: "Paid Ads",
-    description: "Creative and landing pages for Meta and Google, iterated with heatmaps.",
-    items: [
-      { project: "meta-ads", thumb: "/futurestay/fs-meta-ad-2.jpg" },
-      { project: "google-ads-grant" },
+    slug: "ads",
+    name: "Ads",
+    description: "Paid creative for Meta and Google, by format.",
+    items: [],
+    strips: "ads",
+    links: [
+      { label: "How the Meta ads were made", href: "/work/meta-ads" },
+      { label: "Google Ads Grant", href: "/work/google-ads-grant" },
     ],
   },
   {
@@ -1172,7 +1204,7 @@ export const crafts: Craft[] = [
     name: "Social Media",
     description: "Top-performing posts across the accounts I've run, by format.",
     items: [],
-    social: true,
+    strips: "social",
   },
   {
     slug: "partnerships",
