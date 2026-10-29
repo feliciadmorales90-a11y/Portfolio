@@ -975,12 +975,6 @@ export const projects: Project[] = [
       "Architected a contextual CTA strategy where every touchpoint routes to either a co-branded partner landing page (25% off, attributed) or a sales booking link, with messaging that adapts based on where the user is in the tool",
       "Set up Slack monitoring with notifications on weekly cron job runs and direct links to Vercel logs for failure debugging",
     ],
-    results: [
-      { value: 10, label: "Funnel Stages" },
-      { value: 6, label: "Airbnb Rating Categories Tracked" },
-      { value: 5, label: "Competitor URLs per Listing" },
-      { value: 6, label: "Properties Compared Side-by-Side" },
-    ],
     media: [
       {
         type: "image",
