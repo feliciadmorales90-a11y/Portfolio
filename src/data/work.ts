@@ -85,7 +85,6 @@ export type Project = {
   /** Paragraphs separated by blank lines. */
   problem?: string;
   process?: string[];
-  output?: string;
   results?: Stat[];
   resultsNote?: string;
   media?: Media[];
@@ -142,7 +141,6 @@ export const projects: Project[] = [
       "Gave the trial a finish line: complete all 9 steps and the host's CSM registers a free .com domain that redirects to their Futurestay direct booking site",
       "Built it as a single-file front end on Vercel with Node serverless functions, integrating HubSpot, AirROI, NameSilo, Vercel KV, and Slack",
     ],
-    output: "A self-serve onboarding product, live in production: personalized guidebook, founder-led videos, market comps and goal-setting, CSM scheduling, a domain reward, and a live performance dashboard.",
     results: [
       { value: 66.4, suffix: "%", decimals: 1, label: "Trial → Customer (Finished Trials)" },
       { value: 13, prefix: "+", suffix: " pts", label: "Conversion for Hosts Who Engaged" },
@@ -239,7 +237,6 @@ export const projects: Project[] = [
       "A/B-tested variants and rebuilt underperforming emails",
       "Handed non-converters to Sales through automated tasks when the drip ends",
     ],
-    output: "A 10-email sequence over about 13 days with a sales handoff, and the highest-engagement drip in the portal.",
     results: [
       { value: 12.5, suffix: "%", decimals: 1, label: "Click Rate, Best Email" },
       { value: 57.3, suffix: "%", decimals: 1, label: "Click-to-Open, Best Email" },
@@ -453,7 +450,6 @@ export const projects: Project[] = [
       "Wrote the Reel caption with a tiered donation structure ($5 to $500) showing exactly what each dollar funds",
       "Created daily social media content to amplify the email drip and build momentum across Instagram",
     ],
-    output: "A campaign Reel and founder video that turned passive scrolling into active giving, alongside daily posts through the campaign.",
     results: [
       { value: 26, suffix: "%", label: "Of Goal Raised on Giving Tuesday" },
       { value: 87, suffix: "%", label: "Of $5K Goal by December 31" },
@@ -572,7 +568,6 @@ export const projects: Project[] = [
       "Designed an ultra-targeted Facebook ad campaign optimized for ThruPlays on a $20 budget over 7 days",
       "Selected strategic audience targeting to maximize engagement and reach at minimal cost",
     ],
-    output: "A polished introduction video for QueCredit that doubled as a high-performing paid ad. The $20 campaign delivered 14,177 ThruPlays at $0.002 each, proving that strategic targeting beats big budgets.",
     results: [
       { value: 14177, label: "ThruPlays" },
       { value: 0.002, prefix: "$", decimals: 3, label: "Cost Per ThruPlay" },
@@ -684,7 +679,6 @@ export const projects: Project[] = [
       "Built a co-branded landing page offering 25% off Amplify Annual with a 14-day free trial",
       "Managed the partnership through execution across all deliverables: dedicated email blast to TFV's full list, 30-second YouTube ad with sponsor highlight in show notes, a branded podcast interview with CTA in show notes and a supporting email blast and Instagram story/post, a 20-minute Instagram Live, an SEO-optimized blog post with embedded video, and logo placement in TFV's newsletter",
     ],
-    output: "Co-branded landing page, dedicated email blast, YouTube ad (30s), branded podcast episode, Instagram Live (20 min), SEO blog post, newsletter placement, evergreen content still performing",
     media: [
       {
         type: "image",
@@ -753,7 +747,6 @@ export const projects: Project[] = [
       "Architected a contextual CTA strategy where every touchpoint routes to either a co-branded partner landing page (25% off, attributed) or a sales booking link, with messaging that adapts based on where the user is in the tool",
       "Set up Slack monitoring with notifications on weekly cron job runs and direct links to Vercel logs for failure debugging",
     ],
-    output: "Full-stack lead generation tool: conversion landing page, passwordless dashboard with per-listing analytics, property comparison, competitor benchmarking, AI insights, weekly automated email reports, HubSpot CRM integration with partner attribution, and contextual CTA system",
     results: [
       { value: 10, label: "Funnel Stages" },
       { value: 6, label: "Airbnb Rating Categories Tracked" },

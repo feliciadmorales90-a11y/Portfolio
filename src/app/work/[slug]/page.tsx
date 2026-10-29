@@ -150,12 +150,6 @@ export default async function ProjectPage({ params }: Props) {
           {project.process && project.process.length > 0 && (
             <Section title="What I Did">
               <Bullets items={project.process} />
-              {project.output && (
-                <p className="text-muted leading-relaxed max-w-3xl mt-6">
-                  <span className="font-semibold text-foreground">What shipped: </span>
-                  {project.output}
-                </p>
-              )}
             </Section>
           )}
 
