@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Section } from "@/components/Accordion";
+import EmailInbox from "@/components/EmailInbox";
 import MediaShowcase from "@/components/MediaShowcase";
 import ProjectTile from "@/components/ProjectTile";
 import Reveal from "@/components/Reveal";
@@ -150,6 +151,12 @@ export default async function ProjectPage({ params }: Props) {
             <Section title="What I Did">
               <Bullets items={project.process} />
               {project.output && <p className="text-muted leading-relaxed max-w-3xl mt-6">{project.output}</p>}
+            </Section>
+          )}
+
+          {project.emails && project.emails.length > 0 && (
+            <Section title="The Emails">
+              <EmailInbox emails={project.emails} sender={brand.name} />
             </Section>
           )}
 

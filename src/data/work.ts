@@ -93,6 +93,8 @@ export type Project = {
   sections?: ExtraSection[];
   links?: ProofLink[];
   workflowWeb?: WorkflowWeb;
+  /** An email sequence, shown as an inbox list beside a preview of the selected email. */
+  emails?: EmailItem[];
 };
 
 /** How a set of automated workflows connect: what triggers each, its logic, and where contacts go next. */
@@ -111,6 +113,9 @@ export type WorkflowWeb = {
     href?: string;
   }[];
 };
+
+/** One email in a sequence, shown in the inbox-style viewer. */
+export type EmailItem = { label: string; subject: string; src: string; width: number; height: number; href?: string };
 
 /** A tile in a craft row. Title, summary, and thumbnail can be tailored per craft. */
 export type CraftItem = { project: string; title?: string; summary?: string; thumb?: string; video?: boolean };
@@ -439,11 +444,11 @@ export const projects: Project[] = [
     slug: "giving-tuesday",
     title: "Giving Tuesday Reels",
     brand: "scholar",
-    period: "November 2025",
-    summary: "A founder Reel and talking-head video for a campaign that reached 87% of a $5K goal in two weeks.",
+    period: "Nov – Dec 2025",
+    summary: "A founder Reel and talking-head video for a Giving Tuesday campaign that reached 87% of its $5K goal.",
     thumb: "/scholar/giving-tuesday.jpg",
     video: true,
-    overview: "The social side of Scholar and a Dream's Giving Tuesday campaign to raise $5K for its next student cohort. I turned existing founder footage into an on-brand Reel and a talking-head video, and posted daily to support the email drip. The campaign reached 87% of its goal in two weeks.",
+    overview: "The social side of Scholar and a Dream's Giving Tuesday campaign to raise $5K for its next student cohort. I turned existing founder footage into an on-brand Reel and a talking-head video, and posted daily to support the email drip. The campaign raised 26% of its goal on Giving Tuesday itself and reached 87% by the time fundraising closed on December 31.",
     myRole: "Produced the campaign Reel and founder video from existing footage, wrote the captions, and coordinated daily social posts to support the email sends.",
     process: [
       "Produced a campaign Reel by stitching together existing founder videos into a high-energy, on-brand piece",
@@ -451,12 +456,12 @@ export const projects: Project[] = [
       "Wrote the Reel caption with a tiered donation structure ($5 to $500) showing exactly what each dollar funds",
       "Created daily social media content to amplify the email drip and build momentum across Instagram",
     ],
-    output: "A campaign Reel and founder video that turned passive scrolling into active giving, alongside daily posts through the two-week campaign.",
+    output: "A campaign Reel and founder video that turned passive scrolling into active giving, alongside daily posts through the campaign.",
     results: [
-      { value: 87, suffix: "%", label: "Of $5K Goal Reached" },
-      { value: 2, suffix: " Weeks", label: "Campaign Window" },
+      { value: 26, suffix: "%", label: "Of Goal Raised on Giving Tuesday" },
+      { value: 87, suffix: "%", label: "Of $5K Goal by December 31" },
     ],
-    resultsNote: "Campaign-wide result, across email and social.",
+    resultsNote: "Campaign-wide results, across email and social. Fundraising continued for three weeks after Giving Tuesday.",
     media: [
       {
         type: "instagram",
@@ -477,22 +482,81 @@ export const projects: Project[] = [
     slug: "giving-tuesday-emails",
     title: "Giving Tuesday Email Drip",
     brand: "scholar",
-    period: "November 2025",
-    summary: "Seven emails, each with its own angle, for a campaign that reached 87% of a $5K goal in two weeks.",
-    overview: "The email side of Scholar and a Dream's Giving Tuesday campaign to raise $5K for its next student cohort. I built a 7-email drip, each email with a distinct angle, and wrote all of the copy. The campaign reached 87% of its goal in two weeks.",
+    period: "Nov – Dec 2025",
+    summary: "Seven emails, from a year-in-review warm-up to a thank-you, for a campaign that reached 87% of its $5K goal.",
+    thumb: "/scholar/giving-tuesday-emails/thumb.webp",
+    overview: "The email side of Scholar and a Dream's Giving Tuesday campaign to raise $5K for its next student cohort. I built a 7-email drip, each email with a distinct angle, and wrote all of the copy. The campaign raised 26% of its goal on Giving Tuesday itself and reached 87% by the time fundraising closed on December 31.",
     myRole: "Designed the drip and wrote all of the email copy, with daily social posts coordinated to support each send.",
     process: [
       "Designed a 7-email drip sequence to contacts, each with a distinct angle: program overview, mentor stories, scholar stories, impact data, tiered giving breakdown, and urgency-driven closing asks",
       "Wrote all email copy with clear CTAs connecting donations to tangible student outcomes",
-      "Tracked performance across email and social throughout the 2-week campaign window",
+      "Tracked performance across email and social throughout the campaign",
     ],
     output: "A 7-email drip that drove the majority of donations, supported by daily social content.",
     results: [
-      { value: 87, suffix: "%", label: "Of $5K Goal Reached" },
+      { value: 26, suffix: "%", label: "Of Goal Raised on Giving Tuesday" },
+      { value: 87, suffix: "%", label: "Of $5K Goal by December 31" },
       { value: 7, label: "Emails in the Drip" },
-      { value: 2, suffix: " Weeks", label: "Campaign Window" },
     ],
-    resultsNote: "Campaign-wide result, across email and social.",
+    resultsNote: "Campaign-wide results, across email and social. Fundraising continued for three weeks after Giving Tuesday.",
+    emails: [
+      {
+        label: "Email 1 · Year in Review",
+        subject: "Mentorship, Milestones & Momentum: Scholar and a Dream’s Year in Review",
+        src: "/scholar/giving-tuesday-emails/email-1.webp",
+        width: 600,
+        height: 3788,
+        href: "https://us20.campaign-archive.com/?u=cf197ae5c9933b93a0e9e4c47&id=94adc1ebbd",
+      },
+      {
+        label: "Email 2 · From the CEO",
+        subject: "Why I started Scholar & A Dream, and why your gift matters",
+        src: "/scholar/giving-tuesday-emails/email-2.webp",
+        width: 600,
+        height: 857,
+        href: "https://mailchi.mp/248a869f457e/why-i-started-scholar-a-dream-and-why-your-gift-matters",
+      },
+      {
+        label: "Email 3 · Scholar Story",
+        subject: "🙌 This is what happens when students feel seen",
+        src: "/scholar/giving-tuesday-emails/email-3.webp",
+        width: 600,
+        height: 1615,
+        href: "https://mailchi.mp/8a68b3203e53/this-is-what-happens-when-students-feel-seen",
+      },
+      {
+        label: "Email 4 · Giving Tuesday",
+        subject: "Giving Tuesday is here!",
+        src: "/scholar/giving-tuesday-emails/email-4.webp",
+        width: 600,
+        height: 1021,
+        href: "https://mailchi.mp/b4db450a6c7d/giving-tuesday-is-here",
+      },
+      {
+        label: "Email 5 · Every Gift Counts",
+        subject: "No gift is too small",
+        src: "/scholar/giving-tuesday-emails/email-5.webp",
+        width: 600,
+        height: 1188,
+        href: "https://mailchi.mp/3f7328162cf3/no-gift-is-too-small",
+      },
+      {
+        label: "Email 6 · Final Hours",
+        subject: "🚨 URGENT: Just a few hours left",
+        src: "/scholar/giving-tuesday-emails/email-6.webp",
+        width: 600,
+        height: 695,
+        href: "https://mailchi.mp/e708b1e6de42/urgent-just-a-few-hours-left",
+      },
+      {
+        label: "Email 7 · Thank You",
+        subject: "$1,301 Raised & Counting, Thank You!!",
+        src: "/scholar/giving-tuesday-emails/email-7.webp",
+        width: 600,
+        height: 929,
+        href: "https://mailchi.mp/5dcb6a517161/1301-raised-counting-thank-you",
+      },
+    ],
     links: [{ label: "See the Giving Tuesday Reels", href: "/work/giving-tuesday" }],
   },
   {
