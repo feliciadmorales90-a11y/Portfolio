@@ -486,13 +486,13 @@ export const projects: Project[] = [
     summary: "Seven emails, from a year-in-review warm-up to a thank-you, for a campaign that reached 87% of its $5K goal.",
     thumb: "/scholar/giving-tuesday-emails/thumb.webp",
     overview: "The email side of Scholar and a Dream's Giving Tuesday campaign to raise $5K for its next student cohort. I built a 7-email drip, each email with a distinct angle, and wrote all of the copy. The campaign raised 26% of its goal on Giving Tuesday itself and reached 87% by the time fundraising closed on December 31.",
-    myRole: "Designed the drip and wrote all of the email copy, with daily social posts coordinated to support each send.",
+    myRole: "Designed the drip, wrote all of the email copy, and A/B-tested every subject line, with daily social posts coordinated to support each send.",
     process: [
       "Designed a 7-email drip sequence to contacts, each with a distinct angle: program overview, mentor stories, scholar stories, impact data, tiered giving breakdown, and urgency-driven closing asks",
       "Wrote all email copy with clear CTAs connecting donations to tangible student outcomes",
+      "A/B-tested the subject line of every email in the sequence",
       "Tracked performance across email and social throughout the campaign",
     ],
-    output: "A 7-email drip that drove the majority of donations, supported by daily social content.",
     results: [
       { value: 26, suffix: "%", label: "Of Goal Raised on Giving Tuesday" },
       { value: 87, suffix: "%", label: "Of $5K Goal by December 31" },
