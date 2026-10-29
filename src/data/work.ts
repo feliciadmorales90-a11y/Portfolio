@@ -258,7 +258,10 @@ export const projects: Project[] = [
     results: [
       { value: 62, prefix: "+", suffix: "%", label: "Clickthrough, Host Activation A/B Test" },
       { value: 54, prefix: "−", suffix: "%", label: "Unsubscribes, Onboarding A/B Test" },
+      { value: 31.5, suffix: "%", decimals: 1, label: "Average Open Rate, All Emails" },
+      { value: 4.65, suffix: "%", decimals: 2, label: "Average Click Rate, All Emails" },
     ],
+    resultsNote: "Account-wide averages across 394 marketing emails and 280,364 delivered.",
     workflowWeb: {
       stages: ["Signup", "Site ready to launch", "Trial", "Trial didn't convert", "Lapsed"],
       parallel: ["Subscriber"],
