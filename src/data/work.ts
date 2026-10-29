@@ -968,14 +968,6 @@ export const projects: Project[] = [
       { value: 31.4, suffix: "%", decimals: 1, label: "Organic Signup → Trial Rate" },
     ],
     resultsNote: "Landing-page figures are HubSpot first-touch, Oct 2025 to Oct 2026. Search and traffic growth are company-wide numbers that my SEO content and distribution contributed to; organic search converts signups to trials at more than double the 13.8% average.",
-    sections: [
-      {
-        title: "What the Data Showed",
-        bullets: [
-          "On the blog, direct-booking and comparison posts convert best per view, while fee-explainer posts bring the most search traffic but rarely convert directly, so they work as top-of-funnel SEO",
-        ],
-      },
-    ],
   },
   {
     slug: "scholar-seo-blogs",
