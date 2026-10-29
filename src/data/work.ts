@@ -939,7 +939,6 @@ export const projects: Project[] = [
         label: "Hero",
         description: "The direct-booking landing page I built: one promise, two ways to start, and partner credibility above the fold.",
         src: "/futurestay/landing-page/hero.webp",
-        href: "https://hello.futurestay.com/direct-booking-website",
       },
       {
         type: "image",
@@ -977,7 +976,6 @@ export const projects: Project[] = [
         ],
       },
     ],
-    links: [{ label: "See the live landing page", href: "https://hello.futurestay.com/direct-booking-website", external: true }],
   },
   {
     slug: "scholar-seo-blogs",
