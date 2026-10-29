@@ -1068,11 +1068,6 @@ export const projects: Project[] = [
       "Built wireframes for the platform MVP",
       "Defined a phased launch strategy: Puerto Rico beta (50 nonprofits, 500 volunteers), 15 US cities, then Canada",
     ],
-    results: [
-      { value: 5, label: "Competitor SWOTs" },
-      { value: 3, label: "Launch Phases" },
-      { value: 18, suffix: "mo", label: "Roadmap Built" },
-    ],
     media: [
       {
         type: "image",
