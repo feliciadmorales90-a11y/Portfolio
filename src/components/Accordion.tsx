@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useId, useRef, useState, type ReactNode } from "react";
+import { useId, useState, type ReactNode } from "react";
 
 function Plus({ open, className = "" }: { open: boolean; className?: string }) {
   return (
@@ -55,63 +55,6 @@ export function Section({ title, defaultOpen = true, children }: { title: string
       </button>
       <Panel open={open} id={id}>
         <div className="pb-8 md:pb-10">{children}</div>
-      </Panel>
-    </div>
-  );
-}
-
-/** Campaign deep-dive card with a summary that stays visible when collapsed. */
-export function DeepDive({
-  anchor,
-  title,
-  period,
-  summary,
-  children,
-}: {
-  anchor?: string;
-  title: string;
-  period?: string;
-  summary: string;
-  children: ReactNode;
-}) {
-  const [open, setOpen] = useState(false);
-  const id = useId();
-  const ref = useRef<HTMLDivElement>(null);
-
-  // Open (and scroll to) this deep dive when the URL hash points at it.
-  useEffect(() => {
-    if (!anchor) return;
-    const check = () => {
-      if (window.location.hash === `#${anchor}`) {
-        setOpen(true);
-        // An instant jump; a smooth scroll here fights the browser's own hash scroll and stops short.
-        setTimeout(() => ref.current?.scrollIntoView({ behavior: "instant", block: "start" }), 50);
-      }
-    };
-    check();
-    window.addEventListener("hashchange", check);
-    return () => window.removeEventListener("hashchange", check);
-  }, [anchor]);
-
-  return (
-    <div id={anchor} ref={ref} className="border border-card-border rounded-2xl overflow-hidden bg-card-bg/30">
-      <button
-        type="button"
-        aria-expanded={open}
-        aria-controls={id}
-        onClick={() => setOpen(!open)}
-        className="w-full p-6 md:p-8 flex items-start justify-between text-left group"
-      >
-        <div>
-          {period && <p className="text-xs font-mono uppercase tracking-widest text-muted mb-2">{period}</p>}
-          <h3 className="font-serif text-xl md:text-2xl text-foreground group-hover:text-accent transition-colors">{title}</h3>
-          <p className="text-sm text-muted mt-2 max-w-2xl leading-relaxed">{summary}</p>
-          <span className="inline-block mt-4 text-xs font-mono text-accent">{open ? "Hide details" : "Read the deep dive"}</span>
-        </div>
-        <Plus open={open} className="mt-1" />
-      </button>
-      <Panel open={open} id={id}>
-        <div className="px-6 md:px-8 pb-6 md:pb-8 space-y-8 border-t border-card-border pt-6">{children}</div>
       </Panel>
     </div>
   );

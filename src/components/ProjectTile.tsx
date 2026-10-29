@@ -1,0 +1,61 @@
+import Image from "next/image";
+import Link from "next/link";
+import { brands, projectHref, type Project } from "@/data/work";
+
+/** Thumbnail, or a brand-colored panel with the title when there is no image yet. */
+export function Thumb({ project, src, video, title }: { project: Project; src?: string; video?: boolean; title: string }) {
+  const brand = brands[project.brand];
+  return (
+    <div className="relative aspect-[16/10] overflow-hidden" style={{ backgroundColor: brand.color }}>
+      {src ? (
+        <Image
+          src={src}
+          alt=""
+          fill
+          sizes="(min-width: 768px) 320px, 80vw"
+          className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+        />
+      ) : (
+        <div className="absolute inset-0 flex items-center justify-center p-6 text-center">
+          <span className="font-serif text-2xl leading-tight text-foreground/70">{title}</span>
+        </div>
+      )}
+      {video && src && (
+        <span aria-hidden className="absolute inset-0 m-auto w-12 h-12 rounded-full bg-background/90 flex items-center justify-center text-sm text-foreground shadow">
+          ▶
+        </span>
+      )}
+    </div>
+  );
+}
+
+export default function ProjectTile({
+  project,
+  title,
+  summary,
+  thumb,
+  video,
+}: {
+  project: Project;
+  title?: string;
+  summary?: string;
+  thumb?: string;
+  video?: boolean;
+}) {
+  const name = title ?? project.title;
+  return (
+    <Link
+      href={projectHref(project)}
+      className="group block h-full rounded-2xl overflow-hidden bg-white border border-card-border shadow-sm hover:shadow-lg hover:border-accent/40 transition-all"
+    >
+      <Thumb project={project} src={thumb ?? project.thumb} video={video ?? project.video} title={name} />
+      <div className="p-4 md:p-5">
+        <p className="text-[11px] font-mono uppercase tracking-widest text-muted">{brands[project.brand].name}</p>
+        <h4 className="mt-1.5 text-base md:text-[17px] font-semibold text-foreground leading-snug group-hover:text-accent transition-colors">
+          {name}
+        </h4>
+        <p className="mt-1.5 text-sm text-muted leading-relaxed">{summary ?? project.summary}</p>
+      </div>
+    </Link>
+  );
+}

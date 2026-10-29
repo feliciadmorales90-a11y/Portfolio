@@ -1,32 +1,31 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { DeepDive, Section } from "@/components/Accordion";
+import { Section } from "@/components/Accordion";
 import MediaShowcase from "@/components/MediaShowcase";
+import ProjectTile from "@/components/ProjectTile";
 import Reveal from "@/components/Reveal";
 import StatGrid from "@/components/StatGrid";
-import { caseStudies, getCaseStudy } from "@/data/caseStudies";
+import { brands, craftsFor, getProject, projects } from "@/data/work";
 
 type Props = { params: Promise<{ slug: string }> };
 
+const pages = projects.filter((p) => !p.href);
+
 export function generateStaticParams() {
-  return caseStudies.map((c) => ({ slug: c.slug }));
+  return pages.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const study = getCaseStudy((await params).slug);
-  if (!study) return {};
-  const description = study.headline ? `${study.headline.text} ${study.summary}` : study.summary;
+  const project = getProject((await params).slug);
+  if (!project || project.href) return {};
+  const brand = brands[project.brand];
+  const title = `${project.title} for ${brand.name}`;
   return {
-    title: `${study.company} Case Study`,
-    description,
-    alternates: { canonical: `/work/${study.slug}` },
-    openGraph: {
-      title: `${study.company} Case Study | Felicia Morales`,
-      description,
-      url: `/work/${study.slug}`,
-      images: ["/opengraph-image.png"],
-    },
+    title,
+    description: project.summary,
+    alternates: { canonical: `/work/${project.slug}` },
+    openGraph: { title: `${title} | Felicia Morales`, description: project.summary, url: `/work/${project.slug}`, images: ["/opengraph-image.png"] },
   };
 }
 
@@ -45,92 +44,87 @@ function Bullets({ items }: { items: string[] }) {
   );
 }
 
-const label = "text-sm font-mono text-accent tracking-widest uppercase";
+function Paragraphs({ text }: { text: string }) {
+  return (
+    <div className="space-y-4 max-w-3xl">
+      {text.split("\n\n").map((p) => (
+        <p key={p.slice(0, 24)} className="text-muted text-lg leading-relaxed">
+          {p}
+        </p>
+      ))}
+    </div>
+  );
+}
 
-export default async function CaseStudyPage({ params }: Props) {
+export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
-  const study = getCaseStudy(slug);
-  if (!study) notFound();
+  const project = getProject(slug);
+  if (!project || project.href) notFound();
 
-  const index = caseStudies.indexOf(study);
-  const next = caseStudies[(index + 1) % caseStudies.length];
+  const brand = brands[project.brand];
+  const projectCrafts = craftsFor(project.slug);
+  const related = projectCrafts
+    .flatMap((c) => c.items.map((i) => i.project))
+    .filter((s, i, all) => s !== project.slug && all.indexOf(s) === i)
+    .slice(0, 3)
+    .map((s) => getProject(s)!);
 
   return (
     <article>
-      <header style={{ backgroundColor: study.color }}>
-        <div className="max-w-5xl mx-auto px-6 pt-28 pb-16 md:pt-32 md:pb-20">
-          <Link href="/#case-studies" className="inline-flex items-center gap-2 text-sm text-foreground/60 hover:text-foreground transition-colors mb-10">
+      <header style={{ backgroundColor: brand.color }}>
+        <div className="max-w-5xl mx-auto px-6 pt-28 pb-14 md:pt-32 md:pb-16">
+          <Link href="/#work" className="inline-flex items-center gap-2 text-sm text-foreground/60 hover:text-foreground transition-colors mb-10">
             <span aria-hidden>←</span>
-            <span>Back to all work</span>
+            <span>All work</span>
           </Link>
           <Reveal>
-            <p className="text-xs font-mono uppercase tracking-widest text-foreground/50 mb-3">{study.industry}</p>
-            <h1 className="font-serif text-4xl md:text-6xl text-foreground mb-4">{study.company}</h1>
+            <p className="text-xs font-mono uppercase tracking-widest text-foreground/55 mb-3">
+              {projectCrafts.map((c) => c.name).join(" · ")}
+            </p>
+            <h1 className="font-serif text-4xl md:text-6xl text-foreground mb-4">{project.title}</h1>
             <p className="text-sm text-foreground/70">
-              {study.role}
-              {study.period && <> · {study.period}</>}
+              <span className="font-semibold text-foreground">{brand.name}</span>
+              {" · "}
+              {project.role ?? brand.role}
+              {(project.period ?? brand.period) && <> · {project.period ?? brand.period}</>}
             </p>
           </Reveal>
         </div>
       </header>
 
       <div className="max-w-5xl mx-auto px-6 py-14 md:py-20">
-        {study.headline && (
-          <Reveal className="mb-10">
-            <div className="rounded-3xl border border-card-border bg-card-bg p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-3 md:gap-8">
-              <p className="font-mono font-bold text-4xl md:text-5xl text-accent shrink-0">{study.headline.value}</p>
-              <div>
-                <p className="text-lg md:text-xl text-foreground font-semibold leading-snug">{study.headline.text}</p>
-                {study.headline.note && <p className="text-sm text-muted mt-2">{study.headline.note}</p>}
-              </div>
-            </div>
-          </Reveal>
-        )}
-
-        {study.results && study.results.length > 0 && (
-          <Reveal className="mb-12">
-            <h2 className={`${label} mb-4`}>Results</h2>
-            <StatGrid stats={study.results} />
-            {study.resultsNote && <p className="text-sm text-muted mt-4 max-w-3xl">{study.resultsNote}</p>}
-          </Reveal>
-        )}
-
         <div className="mb-10 space-y-5">
-          <p className="text-lg md:text-xl text-foreground/80 leading-relaxed max-w-3xl">{study.overview}</p>
-          {study.collaborators && (
+          {project.overview && <p className="text-lg md:text-xl text-foreground/80 leading-relaxed max-w-3xl">{project.overview}</p>}
+          <p className="text-muted max-w-3xl">
+            <span className="font-semibold text-foreground">About {brand.name}: </span>
+            {brand.about}
+          </p>
+          {project.collaborators && (
             <p className="text-muted max-w-3xl">
               <span className="font-semibold text-foreground">Worked with: </span>
-              {study.collaborators}
+              {project.collaborators}
             </p>
           )}
-          {study.proof && (
+          {project.links && (
             <div className="flex flex-wrap gap-3 pt-2">
-              {study.proof.map((p) =>
-                p.external ? (
+              {project.links.map((l) =>
+                l.external ? (
                   <a
-                    key={p.href}
-                    href={p.href}
+                    key={l.href}
+                    href={l.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-6 py-2.5 bg-foreground hover:bg-foreground/80 text-background rounded-full text-sm font-medium transition-all"
                   >
-                    {p.label} ↗
-                  </a>
-                ) : p.href.startsWith("#") ? (
-                  <a
-                    key={p.href}
-                    href={p.href}
-                    className="px-6 py-2.5 border border-foreground/20 hover:border-foreground/50 text-foreground rounded-full text-sm font-medium transition-all"
-                  >
-                    {p.label} ↓
+                    {l.label} ↗
                   </a>
                 ) : (
                   <Link
-                    key={p.href}
-                    href={p.href}
+                    key={l.href}
+                    href={l.href}
                     className="px-6 py-2.5 border border-foreground/20 hover:border-foreground/50 text-foreground rounded-full text-sm font-medium transition-all"
                   >
-                    {p.label} →
+                    {l.label} →
                   </Link>
                 ),
               )}
@@ -139,94 +133,39 @@ export default async function CaseStudyPage({ params }: Props) {
         </div>
 
         <div className="border-t border-card-border">
-          <Section title="The Problem">
-            <div className="space-y-4 max-w-3xl">
-              {study.problem.split("\n\n").map((p) => (
-                <p key={p.slice(0, 24)} className="text-muted text-lg leading-relaxed">
-                  {p}
-                </p>
-              ))}
-            </div>
-          </Section>
-
-          <Section title="What I Did">
-            <Bullets items={study.strategy} />
-          </Section>
-
-          {study.campaigns && study.campaigns.length > 0 && (
-            <Section title="Campaign Deep Dives">
-              <div className="space-y-4">
-                {study.campaigns.map((c) => (
-                  <DeepDive key={c.title} anchor={c.id} title={c.title} period={c.period} summary={c.overview}>
-                    <div>
-                      <h4 className={`${label} mb-3`}>My Role</h4>
-                      <p className="text-muted leading-relaxed max-w-3xl">{c.myRole}</p>
-                    </div>
-                    <div>
-                      <h4 className={`${label} mb-3`}>Process</h4>
-                      <Bullets items={c.process} />
-                    </div>
-                    <div>
-                      <h4 className={`${label} mb-3`}>Output</h4>
-                      <p className="text-muted leading-relaxed max-w-3xl">{c.output}</p>
-                    </div>
-                    {c.results && c.results.length > 0 && (
-                      <div>
-                        <h4 className={`${label} mb-4`}>Results</h4>
-                        <StatGrid stats={c.results} tone="plain" columns={4} />
-                        {c.resultsNote && <p className="text-sm text-muted mt-3">{c.resultsNote}</p>}
-                      </div>
-                    )}
-                    {c.media && c.media.length > 0 && (
-                      <div>
-                        <h4 className={`${label} mb-4`}>
-                          {c.media.length > 4 && c.media.every((m) => m.type === "image") ? "Product Walkthrough" : "The Work"}
-                        </h4>
-                        <MediaShowcase items={c.media} />
-                      </div>
-                    )}
-                    {c.sections?.map((x) => (
-                      <div key={x.title}>
-                        <h4 className={`${label} mb-3`}>{x.title}</h4>
-                        <div className="space-y-3 max-w-3xl">
-                          {x.paragraphs?.map((p) => (
-                            <p key={p.slice(0, 24)} className="text-muted leading-relaxed">
-                              {p}
-                            </p>
-                          ))}
-                          {x.bullets && <Bullets items={x.bullets} />}
-                        </div>
-                      </div>
-                    ))}
-                    {c.links && (
-                      <div className="flex flex-wrap gap-3">
-                        {c.links.map((l) => (
-                          <a
-                            key={l.href}
-                            href={l.href}
-                            target={l.external ? "_blank" : undefined}
-                            rel={l.external ? "noopener noreferrer" : undefined}
-                            className="px-6 py-2.5 bg-foreground hover:bg-foreground/80 text-background rounded-full text-sm font-medium transition-all"
-                          >
-                            {l.label}
-                            {l.external ? " ↗" : ""}
-                          </a>
-                        ))}
-                      </div>
-                    )}
-                  </DeepDive>
-                ))}
-              </div>
+          {project.problem && (
+            <Section title="The Challenge">
+              <Paragraphs text={project.problem} />
             </Section>
           )}
 
-          {study.media && study.media.length > 0 && (
+          {project.myRole && (
+            <Section title="My Role">
+              <Paragraphs text={project.myRole} />
+            </Section>
+          )}
+
+          {project.process && project.process.length > 0 && (
+            <Section title="What I Did">
+              <Bullets items={project.process} />
+              {project.output && <p className="text-muted leading-relaxed max-w-3xl mt-6">{project.output}</p>}
+            </Section>
+          )}
+
+          {project.media && project.media.length > 0 && (
             <Section title="The Work">
-              <MediaShowcase items={study.media} layout={study.mediaLayout} />
+              <MediaShowcase items={project.media} layout={project.mediaLayout} />
             </Section>
           )}
 
-          {study.extraSections?.map((x) => (
+          {project.results && project.results.length > 0 && (
+            <Section title="Results">
+              <StatGrid stats={project.results} columns={project.results.length === 4 ? 4 : 3} />
+              {project.resultsNote && <p className="text-sm text-muted mt-4 max-w-3xl">{project.resultsNote}</p>}
+            </Section>
+          )}
+
+          {project.sections?.map((x) => (
             <Section key={x.title} title={x.title}>
               <div className="space-y-4 max-w-3xl">
                 {x.paragraphs?.map((p) => (
@@ -240,18 +179,25 @@ export default async function CaseStudyPage({ params }: Props) {
           ))}
         </div>
 
-        <nav className="pt-8 mt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4" aria-label="More work">
-          <Link href="/#case-studies" className="inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors">
+        {related.length > 0 && (
+          <section className="mt-16" aria-labelledby="related">
+            <h2 id="related" className="text-sm font-mono text-accent tracking-widest uppercase mb-6">
+              More {projectCrafts[0].name}
+            </h2>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {related.map((p) => (
+                <ProjectTile key={p.slug} project={p} />
+              ))}
+            </div>
+          </section>
+        )}
+
+        <div className="pt-10 mt-10 border-t border-card-border">
+          <Link href="/#work" className="inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors">
             <span aria-hidden>←</span>
-            <span>Back to all work</span>
+            <span>All work</span>
           </Link>
-          <Link href={`/work/${next.slug}`} className="group inline-flex items-center gap-2 text-sm text-foreground font-semibold">
-            Next: {next.company}
-            <span aria-hidden className="transition-transform group-hover:translate-x-1">
-              →
-            </span>
-          </Link>
-        </nav>
+        </div>
       </div>
     </article>
   );

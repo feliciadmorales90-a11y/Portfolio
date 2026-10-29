@@ -1,4 +1,4 @@
-import type { Stat } from "@/data/caseStudies";
+import type { Stat } from "@/data/work";
 import CountUp from "./CountUp";
 
 export default function StatGrid({

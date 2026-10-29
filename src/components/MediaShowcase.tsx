@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import type { Media } from "@/data/caseStudies";
+import type { Media } from "@/data/work";
 import InstagramEmbed from "./InstagramEmbed";
 import Lightbox, { type LightboxImage } from "./Lightbox";
 

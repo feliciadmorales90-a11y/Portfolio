@@ -1,9 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import CaseCard from "@/components/CaseCard";
+import CraftRow from "@/components/CraftRow";
 import { LinkedInIcon, MailIcon } from "@/components/Icons";
 import Reveal from "@/components/Reveal";
-import { caseStudies } from "@/data/caseStudies";
 import {
   aboutParagraphs,
   background,
@@ -16,10 +15,14 @@ import {
   skillGroups,
   toolGroups,
 } from "@/data/site";
-import { writingSamples } from "@/data/writing";
+import { brands, crafts } from "@/data/work";
 
 const card = "rounded-2xl border border-card-border/60 bg-card-bg/40 backdrop-blur-sm p-6 md:p-8";
 const eyebrow = "text-xs font-mono text-accent tracking-[0.2em] uppercase";
+const workBrands = [
+  ...(["futurestay", "scholar", "sqe", "verve"] as const).map((id) => brands[id].name),
+  ...otherClients,
+];
 
 export default function Home() {
   return (
@@ -44,7 +47,7 @@ export default function Home() {
                 <Reveal delay={0.15}>
                   <div className="flex flex-col sm:flex-row gap-3 mt-8">
                     <Link
-                      href="#case-studies"
+                      href="#work"
                       className="px-7 py-3 bg-foreground hover:bg-foreground/80 text-background rounded-full font-medium transition-all inline-flex items-center justify-center text-sm"
                     >
                       View My Work
@@ -171,89 +174,46 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Case studies */}
-      <section id="case-studies" className="py-24 md:py-32 px-6">
-        <div className="max-w-5xl mx-auto">
-          <Reveal className="mb-12">
-            <p className="text-accent font-mono text-sm tracking-widest uppercase mb-4">Case Studies</p>
-            <h2 className="font-serif text-3xl md:text-5xl text-foreground">Work that moves numbers.</h2>
+      {/* Work, by craft */}
+      <section id="work" className="py-24 md:py-32 px-6">
+        <div className="max-w-6xl mx-auto">
+          <Reveal className="mb-10">
+            <p className="text-accent font-mono text-sm tracking-widest uppercase mb-4">Work</p>
+            <h2 className="font-serif text-3xl md:text-5xl text-foreground">What I make.</h2>
             <p className="text-muted text-lg mt-4 max-w-2xl">
-              Results matter, but so does how you get them. Each project leads with what changed, then shows how.
+              Organized by craft, so you can go straight to the kind of work you&apos;re hiring for. Every project names the brand it was for.
             </p>
+            <nav aria-label="Crafts" className="flex flex-wrap gap-2 mt-8">
+              {crafts.map((c) => (
+                <a
+                  key={c.slug}
+                  href={`#${c.slug}`}
+                  className="text-xs font-mono px-3 py-1.5 rounded-full border border-card-border text-muted bg-background/60 hover:border-accent hover:text-accent transition-colors"
+                >
+                  {c.name}
+                </a>
+              ))}
+            </nav>
           </Reveal>
-          <div className="space-y-6">
-            {caseStudies.map((study, i) => (
-              <div key={study.slug} className="md:sticky" style={{ top: 80 + i * 20, zIndex: i + 1 }}>
-                <Reveal>
-                  <CaseCard study={study} />
-                </Reveal>
-              </div>
+          <div>
+            {crafts.map((c, i) => (
+              <CraftRow key={c.slug} craft={c} index={i} />
             ))}
           </div>
 
-          <Reveal className="mt-20 pt-12 border-t border-card-border">
-            <p className="text-foreground font-mono text-sm tracking-widest uppercase mb-8 text-center">Other Clients &amp; Collaborations</p>
+          <Reveal className="mt-12 pt-12 border-t border-card-border text-center">
+            <p className="text-foreground font-mono text-sm tracking-widest uppercase mb-8">Brands I&apos;ve Worked With</p>
             <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
-              {otherClients.map((c) => (
-                <li key={c} className="text-lg md:text-xl font-semibold text-foreground/40 hover:text-foreground transition-colors">
-                  {c}
+              {workBrands.map((b) => (
+                <li key={b} className="text-lg md:text-xl font-semibold text-foreground/40 hover:text-foreground transition-colors">
+                  {b}
                 </li>
               ))}
             </ul>
-            <p className="mt-10 text-center text-muted max-w-xl mx-auto">
+            <p className="mt-10 text-muted max-w-xl mx-auto">
               <span className="font-semibold text-foreground">Founder, {founderNote.name}.</span> {founderNote.detail}
             </p>
           </Reveal>
-        </div>
-      </section>
-
-      {/* Writing */}
-      <section id="writing" className="py-24 md:py-32 px-6">
-        <div className="max-w-5xl mx-auto">
-          <Reveal className="mb-12">
-            <p className="text-accent font-mono text-sm tracking-widest uppercase mb-4">Writing</p>
-            <h2 className="font-serif text-3xl md:text-5xl text-foreground">Making hard subjects readable.</h2>
-            <p className="text-muted text-lg mt-4 max-w-2xl">
-              Technical topics, written for the people who have to make decisions about them.
-            </p>
-          </Reveal>
-          {writingSamples.map((w) => (
-            <Reveal key={w.slug}>
-              <article className="grid md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-6 md:gap-10 items-center rounded-3xl border border-card-border bg-card-bg/60 backdrop-blur-sm p-5 md:p-8">
-                <Link href={`/writing/${w.slug}`} className="block rounded-2xl overflow-hidden border border-card-border shadow-sm hover:shadow-lg transition-shadow" tabIndex={-1} aria-hidden>
-                  <Image src={w.cover} alt="" width={800} height={600} className="w-full h-auto" sizes="(min-width: 768px) 420px, 100vw" />
-                </Link>
-                <div>
-                  <p className="text-xs font-mono uppercase tracking-widest text-muted mb-3">
-                    {w.publication} · {w.client} · {w.date}
-                  </p>
-                  <h3 className="font-serif text-2xl md:text-3xl text-foreground leading-snug">
-                    <Link href={`/writing/${w.slug}`} className="hover:text-accent transition-colors">
-                      {w.title}
-                    </Link>
-                  </h3>
-                  <p className="text-muted mt-4 leading-relaxed">{w.summary}</p>
-                  <p className="text-sm text-foreground/80 mt-3">{w.role}</p>
-                  <div className="flex flex-col sm:flex-row gap-3 mt-6">
-                    <Link
-                      href={`/writing/${w.slug}`}
-                      className="px-6 py-2.5 bg-foreground hover:bg-foreground/80 text-background rounded-full text-sm font-medium inline-flex items-center justify-center transition-all"
-                    >
-                      Read the issue
-                    </Link>
-                    <a
-                      href={w.pdf}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-6 py-2.5 border border-foreground/20 hover:border-foreground/50 text-foreground rounded-full text-sm font-medium inline-flex items-center justify-center transition-all"
-                    >
-                      Open PDF
-                    </a>
-                  </div>
-                </div>
-              </article>
-            </Reveal>
-          ))}
         </div>
       </section>
 
