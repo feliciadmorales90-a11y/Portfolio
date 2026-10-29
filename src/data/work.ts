@@ -256,8 +256,8 @@ export const projects: Project[] = [
       "Ran cold outreach campaigns in Lemlist to open new pipeline",
     ],
     results: [
-      { value: 62, prefix: "+", suffix: "%", label: "Clickthrough, Host Activation A/B Test" },
-      { value: 54, prefix: "−", suffix: "%", label: "Unsubscribes, Onboarding A/B Test" },
+      { value: 62, prefix: "+", suffix: "%", label: "Clickthrough" },
+      { value: 54, prefix: "−", suffix: "%", label: "Unsubscribes" },
       { value: 31.5, suffix: "%", decimals: 1, label: "Average Open Rate, All Emails" },
       { value: 4.65, suffix: "%", decimals: 2, label: "Average Click Rate, All Emails" },
     ],
