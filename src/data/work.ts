@@ -1247,9 +1247,14 @@ export const crafts: Craft[] = [
     slug: "social-media",
     name: "Social Media",
     description: "Top-performing posts across the accounts I've run, by format.",
-    items: [{ project: "manychat" }],
+    items: [],
     strips: "social",
-    links: [{ label: "ManyChat automations", href: "/work/manychat" }],
+  },
+  {
+    slug: "automations",
+    name: "Automations",
+    description: "Social DM automations built in ManyChat.",
+    items: [{ project: "manychat" }],
   },
   {
     slug: "partnerships",
