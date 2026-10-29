@@ -1,4 +1,1 @@
-<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="12" cy="12" r="12" fill="#535EFC"/>
-  <path d="M8 8v4.5c0 2.2 1.8 4 4 4s4-1.8 4-4V8h-2.4v4.5c0 .9-.7 1.6-1.6 1.6s-1.6-.7-1.6-1.6V8z" fill="#fff"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img"><title>Upfluence</title><rect width="48" height="48" rx="11" fill="#1414D8"/><g transform="translate(13.2 10.6) scale(1.34)"><g transform="translate(0 -9.42)"><path d="M0,20.51V9.42H4.7v11.09H0Z" fill="#fff"/><path d="M11.42,9.42v11.56c0,.19-.03,.39-.11,.57-.08,.18-.2,.33-.35,.46-.18,.15-.37,.27-.58,.37-.54,.23-1.12,.37-1.7,.39-.51,.03-1.03,.02-1.54,.04h-.17v4.66h.54c1.17,0,2.33-.12,3.47-.37,.9-.19,1.76-.52,2.55-.98,1.02-.63,1.77-1.48,2.19-2.6,.27-.75,.41-1.55,.4-2.35V9.42h-4.69" fill="#fff"/><path d="M4.69,22.79H0v4.67H4.69v-4.67Z" fill="#FE4331"/></g></g></svg>
